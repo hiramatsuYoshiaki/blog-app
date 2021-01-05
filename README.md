@@ -68,3 +68,243 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# blog-app set up
+
+1. create-react-app でローカルの開発環境構築
+
+```
+$ npx create-react-app blog-app
+```
+
+2. firebase プロジェクトの作成とデプロイ
+   ブラウザ
+   2-1. firebase コンソールでプロジェクト追加
+   2-2. アナリティクスの設定 1/3 　プロジェクト名を入力(blog-app）
+   2-3. アナリティクスの設定 2/3 　[続行]ボタンを押す
+   2-4. アナリティクスの設定 3/3 　[プロジェクトを作成]ボタンを押す
+   2-5. プロジェクトのホーム画面（アプリに firebase を追加して利用を開始しましょう）のウェブボタンをクリック
+   2-6. ウェブアプリに firebase を追加、アプリのニックネーム(blog-app)に入力、このアプリの firebase Hosting も設定にチェックを入れて、[アプリを登録]ボタンを押す
+   2-7. firebase SDK の追加[次へ]ボタンを押す
+   2-8. firebase CLI のインストール[次へ]ボタンを押す
+   2-9. firebase Hosting へのデプロイ[コンソールへ進む]ボタンを押す
+   2-10. コンソールの歯車アイコンのメニューの[プロジェクトの設定]をクリック
+   2-10. リソースロケーションの鉛筆アイコンをクリック
+   2-10. デフォルトのリソースロケーションの設定で asia-northeast1 を選択し[完了]ボタンを押す
+   2-10. コンソールのメニューの cloud firestore をクリック
+   2-10. Cloud Firesore 画面で[データベースの作成]ボタンを押す
+   2-10. セキュリティー保護ルール画面で、本番環境で開始にチェックが入っていることを確認し、[次へ]を押す
+   2-10. ロケーション設定画面で[完了]を押す
+   ターミナル
+   2-10. `$ firebase login`
+   2-10. `$ firebase init`
+
+   ```
+   PS D:\develop-react\blog-app> firebase init
+
+    ######## #### ########  ######## ########     ###     ######  ########
+    ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+    ######    ##  ########  ######   ########  #########  ######  ######
+    ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+    ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+   You're about to initialize a Firebase project in this directory:
+
+   D:\develop-react\blog-app
+
+   ? Are you ready to proceed? Yes
+   ? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. Firestore: Deploy rules and create indexes for Firestore, Functions: Configure and deploy Cloud Functions, Hosting: Configure and deploy Firebase Hosting sites, Storage: Deploy Cloud Storage security rules
+
+   === Project Setup
+
+   First, let's associate this project directory with a Firebase project.
+   You can create multiple project aliases by running firebase use --add,
+   but for now we'll just set up a default project.
+
+   ? Please select an option: Use an existing project
+   ? Select a default Firebase project for this directory: blog-app-99159 (blog-app)
+   i  Using project blog-app-99159 (blog-app)
+
+   === Firestore Setup
+
+   Firestore Security Rules allow you to define how and when to allow
+   requests. You can keep these rules in your project directory
+   and publish them with firebase deploy.
+
+   ? What file should be used for Firestore Rules? firestore.rules
+
+   Firestore indexes allow you to perform complex queries while
+   maintaining performance that scales with the size of the result
+   set. You can keep index definitions in your project directory
+   and publish them with firebase deploy.
+
+   ? What file should be used for Firestore indexes? firestore.indexes.json
+
+   === Functions Setup
+
+   A functions directory will be created in your project with a Node.js
+   package pre-configured. Functions can be deployed with firebase deploy.
+
+   ? What language would you like to use to write Cloud Functions? JavaScript
+   ? Do you want to use ESLint to catch probable bugs and enforce style? No
+   +  Wrote functions/package.json
+   +  Wrote functions/index.js
+   +  Wrote functions/.gitignore
+   ? Do you want to install dependencies with npm now? Yes
+   npm WARN lifecycle The node binary used for scripts is C:\Program Files (x86)\Nodist\bin\node.exe but npm is using C:\Program Files (x86)\Nodist\v-x64\12.18.0\node.exe itself. Use the `--scripts-prepend-node-path` option to include the path for the node binary npm was executed with.
+
+   > protobufjs@6.10.2 postinstall D:\develop-react\blog-app\functions\node_modules\protobufjs
+   > node scripts/postinstall
+
+   npm notice created a lockfile as package-lock.json. You should commit this file.
+   added 226 packages from 191 contributors and audited 226 packages in 62.906s
+
+   9 packages are looking for funding
+   run `npm fund` for details
+
+   found 0 vulnerabilities
+
+
+   === Hosting Setup
+
+   Your public directory is the folder (relative to your project directory) that
+   will contain Hosting assets to be uploaded with firebase deploy. If you
+   have a build process for your assets, use your build's output directory.
+
+   ? What do you want to use as your public directory? build
+   ? Configure as a single-page app (rewrite all urls to /index.html)? Yes
+   ? Set up automatic builds and deploys with GitHub? No
+   +  Wrote build/index.html
+
+   === Storage Setup
+
+   Firebase Storage Security Rules allow you to define how and when to allow
+   uploads and downloads. You can keep these rules in your project directory
+   and publish them with firebase deploy.
+
+   ? What file should be used for Storage Rules? y
+   have a build process for your assets, use your build's output directory.
+
+   ? What do you want to use as your public directory? build
+   ? Configure as a single-page app (rewrite all urls to /index.html)? Yes
+   ? Set up automatic builds and deploys with GitHub? No
+   +  Wrote build/index.html
+
+   === Storage Setup
+
+   Firebase Storage Security Rules allow you to define how and when to allow
+   uploads and downloads. You can keep these rules in your project directory
+   and publish them with firebase deploy.
+
+   ? What file should be used for Storage Rules? y
+
+
+   i  Writing configuration info to firebase.json...
+   i  Writing project information to .firebaserc...
+
+   +  Firebase initialization complete!
+   ```
+
+   2-10. `$ npm build`
+   2-10. `$ firebase deploy`
+
+3. npm install
+
+```
+npm install --save @material-ui/core @material-ui/icons @material-ui/styles connected-react-router firebase history react-redux react-router redux redux-actions redux-logger redux-thunk reselect
+```
+
+### push error
+
+connected react router で push を使うと
+
+Uncaught Could not find router reducer in state tree, it must be mounted under "router"
+
+原因は history のバージョンが 5.0.0 だとなるらしい　
+4.10.1 にしたら直った。　
+npm install --save history@4.10.1
+
+### sass instal
+
+`npm install node-sass@4.14.1`
+
+# re-ducks パターン
+
+users
+|--actions.js
+|--index.js
+|--operations.js
+|--reducers.js
+|--selectors.js
+|--types.js
+
+actions.js：変更するデータを送る
+reducers.js：ストアーを変更する
+selectors.js：ストアーで管理している state を参照する関数
+operations.js：複雑な処理を行う、日同期処理（redux-thunk）を制御する、Action を呼び出す
+types.js：タイプスクリプトで使用する、型定義する
+
+# ec-shop directory
+
+```
+blog-app
+|-build
+|-function
+|-node_modules
+|-public
+|-src
+  |-assets
+    |-reset.sass
+    |-style.sass
+    |-theme.js
+  |-components
+    |-Ukit
+      |-index.js
+  |-firebase
+    |-config.js
+    |-index.js
+  |-reducks
+    |-store
+      |-initialState
+      |-store.js
+    |-users
+      |-action.js
+      |-operations.js
+      |-reducers.js
+      |-selectors.js
+    |-templates
+      |-index.js
+      |-Home.jsx
+      |-Login.jsx
+      |-SignUp.jsx
+   |-.env
+   |-App.jsx
+   |-index.js
+   |-Router.jsx
+   |-esLintcatch
+   |-.firebaserc
+   |-.gitignore
+   |-firestore.indexes.json
+   |-firestore.rules
+   |-package-lock.json
+   |-oackage.json
+   |-README.md
+   |-y
+   |-yarn.lock
+
+
+```
+
+# create-react-app コマンドで作ったリポジトリを GitHub に上げる方法
+
+1. New repository でリポジトリを作る
+2. この時 Initialize this repository with a README をチェックしない
+3. ローカルリポジトリで以下の手順を実行する。
+
+```
+git init
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/hiramatsuYoshiaki/blog-app.git
+git push -u origin main
+```
