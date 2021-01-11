@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import App from './App.jsx';
 import reportWebVitals from './reportWebVitals';
+//Redux
+import { Provider } from 'react-redux'
+import createStore from './reducks/store/store'
+//Reduxのstoreでのルーティング管理
+import { ConnectedRouter } from 'connected-react-router'
+import * as History from 'history'//v4.10.1
+//ルーティング情報を取得
+const history = History.createBrowserHistory();
+//storeを取得する、ルーティング情報をcreateStoreに引数として渡す
+export const store = createStore(history);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
+    </Provider >,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

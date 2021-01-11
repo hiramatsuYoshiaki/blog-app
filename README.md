@@ -1,3 +1,5 @@
+# Blog app
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -100,118 +102,82 @@ $ npx create-react-app blog-app
    2-10. `$ firebase init`
 
    ```
-   PS D:\develop-react\blog-app> firebase init
+    PS D:\develop-react\blog-app> firebase init
 
-    ######## #### ########  ######## ########     ###     ######  ########
-    ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
-    ######    ##  ########  ######   ########  #########  ######  ######
-    ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
-    ##       #### ##     ## ######## ########  ##     ##  ######  ########
+        ######## #### ########  ######## ########     ###     ######  ########
+        ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+        ######    ##  ########  ######   ########  #########  ######  ######
+        ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+        ##       #### ##     ## ######## ########  ##     ##  ######  ########
 
-   You're about to initialize a Firebase project in this directory:
+    You're about to initialize a Firebase project in this directory:
 
-   D:\develop-react\blog-app
+    D:\develop-react\blog-app
 
-   ? Are you ready to proceed? Yes
-   ? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. Firestore: Deploy rules and create indexes for Firestore, Functions: Configure and deploy Cloud Functions, Hosting: Configure and deploy Firebase Hosting sites, Storage: Deploy Cloud Storage security rules
+    ? Are you ready to proceed? Yes
+    ? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. Firestore: Deploy rules and create indexes for Firestore, Hosting: Configure and deploy Firebase Hosting sites, Storage: Deploy Cloud Storage security rules
 
-   === Project Setup
+    === Project Setup
 
-   First, let's associate this project directory with a Firebase project.
-   You can create multiple project aliases by running firebase use --add,
-   but for now we'll just set up a default project.
+    First, let's associate this project directory with a Firebase project.
+    You can create multiple project aliases by running firebase use --add,
+    but for now we'll just set up a default project.
 
-   ? Please select an option: Use an existing project
-   ? Select a default Firebase project for this directory: blog-app-99159 (blog-app)
-   i  Using project blog-app-99159 (blog-app)
+    ? Please select an option: Use an existing project
+    ? Select a default Firebase project for this directory: blog-app-4302d (blog-app)
+    i  Using project blog-app-4302d (blog-app)
 
-   === Firestore Setup
+    === Firestore Setup
 
-   Firestore Security Rules allow you to define how and when to allow
-   requests. You can keep these rules in your project directory
-   and publish them with firebase deploy.
+    Firestore Security Rules allow you to define how and when to allow
+    requests. You can keep these rules in your project directory
+    and publish them with firebase deploy.
 
-   ? What file should be used for Firestore Rules? firestore.rules
+    ? What file should be used for Firestore Rules? firestore.rules
 
-   Firestore indexes allow you to perform complex queries while
-   maintaining performance that scales with the size of the result
-   set. You can keep index definitions in your project directory
-   and publish them with firebase deploy.
+    Firestore indexes allow you to perform complex queries while
+    maintaining performance that scales with the size of the result
+    set. You can keep index definitions in your project directory
+    and publish them with firebase deploy.
 
-   ? What file should be used for Firestore indexes? firestore.indexes.json
+    ? What file should be used for Firestore indexes? firestore.indexes.json
 
-   === Functions Setup
+    === Hosting Setup
 
-   A functions directory will be created in your project with a Node.js
-   package pre-configured. Functions can be deployed with firebase deploy.
+    Your public directory is the folder (relative to your project directory) that
+    will contain Hosting assets to be uploaded with firebase deploy. If you
+    have a build process for your assets, use your build's output directory.
 
-   ? What language would you like to use to write Cloud Functions? JavaScript
-   ? Do you want to use ESLint to catch probable bugs and enforce style? No
-   +  Wrote functions/package.json
-   +  Wrote functions/index.js
-   +  Wrote functions/.gitignore
-   ? Do you want to install dependencies with npm now? Yes
-   npm WARN lifecycle The node binary used for scripts is C:\Program Files (x86)\Nodist\bin\node.exe but npm is using C:\Program Files (x86)\Nodist\v-x64\12.18.0\node.exe itself. Use the `--scripts-prepend-node-path` option to include the path for the node binary npm was executed with.
+    ? What do you want to use as your public directory? build
+    ? Configure as a single-page app (rewrite all urls to /index.html)? Yes
+    ? Set up automatic builds and deploys with GitHub? No
+    +  Wrote build/index.html
 
-   > protobufjs@6.10.2 postinstall D:\develop-react\blog-app\functions\node_modules\protobufjs
-   > node scripts/postinstall
+    === Storage Setup
 
-   npm notice created a lockfile as package-lock.json. You should commit this file.
-   added 226 packages from 191 contributors and audited 226 packages in 62.906s
+    Firebase Storage Security Rules allow you to define how and when to allow
+    uploads and downloads. You can keep these rules in your project directory
+    and publish them with firebase deploy.
 
-   9 packages are looking for funding
-   run `npm fund` for details
+    ? What file should be used for Storage Rules? storage.rules
 
-   found 0 vulnerabilities
+    i  Writing configuration info to firebase.json...
+    i  Writing project information to .firebaserc...
 
-
-   === Hosting Setup
-
-   Your public directory is the folder (relative to your project directory) that
-   will contain Hosting assets to be uploaded with firebase deploy. If you
-   have a build process for your assets, use your build's output directory.
-
-   ? What do you want to use as your public directory? build
-   ? Configure as a single-page app (rewrite all urls to /index.html)? Yes
-   ? Set up automatic builds and deploys with GitHub? No
-   +  Wrote build/index.html
-
-   === Storage Setup
-
-   Firebase Storage Security Rules allow you to define how and when to allow
-   uploads and downloads. You can keep these rules in your project directory
-   and publish them with firebase deploy.
-
-   ? What file should be used for Storage Rules? y
-   have a build process for your assets, use your build's output directory.
-
-   ? What do you want to use as your public directory? build
-   ? Configure as a single-page app (rewrite all urls to /index.html)? Yes
-   ? Set up automatic builds and deploys with GitHub? No
-   +  Wrote build/index.html
-
-   === Storage Setup
-
-   Firebase Storage Security Rules allow you to define how and when to allow
-   uploads and downloads. You can keep these rules in your project directory
-   and publish them with firebase deploy.
-
-   ? What file should be used for Storage Rules? y
-
-
-   i  Writing configuration info to firebase.json...
-   i  Writing project information to .firebaserc...
-
-   +  Firebase initialization complete!
+    +  Firebase initialization complete!
    ```
 
    2-10. `$ npm build`
+
    2-10. `$ firebase deploy`
+   `Hosting URL: https://blog-app-4302d.web.app`
 
 3. npm install
 
 ```
-npm install --save @material-ui/core @material-ui/icons @material-ui/styles connected-react-router firebase history react-redux react-router redux redux-actions redux-logger redux-thunk reselect
+npm install --save @material-ui/core @material-ui/icons @material-ui/styles connected-react-router firebase react-redux react-router redux redux-actions redux-logger redux-thunk reselect @material-ui/pickers
+npm install @date-io/moment@1.x moment
+npm install history@4.10.1
 ```
 
 ### push error
@@ -303,8 +269,24 @@ blog-app
 
 ```
 git init
+git add -A
 git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/hiramatsuYoshiaki/blog-app.git
 git push -u origin main
 ```
+
+# firebase ルールの更新
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /posts/{postId} {
+      allow read, write: if request.auth.uid != null;
+    }
+  }
+}
+```
+
+`firebase deploy --only firestore:rules`
