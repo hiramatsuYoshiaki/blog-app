@@ -9,7 +9,7 @@ const Auth = ({ children }) => {
     const selector = useSelector((state) => state)
     const isSignedIn = getIsSignedIn(selector)
     useEffect(() => {
-        console.log("auth useEffect");
+        // console.log("auth useEffect");
         if (!isSignedIn) {
             dispatch(listenAuthState())
         }

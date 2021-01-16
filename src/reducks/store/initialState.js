@@ -1,4 +1,7 @@
 const initalState = {
+    locations: {
+        locationsAll:[]
+    },
     tags: {
         tagsAll:[]
     },

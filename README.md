@@ -178,6 +178,7 @@ $ npx create-react-app blog-app
 npm install --save @material-ui/core @material-ui/icons @material-ui/styles connected-react-router firebase react-redux react-router redux redux-actions redux-logger redux-thunk reselect @material-ui/pickers
 npm install @date-io/moment@1.x moment
 npm install history@4.10.1
+npm install google-map-react
 ```
 
 ### push error

@@ -7,6 +7,7 @@ import { UsersReducers } from "../users/reducers"
 import { PostsReducers } from "../posts/reducers"
 import { StagesReducers } from "../stage/reducers"
 import { TagsReducers } from "../tags/reducers"
+import { LocationsReducers } from "../locations/reducers"
 
 //Reduxのstoreでのルーティング管理
 import {connectRouter, routerMiddleware} from 'connected-react-router'
@@ -21,6 +22,7 @@ export default function createStore(history) {
             posts:PostsReducers,
             stages:StagesReducers,
             tags:TagsReducers,
+            locations:LocationsReducers,
         }),
         //ミドルウエアーとして導入する
         applyMiddleware(

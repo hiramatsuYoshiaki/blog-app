@@ -27,10 +27,9 @@ const PostEdit = () => {
     const [topImages, setTopImages] = useState([])
     const [postImages, setPostImages] = useState([])
 
-    // const [titleImage, setTitleImage] = useState([])
-    // const [stages, setStages] = useState([])
-    // const [tags, setStage] = useState([])
-    // const [location, setLocations] = useState([])
+    const [stage, setStage] = useState({})
+    const [tags, setTags] = useState([])
+    const [location, setLocation] = useState([])
 
     const inputTitle = useCallback((e) => {
         setTitle(e.target.value)
@@ -46,20 +45,17 @@ const PostEdit = () => {
         {id:"post", name:"記事"},
         {id:"cover", name:"表紙"},
     ]
-    const imageTypes = [
-        {id:"main", name:"メイン画像"},
-        {id:"post", name:"記事画像"},
-        {id:"cover", name:"タイトル画像"},
-        {id:"location", name:"グーグルアース"},
-    ]
-
+    const blobTypeJpeg = { type: "image/jpeg" }
+    
     return (
         <div>
             <h2>Post Edit/add/delete</h2>
             {/* トップ画像 */}
-            <ImagesArea images={topImages} setImages={setTopImages} imageTypes={imageTypes[0]} />
+            <ImagesArea images={topImages} setImages={setTopImages} imageTypes={"メイン画像"}
+                blobType={blobTypeJpeg} accept={"image/jpeg"}  media={"image"}/>
             {/* 投稿画像 */}
-            <ImagesArea images={postImages} setImages={setPostImages} imageTypes={imageTypes[1]} />
+            <ImagesArea images={postImages} setImages={setPostImages} imageTypes={"記事画像"}
+                blobType={blobTypeJpeg} accept={"image/jpeg"}  media={"image"}/>
             {/* タイトル */}
             <TextInput
                     fullWidth={true} label={"タイトル"} multiline={false} required={true}
@@ -85,12 +81,43 @@ const PostEdit = () => {
                 onChange={handleDateChange} 
             />
             {/* ステージ */}
-            <StageArea />
-            {/* ロケーション */}
-            <LocationArea />
+            {/* <StageArea /> */}
+            <StageArea stage={stage} setStage={setStage} />
+            <div>
+                <h1>stage data</h1>
+                <h1>id:{stage.id}</h1>
+                <h1>No:{stage.stageNo}</h1>
+                <h1>Year:{stage.stageYear}</h1>
+                <h1>Image:</h1>
+                {
+                    (stage.images !== undefined )&&(
+                            stage.images.map((image) => {
+                                return (
+                                    <div key={image.id}>
+                                        <h3>id:{image.id}</h3>
+                                        <h3>path:{image.path}</h3>
+                                        <h3>description:{image.description}</h3>
+                                    </div>
+                        
+                                )
+                            })
+                    )
+                    }
+            </div>
+            
+            
             {/* タグ */}
-            <TagsArea />
-
+            <TagsArea tags={tags} setTgas={setTags} />
+            {
+                tags.map((tag) => {
+                    return (
+                        <h1>Tag:{tag}</h1>
+                    )
+                })
+            }
+            {/* ロケーション */}
+            <LocationArea location={location} setLocation={setLocation}/>
+            
             <PrimaryButton
                 label={"投稿する"}
                 onClick={()=> dispatch(savePost(id, title, article, type, postDate, topImages, postImages))}>

@@ -14,6 +14,8 @@ export const fetchPosts = () => {
                     postsAll.push(post)
                 })
                 dispatch(fetchPostsAction(postsAll))
+            }).catch((error) => {
+                throw new Error(error)
         })
     }
 }

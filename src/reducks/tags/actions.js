@@ -5,3 +5,11 @@ export const fetchTagsAction = (tags) => {
         payload: tags
     }
 }
+
+export const DELETE_TAGS = "DELETE_TAGS"
+export const deleteTagsAction = (tags) => {
+    return {
+        type: "DELETE_TAGS",
+        payload: tags
+    }
+}

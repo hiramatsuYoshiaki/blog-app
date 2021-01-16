@@ -19,17 +19,19 @@ const ImagesArea = (props) => {
     const [imageId, setImageId] = useState('')
     const [imagePath, setImagePath] = useState('')
     const [imageDescription, setImageDescription] = useState('')
-    const [areaImages, setAreaImages] = useState([])
+
+    const [areaImages, setAreaImages] = useState(props.images)
+
+    console.log('areaImages',areaImages);
     
     const uploadImage = useCallback((event) => {
-        console.log('uploadImage');
-        // if (description === "") {
-        //     alert('画像説明を記入してください。')
-        //     return 
-        // }
+        console.log('uploadImage start------->'); 
         const file = event.target.files;
         //アップロードするにはBlogオブジェクトに変換する必要がある
-        let blob = new Blob(file, { type: "image/jpeg" });
+        // let blob = new Blob(file, { type: "image/jpeg" });
+        //image type: "image/jpeg"
+        //video type: "video/mp4"
+        let blob = new Blob(file, props.blobType);
 
         // Generate random 16 digits strings 
         // クラウドストレージにアップするためにファイ名が重複しないように１６桁のファイル名をランダム生成する
@@ -50,33 +52,36 @@ const ImagesArea = (props) => {
                 setImageId(fileName)
                 setImagePath(downloadURL)
                 // dispatch(hideLoadingAction())
-                console.log('getDownloadURL');
+                console.log('getDownloadURL', downloadURL);
+                console.log('uploadImage complete <-------'); 
             });
         }).catch((e) => {
             // dispatch(hideLoadingAction())
             console.log(e)
 
         });
-    }, [setImageId, setImagePath])
+    }, [setImageId, setImagePath, props.blobType])
 
     const inputDescription = useCallback((e) => {
-        console.log('inputDescription');
-        console.log(e.target.value);
+        // console.log('inputDescription');
+        // console.log(e.target.value);
         setImageDescription(e.target.value)
     }, [setImageDescription])
 
     const addImage = useCallback((imageId,imagePath,imageDescription) => {
-        console.log('addImage');
+        // console.log('addImage');
         const newImage = { id: imageId, path: imagePath, description: imageDescription };
-        console.log('newImage',newImage);
+        // console.log('newImage',newImage);
         setAreaImages((prevState => [...prevState, newImage]))
         props.setImages((prevState => [...prevState, newImage]))
-    }, [setAreaImages])
+    }, [setAreaImages,props])
+    
+
     
     return (
         <div>
             <div>
-                <h3>{props.imageTypes.name}を登録する</h3>
+                <h3>{props.imageTypes}を登録する</h3>
                 <span>画像を追加する</span>
                 <IconButton className={classes.icon}>
                     <label>
@@ -84,15 +89,28 @@ const ImagesArea = (props) => {
                         <input className="u-display-none"
                             type="file"
                             id="image"
+                            accept={props.accept}
                             onChange={(event) => uploadImage(event)}
                         />
                     </label>
                 </IconButton>
+                <h1>path:{imagePath}</h1>
+                <h1>type:{props.media}</h1>
                 <div>
-                {imagePath !== "" && (
-                     <img alt="アイキャッチ画像" src={imagePath} className="p-imageArea__img"/>
-                )}
-               </div>
+                    {(imagePath !== "" && props.media === "image") && (
+                        <div>
+                            <img alt="アイキャッチ画像" src={imagePath} className="p-imageArea__img"/>
+                        </div>
+                    )}
+                    {(imagePath !== "" && props.media === "video") && (
+                     <div>
+                        <video muted controls>
+                            <source src={imagePath} type="video/mp4" />
+                        </video>
+                     </div>
+                    )}
+                </div>
+                
                 <TextInput
                     fullWidth={true} label={"画像の説明を記入する"} multiline={true} required={true}
                     rows={5} value={imageDescription} type={"text"} onChange={inputDescription}
@@ -102,6 +120,7 @@ const ImagesArea = (props) => {
                     onClick={() => addImage(imageId,imagePath,imageDescription)}
                 />
             </div>
+
             <div className="p-grid__list-images__edit">
                 {areaImages.length > 0 && (
                    areaImages.map(image =>
@@ -110,11 +129,13 @@ const ImagesArea = (props) => {
                             path={image.path}
                             description={image.description}
                             key={image.id}
+                            media={props.media} // image video
                         />
                     )
                 )
                 }
             </div>
+            
            
         </div>
     )

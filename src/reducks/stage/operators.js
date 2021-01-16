@@ -1,7 +1,18 @@
 import { db, FirebaseTimestamp } from '../../firebase/index'
-import { fetchStagesAction } from  './actions'
+import { fetchStagesAction, deleteStagesAction } from  './actions'
 
 const stagesRef = db.collection('stages')
+
+export const deleteStage = (id) => {
+    return async (dispatch, getState) => {
+        return stagesRef.doc(id).delete()
+            .then(() => {
+                const prevProducts = getState().stages.stagesAll
+                const nextProducts = prevProducts.filter(stage => stage.id !== id)
+                dispatch(deleteStagesAction(nextProducts))
+        })
+    }
+}   
 
 export const fetchStages = () => {
     return async (dispatch) => {
@@ -18,7 +29,7 @@ export const fetchStages = () => {
     }
 }
 
-export const addStage = (id, stageYear, stageNo, stage) => {
+export const addStage = (id, stageYear, stageNo, stage, images) => {
     return async (dispatch) => {
         if (stage === "" ) {
             alert('error stage' + stage)
@@ -38,6 +49,7 @@ export const addStage = (id, stageYear, stageNo, stage) => {
             stageYear: stageYear,
             stageNo: stageNo,
             stage: stage,
+            images:images,
             update_at: timestamp,
             sort: stageYear+stageNo
         }

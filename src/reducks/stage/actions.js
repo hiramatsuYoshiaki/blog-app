@@ -5,3 +5,11 @@ export const fetchStagesAction = (stages) => {
         payload: stages
     }
 }
+
+export const DELETE_STAGE = "DELETE_STAGE"
+export const deleteStagesAction = (stages) => {
+    return {
+        type: "DELETE_STAGE",
+        payload: stages
+    }
+}

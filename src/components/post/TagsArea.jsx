@@ -1,15 +1,15 @@
-import React,{useState, useCallback, useEffect} from 'react'
+import React,{useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { push } from 'connected-react-router'
 import { MultipleSelect } from '../UiKit/index'
 import { getTags } from '../../reducks/tags/seloctors'
 import { fetchTags } from '../../reducks/tags/operators'
 
-const TagsArea = () => {
+const TagsArea = (props) => {
     const dispatch = useDispatch()
     const selector = useSelector(state => state)
     const tags = getTags(selector)
-    console.log('tagsrea tags', tags)
+    // console.log('tagsrea tags', tags)
     
     const [selected, setSelected] = useState([])
     
@@ -17,16 +17,17 @@ const TagsArea = () => {
     //     setSelected(tag)
     // }, [setSelected])
     const handleChange = (tags) => {
-        console.log('tagsArea handleChenge');
-        console.log('tags', tags);
+        // console.log('tagsArea handleChenge');
+        // console.log('tags', tags);
         const selectedTags = []
         tags.map((tag) => {
-            console.log('tag', tag);
+            // console.log('tag', tag);
             selectedTags.push(tag)
         })
         setSelected(selectedTags)
+        props.setTgas(selectedTags)
         // setSelected(tags)
-        console.log('selected',selected)
+        // console.log('selected',selected)
     }
     // const tags = [
     //     {id:"0001", name:"Landscape"},
@@ -37,7 +38,7 @@ const TagsArea = () => {
     //     {id:"0006", name:"Afternoon"}
     // ]
     useEffect(() => {
-        console.log('useEffect fetch tag data');
+        // console.log('useEffect fetch tag data');
         dispatch(fetchTags())
     }, [dispatch])
     return (
@@ -67,6 +68,7 @@ const TagsArea = () => {
                     )
                 })}
             </div>
+
             <p onClick={() => dispatch(push('/tags/edit'))}>新規タグを追加します。</p>
         </div>
     )

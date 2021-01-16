@@ -8,6 +8,11 @@ export const TagsReducers = (state=initialState.tags, action) => {
                 ...state,
                 tagsAll:[...action.payload]
             }
+        case Actions.DELETE_TAGS:
+            return {
+                ...state,
+                tagsAll:[...action.payload]
+            }
         default:
             return state
     }

@@ -19,7 +19,7 @@ const Newest = (props) => {
                 
              )} 
             <h5>{props.post.article}</h5>
-            <p>{postDate[0]}</p>
+            <p>{postDate[0]}</p> 
             <div>
                 {
                     postImages.map((postImage) => (

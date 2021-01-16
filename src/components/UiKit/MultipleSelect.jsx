@@ -1,15 +1,12 @@
 import React from 'react'
 import Input from '@material-ui/core/Input';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles} from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 const useStyles = makeStyles((theme) => ({
     formControl: {
-    //   margin: theme.spacing(1),
-    //   minWidth: 120,
-    //     maxWidth: 400,
         marginBottom: 16,
         minWidth: 120,
         width: "100%",
@@ -37,29 +34,8 @@ const MenuProps = {
   },
 };
 
-// function getStyles(name, personName, theme) {
-//     return {
-//       fontWeight:
-//         personName.indexOf(name) === -1
-//           ? theme.typography.fontWeightRegular
-//           : theme.typography.fontWeightMedium,
-//     };
-//   }
-//   const names = [
-//     'Oliver Hansen',
-//     'Van Henry',
-//     'April Tucker',
-//     'Ralph Hubbard',
-//     'Omar Alexander',
-//     'Carlos Abbott',
-//     'Miriam Wagner',
-//     'Bradley Wilkerson',
-//     'Virginia Andrews',
-//     'Kelly Snyder',
-//   ];
 const MultipleSelect = props => {
     const classes = useStyles();
-    const theme = useTheme();
     // const [personName, setPersonName] = React.useState([]);
     const handleChange = (event) => {
         // setPersonName(event.target.value);
@@ -72,26 +48,15 @@ const MultipleSelect = props => {
             <FormControl className={classes.formControl}>
             <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
             <Select
-                // labelId="demo-mutiple-name-label"
-                        // id="demo-mutiple-name"
-                        
                 multiple
                 value={props.value}
                 onChange={handleChange}
                         
                 input={<Input />}
                 MenuProps={MenuProps} >
-                    {/* {names.map((name) => (
-                        <MenuItem key={name}
-                            value={name}
-                            style={getStyles(name, personName, theme)}>
-                        {name}
-                        </MenuItem>
-                    ))} */}
                     {props.options.map((option) => (
                         <MenuItem key={option.id}
                             value={option.id}
-                            // style={getStyles(option.name, personName, theme)}
                         >
                         {option.name}
                         </MenuItem>

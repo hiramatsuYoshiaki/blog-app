@@ -1,17 +1,17 @@
 import * as Actions from './actions'
 import initialState from '../store/initialState' 
 
-export const StagesReducers = (state=initialState.stages, action) => {
+export const LocationsReducers = (state=initialState.locations, action) => {
     switch (action.type) {
-        case Actions.FETCH_STAGE:
+        case Actions.FETCH_LOCATIONS:
             return {
                 ...state,
-                stagesAll:[...action.payload]
+                locationsAll:[...action.payload]
             }
-        case Actions.DELETE_STAGE:
+        case Actions.DELETE_LOCATIONS:
             return {
                 ...state,
-                stagesAll:[...action.payload]
+                locationsAll:[...action.payload]
             }
         default:
             return state

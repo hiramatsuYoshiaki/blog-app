@@ -1,12 +1,12 @@
 import { db, FirebaseTimestamp } from '../../firebase/index'
 // import { push } from 'connected-react-router'
-import { fetchTagsAction } from './actions'
+import { fetchTagsAction, deleteTagsAction } from './actions'
 
-const tagsRef = db.collection('tags')
+const tagsRef = db.collection('tags') 
 
 export const fetchTags = () => {
     return async (dispatch) => {
-        return tagsRef.orderBy('id').get()
+        return tagsRef.orderBy('name').get()
             .then(snapshots => {
                 const tagsList = []
                 snapshots.forEach((snapshot) => {
@@ -42,3 +42,18 @@ export const saveTag = (id, name) => {
         })
     }
 }
+export const deleteTags = (id) => {
+    console.log(id)
+    return async (dispatch, getState) => {
+        return tagsRef.doc(id).delete()
+            .then(() => {
+                console.log('tagsRef delete')
+                const prevProducts = getState().tags.tagsAll
+                const nextProducts = prevProducts.filter(tag => tag.id !== id)
+                dispatch(deleteTagsAction(nextProducts)) 
+            }).catch((error) => {
+                console.log('tagsRef delete')
+                throw new Error(error)
+        })
+    }
+} 

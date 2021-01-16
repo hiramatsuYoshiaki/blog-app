@@ -34,6 +34,7 @@ export const signIn = (email, password) => {
         if (email === "" || password === "") {
             return false
         }
+        alert(email + password)
         return auth.signInWithEmailAndPassword(email, password)
             .then(result => {
                 const user = result.user
@@ -52,7 +53,8 @@ export const signIn = (email, password) => {
                     dispatch(push('/'))
                 }
             }).catch((error) => {
-                //  throw new Error(error)
+                alert('管理者以外はログインできません')
+                console.log('login error',error)
                 dispatch(push('/'))
            }) 
     }
