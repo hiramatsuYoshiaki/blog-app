@@ -10,7 +10,7 @@ const StageList = () => {
     const stages = getStages(selector)
 
     useEffect(() => {
-        dispatch(fetchStages())
+        dispatch(fetchStages()) 
     },[dispatch])
     return (
         <div>

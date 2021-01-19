@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import { deleteStage } from '../../reducks/stage/operators' 
+import { deletePost } from '../../reducks/posts/operators'
 const useStyles = makeStyles((theme) => ({
     root: {
         [theme.breakpoints.down('sm')]: {
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     // }
 
 })) 
-const StageCard = props => {
+const PostListCard = props => {
     const dispatch = useDispatch()
     const classes = useStyles()
 
@@ -53,26 +53,33 @@ const StageCard = props => {
     const handleClose = () => {
         setAnchorEl(null)
     }
+    const topImages = props.topImages
+    // const topImages = (props.topImages.length > 0 ? props.images : [{ path: NoImage }])
+    // const postImages = (props.postImages.length > 0 ? props.images : [{ path: NoImage }])
 
-    const images = (props.images.length > 0 ? props.images : [{ path: NoImage }])
     return (
         <div>
+            {/* <PostListCard key={post.id}
+                            id={post.id} title={post.title} article={post.article}
+                            postDate={post.postDate} type={post.type}
+                            topImages={postImages} postImages={post.postImages}
+                        /> */}
             <Card className={classes.root}>
                  {/* id={stage.id} sort={stage.sort}
                             stage={stage.stage} stageNo={stage.stageNo} stageYear={stage.stageYear}
                             images={stage.images} */}
                 <CardMedia className={classes.media}
-                    image={images[0].path}
-                    title={images[0].description}
-                    // onClick={() => dispatch(push('/stage/' + props.id))}
+                    image={topImages[0].path}
+                    // title={topImages[0].description}
+                    // onClick={() => dispatch(push('/post/' + props.id))}
                 />
                 <CardContent>
                     <Typography>
-                        {props.stage}
+                        {props.title}
                     </Typography>
-                    <Typography>
+                    {/* <Typography>
                         {props.stageYear} STAGE-{props.stageNo}
-                    </Typography>
+                    </Typography> */}
                 </CardContent>
             </Card>
             <IconButton onClick={handleClick}>
@@ -85,21 +92,20 @@ const StageCard = props => {
                 onClick={handleClose}
             >
                 <MenuItem onClick={() => {
-                        dispatch(push('/stage/edit/' + props.id))
+                        dispatch(push('/post/edit/' + props.id))
                         handleClose()
                 }}>
                     編集する
                 </MenuItem>
                 <MenuItem onClick={() => {
-                        dispatch(deleteStage(props.id))
+                        dispatch(deletePost(props.id))
                         handleClose()
                 }}>
                     削除する
                 </MenuItem>
             </Menu >
-           
         </div>
     )
 }
 
-export default StageCard
+export default PostListCard

@@ -36,18 +36,16 @@ const MenuProps = {
 
 const MultipleSelect = props => {
     const classes = useStyles();
-    // const [personName, setPersonName] = React.useState([]);
     const handleChange = (event) => {
-        // setPersonName(event.target.value);
-        console.log('MultipleSelect handleChange')
-        console.log(event.target.value)
         props.handleChange(event.target.value)
       };
     return (
         <div>
-            <FormControl className={classes.formControl}>
-            <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="select-label-tag">{props.label}</InputLabel>
             <Select
+                labelId="select-label-tag"
+                id="select-tag"
                 multiple
                 value={props.value}
                 onChange={handleChange}
@@ -61,7 +59,7 @@ const MultipleSelect = props => {
                         {option.name}
                         </MenuItem>
                     ))}
-            </Select>
+              </Select>
             </FormControl>
         </div>
     )

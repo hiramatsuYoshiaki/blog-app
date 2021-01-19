@@ -1,7 +1,10 @@
 import React from 'react'
-import {PostImageCard} from './index'
+import { PostImageCard } from './index'
+import { useDispatch } from 'react-redux'
+import {push} from 'connected-react-router'
 
 const Newest = (props) => {
+    const dispatch = useDispatch()
     const postDate = props.post.postDate.split('T') 
     const postImages = props.post.postImages
     return (
@@ -20,7 +23,7 @@ const Newest = (props) => {
              )} 
             <h5>{props.post.article}</h5>
             <p>{postDate[0]}</p> 
-            <div>
+            {/* <div>
                 {
                     postImages.map((postImage) => (
                         <PostImageCard
@@ -30,8 +33,8 @@ const Newest = (props) => {
                             key={postImage.id} />
                     ))
                 }
-            </div>
-            
+            </div> */}
+            <div onClick={() => dispatch(push('/post/detail/' + props.post.id))}>この投稿を見る</div>
             {/* <h1>data-----------------</h1>
             <p>title--{props.post.title}</p>
             <p>article--{props.post.article}</p>

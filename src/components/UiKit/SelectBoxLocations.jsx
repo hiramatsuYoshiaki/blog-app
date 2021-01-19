@@ -18,10 +18,13 @@ const SelectBoxLocations = props => {
     return (
         <div>
       <FormControl className={classes.formControl}>
-        <InputLabel >{props.label}</InputLabel>
-            <Select
-                value={props.value} required={props.required}
-                onChange={(e) => props.select(e.target.value)}
+        <InputLabel id="select-label-location">{props.label}</InputLabel>
+                <Select
+                    labelId="select-label-location"
+                    id="select-location"
+                    value={props.value} 
+                    onChange={(e) => props.select(e.target.value)}
+                    required={props.required}
             >
                 {props.options.map((value) => {
                     return  <MenuItem key={value.id} value={value.id}>

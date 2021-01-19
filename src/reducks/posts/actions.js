@@ -5,3 +5,10 @@ export const fetchPostsAction = (posts) => {
         payload:posts
     }
 }
+export const DELETE_POSTS = "DELETE_POSTS"
+export const deletePostsAction = (posts) => {
+    return {
+        type: "DELETE_POSTS",
+        payload:posts
+    }
+}

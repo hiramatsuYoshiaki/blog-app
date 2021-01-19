@@ -1,7 +1,7 @@
 import React from 'react'
 import { ImagePreview } from './index'
 // import { PrimaryButton} from '../../components/UiKit/index' 
-
+  
 const ImagesArea = props => {
     const images = props.images
     // const [images, setImages] = useState(props.images)

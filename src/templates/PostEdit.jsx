@@ -1,20 +1,21 @@
-import React,{useState, useCallback} from 'react'
-import { getIsSignedIn, getUserId, getUsername, } from '../reducks/users/selectors'
-import { useDispatch, useSelector } from 'react-redux'
+import React,{useState, useCallback, useEffect} from 'react'
+import { useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
 import { TextInput, SelectBox, DateTimePicers, PrimaryButton } from '../components/UiKit/index'
 import moment from 'moment'
 import { savePost } from '../reducks/posts/operators'
-import { ImagesArea, StageArea, LocationArea, TagsArea  } from '../components/post/index'
+import {StageArea, LocationArea, TagsArea  } from '../components/post/index'
+import {TopImagesArea, AddImagesUpload, PostImagesArea } from '../components/post/index'
+import { db } from '../firebase/index'
 
 const PostEdit = () => {
     const dispatch = useDispatch()
-    const selector = useSelector(state => state)
-    const login = getIsSignedIn(selector)
-    const uid = getUserId(selector)
-    const username = getUsername(selector)
 
-    const id = ""
+    let id = window.location.pathname.split('/post/edit')[1]
+    if (id !== '') {
+        id = id.split('/')[1] 
+    }
+    
     const [title, setTitle] = useState("")
     const [article, setArticle] = useState("")
     const [type, setType] = useState("")
@@ -22,8 +23,8 @@ const PostEdit = () => {
     const dateNow = moment().format()//2014-08-18T21:11:54+09:47
     const dateSplit = dateNow.split('+')//2014-08-18T21:11:54 この形式でpicerに渡す
     const [postDate, setPostDate] = useState(dateSplit[0]);
-    // const [postDate, setPostDate] = useState(new Date('2014-08-18T21:11:54'));
 
+    // const [postDate, setPostDate] = useState(new Date('2014-08-18T21:11:54'));
     const [topImages, setTopImages] = useState([])
     const [postImages, setPostImages] = useState([])
 
@@ -45,17 +46,41 @@ const PostEdit = () => {
         {id:"post", name:"記事"},
         {id:"cover", name:"表紙"},
     ]
-    const blobTypeJpeg = { type: "image/jpeg" }
-    
+    useEffect(() => {
+        if (id !== "") {
+            db.collection('posts').doc(id).get()
+                .then(snapshot => {
+                    const post = snapshot.data()
+                    setTitle(post.title)
+                    setArticle(post.article)
+                    setType(post.type)
+                    setPostDate(post.postDate)
+                    setTopImages(post.topImages)
+                    setPostImages(post.postImages)
+                    setStage(post.stage)
+                    setTags(post.tags)
+                    setLocation(post.location)
+            }).catch((error) => {
+                throw new Error(error)
+            })
+        } 
+    },[id,setTitle,setArticle,setType,setPostDate,setTopImages,setStage,setTags,setLocation])
     return (
         <div>
             <h2>Post Edit/add/delete</h2>
             {/* トップ画像 */}
-            <ImagesArea images={topImages} setImages={setTopImages} imageTypes={"メイン画像"}
-                blobType={blobTypeJpeg} accept={"image/jpeg"}  media={"image"}/>
+            <TopImagesArea images={topImages} setImages={setTopImages} />
+            <AddImagesUpload images={topImages} setImages={setTopImages} Multiple={false} title="トップ画像"/>
+
+            {/* <ImagesArea images={topImages} setImages={setTopImages} imageTypes={"メイン画像"}
+                blobType={blobTypeJpeg} accept={"image/jpeg"}  media={"image"}/> */}
             {/* 投稿画像 */}
-            <ImagesArea images={postImages} setImages={setPostImages} imageTypes={"記事画像"}
-                blobType={blobTypeJpeg} accept={"image/jpeg"}  media={"image"}/>
+            <PostImagesArea images={postImages} setImages={setPostImages} />
+            <AddImagesUpload images={postImages} setImages={setPostImages} Multiple={true} title="投稿画像"/>
+            {/* <ImagesArea images={postImages} setImages={setPostImages} imageTypes={"記事画像"}
+                blobType={blobTypeJpeg} accept={"image/jpeg"} media={"image"} /> */}
+            
+
             {/* タイトル */}
             <TextInput
                     fullWidth={true} label={"タイトル"} multiline={false} required={true}
@@ -73,71 +98,33 @@ const PostEdit = () => {
                 required={true}
                 select={setType}
                 value={type}
+                defaultValue={type} 
             />
+
             {/* 投稿日 */}
             <DateTimePicers
                label={"投稿日"}
                 value={postDate}
-                onChange={handleDateChange} 
+                onChange={handleDateChange}
+                defaultValue={postDate}
             />
-            {/* ステージ */}
+            {/* ステージ */} 
             {/* <StageArea /> */}
             <StageArea stage={stage} setStage={setStage} />
-            <div>
-                <h1>stage data</h1>
-                <h1>id:{stage.id}</h1>
-                <h1>No:{stage.stageNo}</h1>
-                <h1>Year:{stage.stageYear}</h1>
-                <h1>Image:</h1>
-                {
-                    (stage.images !== undefined )&&(
-                            stage.images.map((image) => {
-                                return (
-                                    <div key={image.id}>
-                                        <h3>id:{image.id}</h3>
-                                        <h3>path:{image.path}</h3>
-                                        <h3>description:{image.description}</h3>
-                                    </div>
-                        
-                                )
-                            })
-                    )
-                    }
-            </div>
-            
             
             {/* タグ */}
             <TagsArea tags={tags} setTgas={setTags} />
-            {
-                tags.map((tag) => {
-                    return (
-                        <h1>Tag:{tag}</h1>
-                    )
-                })
-            }
+            
             {/* ロケーション */}
-            <LocationArea location={location} setLocation={setLocation}/>
+            <LocationArea location={location} setLocation={setLocation} />
             
             <PrimaryButton
                 label={"投稿する"}
-                onClick={()=> dispatch(savePost(id, title, article, type, postDate, topImages, postImages))}>
+                onClick={()=> dispatch(savePost(id, title, article, type, postDate, topImages, postImages, stage, tags, location))}>
             </PrimaryButton>
             
 
-            {
-               login === true && (
-                       <p>Logedin</p> 
-                ) 
-           }
-            {
-               login === false && (
-                       <p>Logdout</p> 
-                ) 
-           }
-            <p>ID：{uid}</p>
-            <p>ユーザー：{username}</p>
-            <br></br>
-            <p onClick={()=> dispatch(push('/'))}>Back to Home</p>
+            <p onClick={()=> dispatch(push('/'))}>Back to Home</p> 
         </div>
     )
 }

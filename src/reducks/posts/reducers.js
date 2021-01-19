@@ -8,6 +8,11 @@ export const PostsReducers = (state=initialState.posts, action) => {
                 ...state,
                 postsAll:[...action.payload]
             }
+        case Actions.DELETE_POSTS:
+            return {
+                ...state,
+                postsAll:[...action.payload]
+            }
         default:
             return state
     }

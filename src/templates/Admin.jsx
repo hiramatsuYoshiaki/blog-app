@@ -20,6 +20,7 @@ const Admin = () => {
         <div　className={classes.root}>
             <h1>管理画面</h1>
             <Button color="primary" onClick={() => dispatch(push('/post/edit'))}>投稿</Button>
+            <Button color="primary" onClick={() => dispatch(push('/post/list'))}>投稿リスト</Button>
             <Button color="primary" onClick={() => dispatch(push('/location/edit'))}>ロケーション新規作成</Button>
             <Button color="primary" onClick={() => dispatch(push('/location/list'))}>ロケーションリスト</Button>
             <Button color="primary" onClick={() => dispatch(push('/stage/edit'))}>ステージ新規作成</Button>

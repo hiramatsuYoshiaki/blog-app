@@ -8,7 +8,6 @@ const TagsList = () => {
     const dispatch = useDispatch()
     const selector = useSelector((state) => state)
     const tags = getTags(selector) 
-    console.log(tags)
     useEffect(() => {
         dispatch(fetchTags())
     },[dispatch])

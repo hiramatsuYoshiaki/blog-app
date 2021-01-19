@@ -1,5 +1,4 @@
-import React,{useState,  useEffect} from 'react'
-import { push } from 'connected-react-router' 
+import React,{ useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchLocatins } from '../../reducks/locations/operators'
 import { getLocations } from '../../reducks/locations/selectors'
@@ -9,19 +8,10 @@ const LocationArea = (props) => {
     const dispatch = useDispatch()
     const selector = useSelector((state) => state)
     const locations = getLocations(selector)
-    console.log('locationArea locationds',locations)
-    const [name, setName] = useState('')
-    const [address, setAddress] = useState('')
-    const [position, setPosition] = useState({})
-    const [images, setImages] = useState([])
+    
     const handleChange = (selectedId) => {
         locations.forEach((location) => {
             if (location.id === selectedId) {
-                console.log(location)
-                setName(location.name)
-                setAddress(location.address)
-                setPosition(location.position)
-                setImages(location.images)
                 props.setLocation(location)
             }
         })
@@ -39,9 +29,9 @@ const LocationArea = (props) => {
                 options={locations}
                 required={true}
                 select={handleChange}
-                value={name}
+                value={props.location.id || ''}
             />
-            <div>
+            {/* <div>
                 <p>{name}</p>
                 <p>{address}</p>
                 <p>
@@ -50,20 +40,15 @@ const LocationArea = (props) => {
                 </p>
                 {images.map((locationImage) => {
                 return (
-                    // <div key={locationImage.id}>
-                    //     <img src={locationImage.path} alt="location title image" className="u-imageMini__test" />
-                    //     <div>id:{locationImage.id}</div>
-                    // </div>
-                    <div key={locationImage.id}>
-                        <video muted controls>
-                        <source src={locationImage.path} type="video/mp4" />
-                    </video>
+                    <div key={locationImage.id} >
+                        <video muted controls className="p-videoPreview__img">
+                            <source src={locationImage.path} type="video/mp4" />
+                        </video>
                     </div> 
                )
             })}
-            </div>
+            </div> */}
            
-            <p onClick={() => dispatch(push('/location/edit'))}>ロケーションを追加します。</p>
         </div>
     )
 }

@@ -8,10 +8,9 @@ const LocationList = () => {
     const dispatch = useDispatch()
     const selector = useSelector((state) => state)
     const locations = getLocations(selector)
-    console.log(locations);
     useEffect(() => {
         dispatch(fetchLocatins())
-    },[dispatch]) 
+    },[dispatch])  
     return (
         <section className="c-section-wrapin">
             <div className="p-grid__row">

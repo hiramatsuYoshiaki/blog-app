@@ -12,7 +12,6 @@ const StageEdit = () => {
     if (id !== '') {
         id = id.split('/')[1] 
     }
-    console.log('id',id);
 
     const [stage, setStage] = useState('')
     const [stageNo, setStageNo] = useState(1)
@@ -35,11 +34,9 @@ const StageEdit = () => {
             db.collection('stages').doc(id).get()
                 .then(snapshot => {
                     const stage = snapshot.data()
-                    console.log('stage',stage);
                     setStage(stage.stage)
                     setStageNo(stage.stageNo)
                     setStageYear(stage.stageYear)
-                    console.log('stage.images',stage.images);
                     setImages(stage.images)
             }).catch((error) => {
                 throw new Error(error)
@@ -74,5 +71,5 @@ const StageEdit = () => {
         </div>
     )
 } 
-
+  
 export default StageEdit

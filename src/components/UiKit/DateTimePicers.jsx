@@ -23,7 +23,7 @@ export const DateTimePicers = (props) => {
             id="datetime-local"
             label={props.label}
             type="datetime-local"
-            defaultValue={props.value}
+            defaultValue={props.defaultValue}
             className={classes.textField}
             InputLabelProps={{
                 shrink: true,

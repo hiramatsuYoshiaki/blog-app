@@ -1,8 +1,19 @@
-import { fetchPostsAction } from  './actions'
+import { fetchPostsAction, deletePostsAction } from  './actions'
 import { push } from 'connected-react-router'
 import { db, FirebaseTimestamp } from '../../firebase/index'
 
 const postsRef = db.collection('posts')
+
+export const deletePost = (id) => {
+    return async (dispatch, getState) => {
+        return postsRef.doc(id).delete()
+            .then(() => {
+                const prevProducts = getState().posts.postsAll
+                const nextProducts = prevProducts.filter(post => post.id !== id)
+                dispatch(deletePostsAction(nextProducts))
+        })
+    }
+}  
 
 export const fetchPosts = () => {
     return async (dispatch) => {
@@ -20,7 +31,7 @@ export const fetchPosts = () => {
     }
 }
 
-export const savePost = (id, title, article, type, postDate, topImages, postImages) => {
+export const savePost = (id, title, article, type, postDate, topImages, postImages, stage, tags, location) => {
     return async (dispatch) => {
         //validation 
         // .........
@@ -32,7 +43,10 @@ export const savePost = (id, title, article, type, postDate, topImages, postImag
             postDate: postDate,
             topImages: topImages,
             postImages: postImages,
-            update_at: timestamp
+            update_at: timestamp,
+            stage: stage,
+            tags: tags,
+            location:location
         }
         if (id === "") {
             //IDを自動裁判
