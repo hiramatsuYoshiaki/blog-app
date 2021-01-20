@@ -1,122 +1,130 @@
 // Layout プロジェクト共通のコンテナーブロックのスタイルを定義
+@import "flocss/base.scss";
+@import "flocss/component.scss";
+@import "flocss/layout.scss";
+@import "flocss/project.scss";
+@import "flocss/reset.scss";
+@import "flocss/theme.scss";
+@import "flocss/utility.scss";
+@import "flocss/variables.scss";
 
-.l-header {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: space-between;
-  background-color: lightgrey;
-  p {
-    margin-right: 1rem;
-  }
-}
-.l-footer {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-  background-color: lightgrey;
-  p {
-    margin-right: 1rem;
-  }
-}
+// .l-header {
+//   display: flex;
+//   flex-flow: row wrap;
+//   align-items: center;
+//   justify-content: space-between;
+//   background-color: lightgrey;
+//   p {
+//     margin-right: 1rem;
+//   }
+// }
+// .l-footer {
+//   display: flex;
+//   flex-flow: row wrap;
+//   align-items: center;
+//   justify-content: center;
+//   background-color: lightgrey;
+//   p {
+//     margin-right: 1rem;
+//   }
+// }
 
 // Object/Component 繰り返されるビジュアルパターン/再利用できるパターンとして、小さな単位のモジュール
 
 // Object/Project 繰り返されるビジュアルパターン/プロジェクト固有のパターン
-.p-center {
-  margin: 0 auto;
-  text-align: center;
-}
-.p-grid__column {
-  align-items: center;
-  display: flex;
-  flex-flow: column;
-}
+// .p-center {
+//   margin: 0 auto;
+//   text-align: center;
+// }
+// .p-grid__column {
+//   align-items: center;
+//   display: flex;
+//   flex-flow: column;
+// }
 
-.p-grid__row {
-  display: flex;
-  flex-flow: row wrap;
-}
-.p-grid__list-images {
-  display: flex;
-  flex-flow: wrap;
-}
+// .p-grid__row {
+//   display: flex;
+//   flex-flow: row wrap;
+// }
+// .p-grid__list-images {
+//   display: flex;
+//   flex-flow: wrap;
+// }
 
-.p-grid__list-images > .p-media__thumb {
-  margin: 0.5rem;
-  width: calc(50% - 1rem);
-}
-.p-grid__list-images__edit > .p-media__thumb {
-  margin: 0.5rem;
-  width: calc(50% - 1rem);
-}
-.p-media__thumb {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
+// .p-grid__list-images > .p-media__thumb {
+//   margin: 0.5rem;
+//   width: calc(50% - 1rem);
+// }
+// .p-grid__list-images__edit > .p-media__thumb {
+//   margin: 0.5rem;
+//   width: calc(50% - 1rem);
+// }
+// .p-media__thumb {
+//   position: relative;
+//   overflow: hidden;
+//   width: 100%;
+// }
 
-.p-media__thumb::before {
-  content: "";
-  display: block;
-  padding-top: 100%;
-}
+// .p-media__thumb::before {
+//   content: "";
+//   display: block;
+//   padding-top: 100%;
+// }
 
-.p-media__thumb > img {
-  position: absolute;
-  object-fit: cover;
-  object-position: center;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-}
-.p-topImage {
-  max-width: 960px;
-  width: 100%;
-  height: auto;
-}
-.p-EditImage {
-  max-width: 600px;
-  width: 100%;
-  height: auto;
-}
-.p-imageArea__img {
-  max-width: 400px;
-  width: 100%;
-  height: auto;
-}
-.p-imagePreview__img {
-  width: auto;
-  height: 400px;
-}
-.p-videoPreview__img {
-  width: auto;
-  height: 400px;
-}
+// .p-media__thumb > img {
+//   position: absolute;
+//   object-fit: cover;
+//   object-position: center;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: auto;
+// }
+// .p-topImage {
+//   max-width: 960px;
+//   width: 100%;
+//   height: auto;
+// }
+// .p-EditImage {
+//   max-width: 600px;
+//   width: 100%;
+//   height: auto;
+// }
+// .p-imageArea__img {
+//   max-width: 400px;
+//   width: 100%;
+//   height: auto;
+// }
+// .p-imagePreview__img {
+//   width: auto;
+//   height: 400px;
+// }
+// .p-videoPreview__img {
+//   width: auto;
+//   height: 400px;
+// }
 
-.p-span-rightMargin {
-  margin-right: 0.2em;
-}
-.p-googleMapWrap {
-  height: 50vh;
-  width: 100%;
-  position: relative;
-}
+// .p-span-rightMargin {
+//   margin-right: 0.2em;
+// }
+// .p-googleMapWrap {
+//   height: 50vh;
+//   width: 100%;
+//   position: relative;
+// }
 // Object/Utility 繰り返されるビジュアルパターン/わずかなスタイルの調整のための便利クラス
-.u-display-none {
-  display: none;
-}
-.u-imageMini__test {
-  max-width: 200px;
-  width: 100%;
-  height: auto;
-}
-.u-matg__r02 {
-  margin-right: 0.2rem;
-}
-.u-marker {
-  position: absolute;
-  background-color: red;
-}
+// .u-display-none {
+//   display: none;
+// }
+// .u-imageMini__test {
+//   max-width: 200px;
+//   width: 100%;
+//   height: auto;
+// }
+// .u-matg__r02 {
+//   margin-right: 0.2rem;
+// }
+// .u-marker {
+//   position: absolute;
+//   background-color: red;
+// }

@@ -2,7 +2,7 @@ import React from 'react'
 import { PostImageCard } from './index'
 import { useDispatch } from 'react-redux'
 import {push} from 'connected-react-router'
-
+ 
 const Newest = (props) => {
     const dispatch = useDispatch()
     const postDate = props.post.postDate.split('T') 
@@ -23,7 +23,7 @@ const Newest = (props) => {
              )} 
             <h5>{props.post.article}</h5>
             <p>{postDate[0]}</p> 
-            {/* <div>
+            {/* <div> 
                 {
                     postImages.map((postImage) => (
                         <PostImageCard

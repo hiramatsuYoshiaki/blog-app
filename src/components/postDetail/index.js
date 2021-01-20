@@ -1,0 +1,5 @@
+export {default as TopImageArea} from './TopImageArea'
+export {default as PostArea} from './PostArea'
+// export {default as ResentArea} from './ResentArea'
+// export {default as SNSArea} from './SNSArea'
+// export {default as StageListArea} from './StageListArea'

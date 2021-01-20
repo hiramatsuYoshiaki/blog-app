@@ -1,6 +1,22 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
-import { Home, SignIn, Admin, PostEdit, PostList, PostDetail, StageEdit, StageList, TagsEdit, TagsList, LocationEdit, LocationList } from './templates/index'
+import {
+  Home,
+  SignIn,
+  Admin,
+  PostEdit,
+  PostList,
+  PostDetail,
+  StageEdit,
+  StageList,
+  TagsEdit,
+  TagsList,
+  LocationEdit,
+  LocationList,
+  LayoutTemplate,
+  LayoutHome,
+  LayoutDetail,
+} from './templates/index'
 import Auth from './Auth'
 const Router = () => {
     return (
@@ -8,6 +24,10 @@ const Router = () => {
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="(/)?" component={Home} />
             <Route path="/post/detail(:id)?" component={PostDetail} />
+        
+            <Route path="/layout/template" component={LayoutTemplate} />
+            <Route path="/layout/home" component={LayoutHome} />
+            <Route path="/layout/detail" component={LayoutDetail} />
           <Auth>
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/location/List" component={LocationList} />
@@ -18,7 +38,8 @@ const Router = () => {
             <Route path="/stage/edit(:id)?" component={StageEdit} />
             <Route path="/tags/edit(:id)?" component={TagsEdit} />
             <Route path="/location/edit(:id)?" component={LocationEdit} />
-            
+          
+
          </Auth>
      </Switch>
     )

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { db } from '../firebase/index'
 import moment from 'moment'
-
+import {TopImageArea,PostArea} from '../components/postDetail/index'
 
 const Postdetail = () => {
     let id = window.location.pathname.split('/post/detail')[1]
@@ -11,9 +11,11 @@ const Postdetail = () => {
     const [title, setTitle] = useState("")
     const [article, setArticle] = useState("")
     const [type, setType] = useState("")
+
     const dateNow = moment().format()//2014-08-18T21:11:54+09:47
     const dateSplit = dateNow.split('+')//2014-08-18T21:11:54 この形式でpicerに渡す
     const [postDate, setPostDate] = useState(dateSplit[0]);
+
     const [topImages, setTopImages] = useState([])
     const [postImages, setPostImages] = useState([])
     //stage
@@ -49,7 +51,6 @@ const Postdetail = () => {
                 setStageImages(post.stage.images)
                 //tag
                 setTags(post.tags)
-                console.log(post.tags);
                 //location
                 setLocationName(post.location.name)
                 setLocationAddress(post.location.address)
@@ -64,7 +65,21 @@ const Postdetail = () => {
     // },[id,setTitle,setArticle,setType,setPostDate,setTopImages,setStage,setTags,setLocation])
     },[])
     return (
-        <div>
+        <main>
+            <div className="l-container">
+                <section className="l-section">
+                    <TopImageArea title={title} stage={stage} images={stageImages}/>
+                </section>
+            </div>
+            <div className="l-container">
+                <section className="l-section">
+                    <PostArea stage={stage} stageNo={stageNo} stageYear={stageYear} stageImages={stageImages}
+                        article={article} type={type} postDate={postDate} postImages={postImages}
+                        tags={tags} 
+                    />
+                </section>
+            </div>
+
             <h1>{id}</h1>
             <h1>{title}</h1>
             <h1>{article}</h1>
@@ -117,10 +132,12 @@ const Postdetail = () => {
             
             {tags.length > 0 && (
                 tags.map(tag => (
-                    <p>{tag.name}</p>
+                    <div key={tag.id}>
+                        <p>{tag.name}</p>
+                    </div>
                 ))
             )}
-        </div>
+        </main>
     )
 }
 

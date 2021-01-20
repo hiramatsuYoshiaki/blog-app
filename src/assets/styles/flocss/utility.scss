@@ -1,0 +1,8 @@
+// ComponentとProjectのモディファイア（パターン）で解決することができないスタイル、
+// また、調整のための便利クラスなどを管理。
+// Component、ProjectのObjectを無駄に増やしてしまうことを防せぐ。
+// Object自体が持つべきではないmarginの代わりに.u-mb10 { margin-bottom: 10px; }のような隣接するモジュールとの間隔をつくるといった役割。
+// すべての余白marginをUtilityクラスでつけることはしない。
+// あくまで補助としての役割であること。
+// Projectとして定義するには要素が少なすぎる場合やcomponent単体で使うときに使用
+// u-margin, u-color, u-fontsize, u-clearfix ......

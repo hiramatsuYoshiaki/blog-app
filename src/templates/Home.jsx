@@ -12,7 +12,7 @@ const Home = () => {
     useEffect(() => {
         dispatch(fetchPosts())
     }, [dispatch])
-    
+     
     return (
         <div>
             {

@@ -1,0 +1,181 @@
+// 各ページを構成する、ヘッダー、メインコンテンツエリア、サイドバー、フッターなどのスタイルをエリアごとに管理
+// ※ページ全体からみたレイアウトに対するスタイルを定義する
+// ※外枠のみ定義。子要素はなるべく入れない
+// ※ヘッダーやフッターの中身はp-で定義する
+// l-header. l-main, l-footer, l-container. l-nav
+
+// header-------------------------------------------------------------------------------
+// main---------------------------------------------------------------------------------
+// footer-------------------------------------------------------------------------------
+// nav----------------------------------------------------------------------------------
+// a-side-------------------------------------------------------------------------------
+
+// container----------------------------------------------------------------------------
+// * {
+//   border: 1px solid lightgrey;
+// }
+.l-container,
+.l-container-fluid {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  border: 1px solid lightblue;
+}
+@media (min-width: 600px) {
+  .l-container {
+    width: 600px;
+    max-width: 100%;
+  }
+}
+@media (min-width: 960px) {
+  .l-container {
+    // width: 960px;
+    width: 928px;
+    max-width: 100%;
+  }
+}
+@media (min-width: 1280px) {
+  .l-container {
+    // width: 1140px;
+    width: 1248px;
+    max-width: 100%;
+  }
+}
+
+// section
+.l-section {
+  margin-left: -16px;
+  margin-right: -16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 1px solid lightgreen;
+}
+
+// grid
+// xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920,
+//row ------------------------------------------------------------------------------------
+.l-row {
+  margin-left: -16px;
+  margin-right: -16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+//row ------------------------------------------------------------------------------------
+.l-column {
+  margin-left: -16px;
+  margin-right: -16px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+//grid -----------------------------------------------------------------------------------
+.l-col-12 {
+  max-width: 100%;
+}
+.l-col-6 {
+  max-width: 50%;
+}
+.l-col-sm-12 {
+  @media (min-width: 600px) {
+    max-width: 100%;
+  }
+}
+.l-col-sm-9 {
+  @media (min-width: 600px) {
+    max-width: 75%;
+  }
+}
+.l-col-sm-6 {
+  @media (min-width: 600px) {
+    max-width: 50%;
+  }
+}
+.l-col-sm-4 {
+  @media (min-width: 600px) {
+    max-width: 33.3%;
+  }
+}
+.l-col-sm-3 {
+  @media (min-width: 600px) {
+    max-width: 25%;
+  }
+}
+.l-col-md-12 {
+  @media (min-width: 960px) {
+    max-width: 100%;
+  }
+}
+.l-col-md-9 {
+  @media (min-width: 960px) {
+    max-width: 75%;
+  }
+}
+.l-col-md-8 {
+  @media (min-width: 960px) {
+    max-width: 66.6%;
+  }
+}
+.l-col-md-6 {
+  @media (min-width: 960px) {
+    max-width: 50%;
+  }
+}
+.l-col-md-4 {
+  @media (min-width: 960px) {
+    max-width: 33.3%;
+  }
+}
+.l-col-md-3 {
+  @media (min-width: 960px) {
+    max-width: 25%;
+  }
+}
+.l-col-lg-12 {
+  @media (min-width: 1280px) {
+    max-width: 100%;
+  }
+}
+.l-col-lg-9 {
+  @media (min-width: 1280px) {
+    max-width: 75%;
+  }
+}
+.l-col-lg-8 {
+  @media (min-width: 1280px) {
+    width: 66.6%;
+  }
+}
+.l-col-lg-6 {
+  @media (min-width: 1280px) {
+    max-width: 50%;
+  }
+}
+.l-col-lg-4 {
+  @media (min-width: 1280px) {
+    max-width: 33.3%;
+  }
+}
+.l-col-lg-3 {
+  @media (min-width: 1280px) {
+    max-width: 25%;
+  }
+}
+.l-col-xlg-6 {
+  @media (min-width: 1920px) {
+    max-width: 50%;
+  }
+}
+.l-col-xlg-4 {
+  @media (min-width: 1920px) {
+    max-width: 33.3%;
+  }
+}
+.l-col-xlg-3 {
+  @media (min-width: 1920px) {
+    max-width: 25%;
+  }
+}
