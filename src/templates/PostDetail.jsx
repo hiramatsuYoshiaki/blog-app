@@ -59,28 +59,51 @@ const Postdetail = () => {
                 setLocationImages(post.location.images)
 
             }).catch(error => {
-                throw new Error(error)
+                throw new Error(error) 
             })
         }
     // },[id,setTitle,setArticle,setType,setPostDate,setTopImages,setStage,setTags,setLocation])
-    },[])
+    },[])   
     return (
         <main>
-            <div className="l-container">
-                <section className="l-section">
-                    <TopImageArea title={title} stage={stage} images={stageImages}/>
-                </section>
-            </div>
-            <div className="l-container">
-                <section className="l-section">
-                    <PostArea stage={stage} stageNo={stageNo} stageYear={stageYear} stageImages={stageImages}
+            {/* TopImageArea--------------------------------------------------------- */}
+            <TopImageArea title={title} stage={stage} stageNo={stageNo} stageYear={stageYear} images={topImages}/> 
+            {/* PostArea--------------------------------------------------------- */}
+            <PostArea stage={stage} stageNo={stageNo} stageYear={stageYear} stageImages={stageImages}
                         article={article} type={type} postDate={postDate} postImages={postImages}
                         tags={tags} 
                     />
+            {/* LocationArea--------------------------------------------------------- */}
+            {/* <div className="l-container">
+                <section className="l-section">
+                    <LocationArea 
+                    />
                 </section>
-            </div>
+            </div> */}
+            {/* ResentArea--------------------------------------------------------- */}
+            {/* <div className="l-container">
+                <section className="l-section">
+                    <RecentArea 
+                    />
+                </section>
+            </div> */}
+            {/* SNSrea--------------------------------------------------------- */}
+            {/* <div className="l-container">
+                <section className="l-section">
+                    <SNSArea 
+                    />
+                </section>
+            </div> */}
+            {/* PostListArea--------------------------------------------------------- */}
+            {/* <div className="l-container">
+                <section className="l-section">
+                    <PostListArea 
+                    />
+                </section>
+            </div> */}
 
-            <h1>{id}</h1>
+            
+            {/* <h1>{id}</h1>
             <h1>{title}</h1>
             <h1>{article}</h1>
             <h1>{type}</h1>
@@ -100,7 +123,11 @@ const Postdetail = () => {
                         <img src={image.path} alt={image.description} className="p-imagePreview__img" />
                     </div>
                 ))
-            )}
+            )} */}
+
+
+
+{/*             
             <h1>Stage</h1>
             <p>{stage}</p>
             <p>{stageNo}</p>
@@ -131,12 +158,12 @@ const Postdetail = () => {
             <h1>Tags</h1>
             
             {tags.length > 0 && (
-                tags.map(tag => (
+               tags.map(tag => (
                     <div key={tag.id}>
                         <p>{tag.name}</p>
                     </div>
                 ))
-            )}
+            )} */}
         </main>
     )
 }

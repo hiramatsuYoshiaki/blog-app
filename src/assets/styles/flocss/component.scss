@@ -1,3 +1,101 @@
 // 再利用できるパターンとして、小さな単位のモジュールを定義。
 // ※marginなど余白は定義しない。あくまでパーツとして扱う
 // c-button, c-grid, c-input .....
+//topImageArea--------------------
+// $black: hsl(0, 0%, 4%) !default;
+// $black-bis: hsl(0, 0%, 7%) !default;
+// $black-ter: hsl(0, 0%, 14%) !default;
+// $white-ter: hsl(0, 0%, 96%) !default;
+// $white-bis: hsl(0, 0%, 98%) !default;
+// $white: hsl(0, 0%, 100%) !default;
+@import "./variables.scss";
+//topImageArea-------------------------------------
+.c-imagearea{
+    margin:0 0 32px 0;
+    padding:32px 0;
+    overflow: hidden;
+    background: $black;
+    overflow: hidden;
+}
+.c-topimgarea-header{
+    width:100%;
+    padding: 8px 0;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    @media (min-width: 960px) {
+    padding: 16px 0;
+    }
+}
+.topimagearea-header__title{
+    color:$white;
+    font-size: $size-5;
+    font-weight: 100;
+    line-height: 1.2;
+    margin:0;
+    padding:0;
+    @media (min-width: 960px) {
+        font-size: $size-1;
+        font-weight: 300;
+        line-height: 1.5;
+    }
+}
+.topimagearea-header__subtitle{
+    color:$white;
+    font-size: $size-7;
+    font-weight: 100;
+    line-height: 1.2;
+    margin:8px 0;
+    padding:0;
+    @media (min-width: 960px) {
+        font-size: $size-5;
+        font-weight: 300;
+        line-height: 1.5;
+    }
+}
+.c-imagearea-body{
+    margin:0px auto;
+    
+} 
+.c-imagearae-image > img{
+    width:100%;
+    height: auto;
+} 
+//topImageArea-------------------------------------
+.c-postarea{
+    background-color:$white-ter;
+    box-shadow:none;
+    @media (min-width: 960px) {
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    }
+}
+.c-postarea-header{
+    padding:0 16px 0 16px;
+}
+.c-postarea-body-image{
+    padding: 0 0 16px 0 ;
+    @media (min-width: 960px) {
+        padding:0 16px 32px 16px;
+    }
+}
+.c-postarae-description{
+    padding:0 16px 0 16px;
+}
+.c-postarea-article{
+    width:100%;
+    padding:0 16px 0 16px;
+    border:1px solid red;
+    @media (min-width:960px){
+        padding:0 25% 0 25%;
+    }
+}
+
+
+
+
+.c-postarae-image > img{
+    width:100%;
+    height: auto;
+} 
+

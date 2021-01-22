@@ -1,0 +1,264 @@
+// $size-1: 3rem !default;
+// $size-2: 2.5rem !default;
+// $size-3: 2rem !default;
+// $size-4: 1.5rem !default;
+// $size-5: 1.25rem !default;
+// $size-6: 1rem !default;
+// $size-7: 0.75rem !default;
+// $size-8: 0.5rem !default;
+
+// $weight-light: 300 !default;
+// $weight-normal: 400 !default;
+// $weight-medium: 500 !default;
+// $weight-semibold: 600 !default;
+// $weight-bold: 700 !default;
+$mobile: 0.8; //768
+$tablet: 1; //769
+$desktop: 1.2; //960
+$widescreen: 1.5; //1152
+$fullhd: 1.7; //1344
+
+h1,
+.h1 {
+  font-size: $size-1;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+h2,
+.h2 {
+  font-size: $size-2;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+h3,
+.h3 {
+  font-size: $size-3;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+h4,
+.h4 {
+  font-size: $size-4;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+h5,
+.h5 {
+  font-size: $size-5;
+  font-weight: 400;
+  line-height: 1.5;
+}
+h6,
+.h6 {
+  font-size: $size-6;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.h7 {
+  font-size: $size-7;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.h8 {
+  font-size: $size-8;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+p {
+  font-size: $size-6;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Responsive Headings */
+
+@media (max-width: 768px) {
+  h1,
+  .h1 {
+    font-size: calc(#{$mobile} * #{$size-1});
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  h2,
+  .h2 {
+    font-size: calc(#{$mobile} * #{$size-2});
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  h3,
+  .h3 {
+    font-size: calc(#{$mobile} * #{$size-3});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  h4,
+  .h4 {
+    font-size: calc(#{$mobile} * #{$size-4});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  h5,
+  .h5 {
+    font-size: calc(#{$mobile} * #{$size-5});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  h6,
+  .h6 {
+    font-size: calc(#{$mobile} * #{$size-6});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .h7 {
+    font-size: calc(#{$mobile} * #{$size-7});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .h8 {
+    font-size: calc(#{$mobile} * #{$size-8});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  p,
+  .p {
+    font-size: calc(#{$mobile} * #{$size-6});
+    font-weight: 500;
+    line-height: 1.5;
+  }
+}
+/* Small Devices, Tablets */
+// 769/960/1152/1344
+
+@media (min-width: 960px) {
+  h1,
+  .h1 {
+    font-size: calc(#{$desktop} * #{$size-1});
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  h2,
+  .h2 {
+    font-size: calc(#{$desktop} * #{$size-2});
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  h3,
+  .h3 {
+    font-size: calc(#{$desktop} * #{$size-3});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  h4,
+  .h4 {
+    font-size: calc(#{$desktop} * #{$size-4});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  h5,
+  .h5 {
+    font-size: calc(#{$desktop} * #{$size-5});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  h6,
+  .h6 {
+    font-size: calc(#{$desktop} * #{$size-6});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .h7 {
+    font-size: calc(#{$desktop} * #{$size-7});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .h8 {
+    font-size: calc(#{$desktop} * #{$size-8});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  p,
+  .p {
+    font-size: calc(#{$desktop} * #{$size-6});
+    font-weight: 500;
+    line-height: 1.5;
+  }
+}
+@media (min-width: 1152px) {
+  h1,
+  .h1 {
+    font-size: calc(#{$widescreen} * #{$size-1});
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  h2,
+  .h2 {
+    font-size: calc(#{$widescreen} * #{$size-2});
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  h3,
+  .h3 {
+    font-size: calc(#{$widescreen} * #{$size-3});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  h4,
+  .h4 {
+    font-size: calc(#{$widescreen} * #{$size-4});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  h5,
+  .h5 {
+    font-size: calc(#{$widescreen} * #{$size-5});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  h6,
+  .h6 {
+    font-size: calc(#{$widescreen} * #{$size-6});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .h7 {
+    font-size: calc(#{$widescreen} * #{$size-7});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .h8 {
+    font-size: calc(#{$widescreen} * #{$size-8});
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  p,
+  .p {
+    font-size: calc(#{$widescreen} * #{$size-6});
+    font-weight: 500;
+    line-height: 1.5;
+  }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+h5,
+.h6,
+.h7,
+.h8,
+p,
+.p {
+  margin: 0;
+  padding: 0;
+}

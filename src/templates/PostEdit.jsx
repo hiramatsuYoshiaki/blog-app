@@ -29,7 +29,9 @@ const PostEdit = () => {
     const [postImages, setPostImages] = useState([])
 
     const [stage, setStage] = useState({})
+
     const [tags, setTags] = useState([])
+    
     const [location, setLocation] = useState([])
 
     const inputTitle = useCallback((e) => {
@@ -113,7 +115,7 @@ const PostEdit = () => {
             <StageArea stage={stage} setStage={setStage} />
             
             {/* タグ */}
-            <TagsArea tags={tags} setTgas={setTags} />
+            <TagsArea tags={tags} setTgas={setTags} /> 
             
             {/* ロケーション */}
             <LocationArea location={location} setLocation={setLocation} />

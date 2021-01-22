@@ -6,3 +6,7 @@
 // あくまで補助としての役割であること。
 // Projectとして定義するには要素が少なすぎる場合やcomponent単体で使うときに使用
 // u-margin, u-color, u-fontsize, u-clearfix ......
+@import "./variables.scss";
+.u-margin-right-8{
+    margin-right: 8px
+}

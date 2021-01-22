@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { MultipleSelect } from '../UiKit/index'
 import { getTags } from '../../reducks/tags/seloctors'
@@ -9,34 +9,44 @@ const TagsArea = (props) => {
     const selector = useSelector(state => state)
     const tags = getTags(selector)
     
-    // const [selectedId, setSelectedId] = useState([])
-    // const [selected, setSelected] = useState([])
-    
-    const handleChange = (selectTtags) => {
-        // const selectedTags = []
-        // const selectedTagsId = []
-        // selectTtags.map((selectTtag) => {
-        //     const founds = tags.find(findTag => findTag.id === selectTtag)
-        //     if (founds) {
-        //         selectedTags.push(founds)
-        //         selectedTagsId.push(founds.id)
-        //     }
-        // })
-        // setSelectedId(selectedTagsId)
-        // setSelected(selectedTags)
-        props.setTgas(selectTtags)
+
+    const handleChange = (selectedTags) => {
+        const selectedValue = []
+        if(selectedTags.length > 0 ){
+            selectedTags.forEach(selectedTag => {
+                const found = tags.find(tag => tag.id === selectedTag)
+                if (found){
+                    selectedValue.push(found)
+                }
+            })
+        }
+        props.setTgas(selectedValue)
     }
+    const valueTags = (pTags) => {
+        if(pTags === []){
+            return []
+        }
+        const valueTags = []
+        pTags.forEach(pTag=>{
+            console.log(pTag.id);
+            console.log(pTag.name);
+            valueTags.push(pTag.id)
+        })
+        return valueTags
+    } 
+
     useEffect(() => {
         dispatch(fetchTags())
-    }, [dispatch]) 
+    }, [])  
+    
     return (
         <div>
             <h3>TagsArea</h3>
             <p>タグを選択してください</p>
             <MultipleSelect
                 label={"タグ"}
-                // value={selectedId}
-                value={props.tags || ''}
+                // value={props.tags || []}
+                value={valueTags(props.tags)}
                 handleChange={handleChange}
                 options={tags}
                 required={true}

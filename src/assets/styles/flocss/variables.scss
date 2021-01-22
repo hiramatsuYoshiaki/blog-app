@@ -1,0 +1,179 @@
+// Colors
+$black: hsl(0, 0%, 4%) !default;
+$black-bis: hsl(0, 0%, 7%) !default;
+$black-ter: hsl(0, 0%, 14%) !default;
+
+$grey-darker: hsl(0, 0%, 21%) !default;
+$grey-dark: hsl(0, 0%, 29%) !default;
+$grey: hsl(0, 0%, 48%) !default;
+$grey-light: hsl(0, 0%, 71%) !default;
+$grey-lighter: hsl(0, 0%, 86%) !default;
+
+$white-ter: hsl(0, 0%, 96%) !default;
+$white-bis: hsl(0, 0%, 98%) !default;
+$white: hsl(0, 0%, 100%) !default;
+
+$orange: hsl(14, 100%, 53%) !default;
+$yellow: hsl(48, 100%, 67%) !default;
+$green: hsl(141, 71%, 48%) !default;
+$turquoise: hsl(171, 100%, 41%) !default;
+$cyan: hsl(204, 86%, 53%) !default;
+$blue: hsl(217, 71%, 53%) !default;
+$purple: hsl(271, 100%, 71%) !default;
+$red: hsl(348, 100%, 61%) !default;
+
+// Typography
+$family-sans-serif: BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto',
+  'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  'Helvetica', 'Arial', sans-serif !default;
+$family-monospace: monospace !default;
+$render-mode: optimizeLegibility !default;
+
+$size-1: 5rem !default;
+$size-2: 4rem !default;
+$size-3: 3rem !default;
+$size-4: 2rem !default;
+$size-5: 1.5rem !default;
+$size-6: 1rem !default;
+$size-7: 0.75rem !default;
+$size-8: 0.5rem !default;
+
+$weight-light: 300 !default;
+$weight-normal: 400 !default;
+$weight-medium: 500 !default;
+$weight-semibold: 600 !default;
+$weight-bold: 700 !default;
+
+// Spacing
+
+$block-spacing: 1.5rem !default;
+
+// Responsiveness
+
+// The container horizontal gap, which acts as the offset for breakpoints
+$gap: 32px !default;
+// 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
+$tablet: 600px !default;
+// 960px container + 4rem
+$desktop: 960px + (2 * $gap) !default;
+// 1152px container + 4rem
+$widescreen: 1280px + (2 * $gap) !default;
+$widescreen-enabled: true !default;
+// 1344px container + 4rem
+$fullhd: 1920px + (2 * $gap) !default;
+$fullhd-enabled: true !default;
+
+// Miscellaneous
+
+$easing: ease-out !default;
+$radius-small: 2px !default;
+$radius: 4px !default;
+$radius-large: 6px !default;
+$radius-rounded: 290486px !default;
+$speed: 86ms !default;
+
+// Flags
+
+$variable-columns: true !default; 
+
+//h-works-----------------------------------
+//header
+$header-height: 3.2rem !default;
+$header-color: #212121 !default;
+$header-text: #fff !default;
+$header-mobile-color: #212121 !default;
+//aside
+$aside-width: 6.4rem !default;
+$aside-color: #212121 !default;
+$aside-text: #fff !default;
+$aside-mobile-color: #212121 !default;
+//footer
+$footer-height: 3.2rem !default;
+$footer-color: green !default;
+$footer-text: #fff !default;
+//footer-color
+$footer-color-color: rgb(31, 84, 209) !default;
+$footer-color-text: #fff !default;
+
+//body
+$body-color: #212121 !default;
+$body-text: #fff !default;
+$body-min-width: 375px;
+$body-bg-color: #263238;
+
+//section
+$section-color: #fff !default;
+$section-text: #000 !default;
+$section-padding-top: 3rem !default;
+$section-padding-bottom: 3rem !default;
+$section-padding-right: 0 !default;
+$section-padding-left: 0 !default;
+
+//page setting
+//works
+$works-body-color: #fff !default;
+$works-body-text: #212121 !default;
+//projects
+$projects-body-color: #fff !default;
+$projects-body-text: #212121 !default;
+//service
+$service-body-color: #fff !default;
+$service-body-text: #212121 !default;
+
+// $font-family: "Lato", "Open Sans", sans-serif!default;
+$font-family: '游ゴシック Medium', 'Yu Gothic Medium', '游ゴシック体', YuGothic,
+  sans-serif !default;
+// $font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS PGothic",sans-serif!default;
+// $font-family: 'Space Mono',"rz-regular", "maison-neue-mono",'Space Mono', monospace, Helvetica, Arial, sans-serif!default;
+// $font-family: arial,sans-serif!default;
+// $body-font-size: 1rem!default;
+
+// $font-size: 1.25em!default;
+// $line-height: 1.66em!default;
+$font-size: 62.5% !default;
+$font-body-size: 16px !default;
+$line-height: 16px !default;
+
+//link
+$link-color: #fff !default;
+$hover-color: #212121 !default;
+$link-color-black: black !default;
+$hover-color-black: #555 !default;
+
+$nav-link-color: rgb(256, 256, 256) !default;
+$nav-hover-color: rgb(0, 0, 0) !default;
+$nav_bg: #d6372e !default;
+// $nav_bg:  #1d244b!default;
+
+//main-contents
+$main-contents-color: #fff !default;
+$main-contents-text: #000 !default;
+
+// $base-text-color: #fff!default;
+// $bg-color: #212121!default;
+$base-text-color: #212121 !default;
+$bg-color: #fff !default;
+
+$black-base-text-color: #fff !default;
+$black-bg-color: #212121 !default;
+$white-base-text-color: #212121 !default;
+$white-bg-color: #fff !default;
+
+//navbar
+$nav_svg_logo_bg: red !default;
+$nav_svg_logo_text: #fff !default;
+$nav_bg_color: rgb(116, 116, 116) !default;
+$nav_font_size: 1.2rem !default;
+$nav_font_weight: 400 !default;
+
+// menu
+$nav_icon: #fff !default;
+$nav_icon_exp: #fff !default;
+$svg_mask_fill: #d6372e !default;
+
+//main contents
+$port_page_before: #253069 !default;
+
+//img size
+$img-width-size: 1280px !default;
+$img-height-size: 800px !default;

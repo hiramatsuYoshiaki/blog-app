@@ -1,3 +1,27 @@
 // サイトを構成する上で、デザインの基本の下地、土台となるスタイルを定義
 // ※基本的にタグ自体にスタイルを定義すること。
 // ※クラスなしの状態でも最低限の表示になることを心がける
+@import "./variables.scss";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+html {
+    // font-size: 16px;
+    // font-size: 62.5%;
+    font-size: $font-size; //1em=10px
+    min-width: $body-min-width;
+    //   text-rendering: $body-rendering;
+    text-size-adjust: 100%;
+  }
+  body {
+    font-size: $font-body-size; //1.6rem=16px
+    //   font-weight: $body-weight;
+    //   line-height: $body-line-height;
+  }
