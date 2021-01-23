@@ -79,11 +79,11 @@ const LocationEdit = () => {
             <div className="p-googleMapWrap" >
                 <GoogleMapReact
                 bootstrapURLKeys={{ key: key }}
-                defaultCenter={{
+                center={{
                     lat: lat,
                     lng: lng
                 }}
-                defaultZoom={15}
+                defaultZoom={15} 
                 >
                     <Marker lat={lat} lng={lng} text="Marker" className="u-marker"/>
                 </GoogleMapReact>

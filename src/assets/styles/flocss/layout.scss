@@ -22,7 +22,7 @@
   margin-left: auto;
   padding-left: 16px;
   padding-right: 16px;
-  // border: 1px solid lightblue;
+  border: 1px solid lightblue;
 }
 @media (min-width: 600px) {
   .l-container {
@@ -52,7 +52,17 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  // border: 1px solid lightgreen;
+}
+.l-section-fluid {
+  margin-left: -16px;
+  margin-right: -16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  @media (min-width: 960px) {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
   
 }
 

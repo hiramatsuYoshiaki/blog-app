@@ -8,6 +8,11 @@
 // $white-ter: hsl(0, 0%, 96%) !default;
 // $white-bis: hsl(0, 0%, 98%) !default;
 // $white: hsl(0, 0%, 100%) !default;
+// $grey-darker: hsl(0, 0%, 21%) !default;
+// $grey-dark: hsl(0, 0%, 29%) !default;
+// $grey: hsl(0, 0%, 48%) !default;
+// $grey-light: hsl(0, 0%, 71%) !default;
+// $grey-lighter: hsl(0, 0%, 86%) !default;
 @import "./variables.scss";
 //topImageArea-------------------------------------
 .c-imagearea{
@@ -66,8 +71,10 @@
 .c-postarea{
     background-color:$white-ter;
     box-shadow:none;
+    margin-bottom: 16px;
     @media (min-width: 960px) {
         box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+        margin-bottom: 32px;
     }
 }
 .c-postarea-header{
@@ -81,21 +88,99 @@
 }
 .c-postarae-description{
     padding:0 16px 0 16px;
+    display:flex;
+    justify-content: flex-end;
 }
-.c-postarea-article{
+
+.c-postarea-body{
     width:100%;
     padding:0 16px 0 16px;
-    border:1px solid red;
+    display:flex;
+    flex-flow: column wrap;
     @media (min-width:960px){
-        padding:0 25% 0 25%;
+        // padding:0 15% 0 15%;
+        flex-flow: row wrap;
+    }
+    margin-bottom:16px;
+    
+}
+.c-postarea-body-location{
+    width:100%;
+    @media (min-width:960px){
+        width:25%;
+    }
+    margin-bottom:16px;
+}
+.c-postarea-body-article{
+    width:100%;
+    @media (min-width:960px){
+        width:50%;
+    }
+    margin-bottom:16px;
+    padding-right:16px;
+
+}
+.c-postarea-body-tags{
+    width:100%;
+    @media (min-width:960px){
+        width:25%;
     }
 }
-
-
-
+.c-postarea-body-tags-title{
+    margin-bottom:4px;
+}
+.c-tag{
+    border:1px solid $grey-dark;
+    border-radius: 4px;
+    padding: 4px;
+    margin-right:4px;
+    color: $grey-dark;
+}
 
 .c-postarae-image > img{
     width:100%;
     height: auto;
 } 
+//topImageArea-------------------------------------
+.c-locationarea{
+    margin:0 0 32px 0;
+    padding:32px 0;
+    overflow: hidden;
+    background: $black;
+    overflow: hidden;
+    border:1px solid green;
+    color:$white;
+}
+.c-locationarea-header{
+    margin: 0 auto 16px;
+}
+.c-locationarea-body{
+    width:100%;
+    display: flex;
+    flex-flow: column wrap;
+    // justify-content: center;
+    // align-items: center;
+    @media (min-width: 960px) {
+        flex-flow: row wrap;
+    }
+}
+.c-locationarea-section-element{
+    width:100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    @media (min-width: 960px) {
+        width:50%;
+    }
+
+}
+.c-locationarea-googlemap {
+   height: 50vh;
+   width: 100%;
+}
+.c-locationarea-section-video > video{
+    height: 50vh;
+    width: 100%;
+}
 

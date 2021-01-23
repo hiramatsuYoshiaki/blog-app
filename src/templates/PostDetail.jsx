@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { db } from '../firebase/index'
 import moment from 'moment'
-import {TopImageArea,PostArea} from '../components/postDetail/index'
+import {TopImageArea,PostArea,LocationArea} from '../components/postDetail/index'
 
 const Postdetail = () => {
     let id = window.location.pathname.split('/post/detail')[1]
@@ -54,8 +54,8 @@ const Postdetail = () => {
                 //location
                 setLocationName(post.location.name)
                 setLocationAddress(post.location.address)
-                setLocationLat(post.location.lat)
-                setLocationLng(post.location.lng)
+                setLocationLat(post.location.position.lat)
+                setLocationLng(post.location.position.lng)
                 setLocationImages(post.location.images)
 
             }).catch(error => {
@@ -72,14 +72,14 @@ const Postdetail = () => {
             <PostArea stage={stage} stageNo={stageNo} stageYear={stageYear} stageImages={stageImages}
                         article={article} type={type} postDate={postDate} postImages={postImages}
                         tags={tags} 
+                        locationName={locationName} locationAddress={locationAddress}
                     />
             {/* LocationArea--------------------------------------------------------- */}
-            {/* <div className="l-container">
-                <section className="l-section">
-                    <LocationArea 
+            <LocationArea locationName={locationName} locationAddress={locationAddress}
+                locationLat={locationLat}
+                locationLng={locationLng}
+                locationImages={locationImages}
                     />
-                </section>
-            </div> */}
             {/* ResentArea--------------------------------------------------------- */}
             {/* <div className="l-container">
                 <section className="l-section">
