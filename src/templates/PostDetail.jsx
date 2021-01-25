@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { db } from '../firebase/index'
 import moment from 'moment'
-import {TopImageArea,PostArea,LocationArea} from '../components/postDetail/index'
+import {TopImageArea,PostArea,LocationArea,Pagination} from '../components/postDetail/index'
 
 const Postdetail = () => {
     let id = window.location.pathname.split('/post/detail')[1]
@@ -74,33 +74,19 @@ const Postdetail = () => {
                         tags={tags} 
                         locationName={locationName} locationAddress={locationAddress}
                     />
+            {/* Pagination--------------------------------------------------------- */}
+            <Pagination />
             {/* LocationArea--------------------------------------------------------- */}
             <LocationArea locationName={locationName} locationAddress={locationAddress}
                 locationLat={locationLat}
                 locationLng={locationLng}
                 locationImages={locationImages}
                     />
-            {/* ResentArea--------------------------------------------------------- */}
-            {/* <div className="l-container">
-                <section className="l-section">
-                    <RecentArea 
-                    />
-                </section>
-            </div> */}
-            {/* SNSrea--------------------------------------------------------- */}
-            {/* <div className="l-container">
-                <section className="l-section">
-                    <SNSArea 
-                    />
-                </section>
-            </div> */}
+            
             {/* PostListArea--------------------------------------------------------- */}
-            {/* <div className="l-container">
-                <section className="l-section">
-                    <PostListArea 
-                    />
-                </section>
-            </div> */}
+            {/* <PostListArea  */}
+            {/* SNSrea--------------------------------------------------------- */}
+            {/* <SNSArea /> */}
 
             
             {/* <h1>{id}</h1>

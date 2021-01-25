@@ -179,6 +179,7 @@ npm install --save @material-ui/core @material-ui/icons @material-ui/styles conn
 npm install @date-io/moment@1.x moment
 npm install history@4.10.1
 npm install google-map-react
+npm install @material-ui/lab
 ```
 
 ### push error

@@ -45,6 +45,17 @@ const PostArea = props => {
                 )}
                 
                 <div className="c-postarea-body">
+                    <div className="c-postarea-body-article">
+                        <div>
+                            <LabelIcon className={classes.icon}/>
+                            {props.stage}
+                        </div>
+                        <div>{props.article}</div>
+                        <div>
+                            <CalendarTodayIcon className={classes.icon} />
+                            {props.postDate.split('T')[0] }
+                        </div>
+                    </div>
                     <div className="c-postarea-body-location">
                         <div>
                             <LocationOnIcon className={classes.icon}/>
@@ -57,17 +68,7 @@ const PostArea = props => {
                             {props.locationAddress }
                         </div>
                     </div>
-                    <div className="c-postarea-body-article">
-                        <div>
-                            <LabelIcon className={classes.icon}/>
-                            {props.stage}
-                        </div>
-                        <div>{props.article}</div>
-                        <div>
-                            <CalendarTodayIcon className={classes.icon} />
-                            {props.postDate.split('T')[0] }
-                        </div>
-                    </div>
+                    
                     <div className="c-postarea-body-tags">
                         <div className="c-postarea-body-tags-title">
                             <LocalOfferIcon  className={classes.icon}/> TAG
