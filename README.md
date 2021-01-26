@@ -180,6 +180,7 @@ npm install @date-io/moment@1.x moment
 npm install history@4.10.1
 npm install google-map-react
 npm install @material-ui/lab
+npm install -s swiper@5.4.2 react-id swiper@3.0.0
 ```
 
 ### push error

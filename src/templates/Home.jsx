@@ -1,20 +1,28 @@
 import React, { useEffect } from 'react'
-import { getPosts } from '../reducks/posts/selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPosts } from '../reducks/posts/operators'
+import { fetchStages } from '../reducks/stage/operators'
+import { getPosts } from '../reducks/posts/selectors'
+import { getStages } from '../reducks/stage/selectors'
+
+import { HomeStage } from '../components/home/index'
 import { Newest, Recent } from '../components/post/index'
 
 const Home = () => {
     const dispatch = useDispatch()
     const selector = useSelector((state) => state)
     const posts = getPosts(selector)
+    const stages = getStages(selector)
+    console.log(stages);
 
     useEffect(() => {
         dispatch(fetchPosts())
-    }, [dispatch])
-     
-    return (
+        dispatch(fetchStages())
+    }, [])
+      
+    return ( 
         <div>
+            <HomeStage stages={stages}/>
             {
                 posts.length > 0 && (
                     posts.map((post, index) => (

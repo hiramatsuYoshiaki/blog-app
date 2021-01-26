@@ -13,7 +13,3 @@ export {default as TagsList} from './TagsList'
 export {default as LocationEdit} from './LocationEdit'
 export {default as LocationList} from './LocationList'
 export { default as Admin } from './Admin'
-//layout
-export {default as LayoutTemplate} from './LayoutTemplate'
-export {default as LayoutHome} from './LayoutHome'
-export {default as LayoutDetail} from './LayoutDetail'

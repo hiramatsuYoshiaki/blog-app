@@ -1,18 +1,40 @@
 import React,{useEffect, useState} from 'react'
 import GoogleMapReact from 'google-map-react'
 import {googleMapConfig} from "../../googleMap/config";
-
+import IconButton from "@material-ui/core/IconButton";
+import LocationOnIcon from '@material-ui/icons/LocationOn'
+import {makeStyles} from '@material-ui/styles'
+const useStyles = makeStyles((theme) => ({
+    icon:{
+        height:48,
+        width:48,
+        color:' #f50057',
+    }
+}))
 const LocationArea = props => {
+    const classes = useStyles()
     const key = googleMapConfig.key
     const [lat,setLat] = useState(0)
     const [lng,setLng] = useState(0)
+    const [name,setName] = useState("")
+    const [address,setAddress] = useState("")
    
-    const Marker = ({ text }) => <div>{text}</div>;
+    const Marker = ({ name }) => (<div className='c-location-marke-wrapin'> 
+        <IconButton className={classes.icon}>
+            <LocationOnIcon style={{ fontSize: 32 }}/>
+        </IconButton>
+        <div className="c-location-marker-text">
+            <h2>{name.name}</h2>
+            {/* <p>{name.address}</p> */}
+        </div>
+        </div>)
 
     useEffect(()=>{
         setLat(Number(props.locationLat))
         setLng(Number(props.locationLng))
-    },[props.locationLat,props.locationLng])
+        setName(props.locationName)
+        setAddress(props.locationAddress)
+    },[props.locationLat,props.locationLng,props.locationName,props.locationAddress])
 
     return (
         <div className="l-container-fluid c-locationarea">
@@ -34,7 +56,10 @@ const LocationArea = props => {
                                 <Marker 
                                     lat={lat} 
                                     lng={lng} 
-                                    text="Marker" 
+                                    name={{
+                                        name:name,
+                                        address:address
+                                    }}
                                     className="u-marker"
                                 />
                             </GoogleMapReact>
@@ -44,7 +69,7 @@ const LocationArea = props => {
                         {props.locationImages.length > 0 && (
                             props.locationImages.map(image => (
                                 <div key={image.id} className="c-locationarea-section-video ">
-                                    <video  muted autoplay controls>
+                                    <video  muted controls>
                                         <source src={image.path} type="video/mp4" />
                                     </video>
                                 </div>

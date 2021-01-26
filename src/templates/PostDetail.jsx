@@ -3,7 +3,16 @@ import { db } from '../firebase/index'
 import moment from 'moment'
 import {TopImageArea,PostArea,LocationArea,Pagination} from '../components/postDetail/index'
 
+import { getPosts } from '../reducks/posts/selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPosts } from '../reducks/posts/operators'
+
 const Postdetail = () => {
+
+    const dispatch = useDispatch()
+    const selector = useSelector((state) => state)
+    const posts = getPosts(selector)
+
     let id = window.location.pathname.split('/post/detail')[1]
     if (id !== '') {
         id = id.split('/')[1]
@@ -25,7 +34,6 @@ const Postdetail = () => {
     const [stageImages,setStageImages] = useState([])
     //tag
     const [tags, setTags] = useState([])
-    
     //location
     const [locationName, setLocationName] = useState([])
     const [locationAddress, setLocationAddress] = useState([])
@@ -33,8 +41,40 @@ const Postdetail = () => {
     const [locationLng, setLocationLng] = useState([])
     const [locationImages, setLocationImages] = useState([])
    
+    // useEffect(() => {
+    //     if(!posts){
+    //         dispatch(fetchPosts())
+    //     }
 
+    //     // }else{
+    //         const post = posts.find(post => post.id === id)
+    //         if(post){
+    //             setTitle(post.title)
+    //             setArticle(post.article)
+    //             setType(post.type)
+    //             setPostDate(post.postDate)
+    //             setTopImages(post.topImages)
+    //             setPostImages(post.postImages)
+    //             //stage
+    //             setStage(post.stage.stage)
+    //             setStageNo(post.stage.stageNo)
+    //             setStageYear(post.stage.stageYear)
+    //             setStageImages(post.stage.images)
+    //             //tag
+    //             setTags(post.tags)
+    //             //location
+    //             setLocationName(post.location.name)
+    //             setLocationAddress(post.location.address)
+    //             setLocationLat(post.location.position.lat)
+    //             setLocationLng(post.location.position.lng)
+    //             setLocationImages(post.location.images)
+    //         // }
+    //     }
+    // }, [])
     useEffect(() => {
+        if(!posts || posts.length === 0){
+            dispatch(fetchPosts())
+        }
         if (id !== '') {
             db.collection('posts').doc(id).get().then(snapshot => {
                 const post = snapshot.data()
@@ -62,8 +102,9 @@ const Postdetail = () => {
                 throw new Error(error) 
             })
         }
-    // },[id,setTitle,setArticle,setType,setPostDate,setTopImages,setStage,setTags,setLocation])
-    },[])   
+    },[id])  
+
+    
     return (
         <main>
             {/* TopImageArea--------------------------------------------------------- */}
@@ -75,7 +116,7 @@ const Postdetail = () => {
                         locationName={locationName} locationAddress={locationAddress}
                     />
             {/* Pagination--------------------------------------------------------- */}
-            <Pagination />
+            <Pagination posts={posts} id={id}/>
             {/* LocationArea--------------------------------------------------------- */}
             <LocationArea locationName={locationName} locationAddress={locationAddress}
                 locationLat={locationLat}

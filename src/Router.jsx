@@ -13,9 +13,6 @@ import {
   TagsList,
   LocationEdit,
   LocationList,
-  LayoutTemplate,
-  LayoutHome,
-  LayoutDetail,
 } from './templates/index'
 import Auth from './Auth'
 const Router = () => {
@@ -25,9 +22,6 @@ const Router = () => {
             <Route exact path="(/)?" component={Home} />
             <Route path="/post/detail(:id)?" component={PostDetail} />
         
-            <Route path="/layout/template" component={LayoutTemplate} />
-            <Route path="/layout/home" component={LayoutHome} />
-            <Route path="/layout/detail" component={LayoutDetail} />
           <Auth>
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/location/List" component={LocationList} />
