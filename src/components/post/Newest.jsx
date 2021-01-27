@@ -2,7 +2,7 @@ import React from 'react'
 import { PostImageCard } from './index'
 import { useDispatch } from 'react-redux'
 import {push} from 'connected-react-router'
- 
+  
 const Newest = (props) => {
     const dispatch = useDispatch()
     const postDate = props.post.postDate.split('T') 

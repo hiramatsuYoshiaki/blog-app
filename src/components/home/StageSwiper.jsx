@@ -29,19 +29,15 @@ const StageSwiper = props => {
     const stages = props.stages
     return (
         <div className="c-stagehome-box">
-        <Swiper {...params}>
-                {stages.length === 0 ?(
-                    <div>
-                        <img src={NoImage} alt="no image" />
-                    </div>
-                ):(
-                    stages.map(stage =>(
-                        <span  key={stage.id} className="c-stragehome-image-wrape">
-                            <img src={stage.images[0].path} alt="商品名" />
-                        </span>
-                    ))
-                )}
-        </Swiper>
+            <Swiper {...params}>
+                    {stages.length > 0 &&(
+                        stages.map(stage =>(
+                            <span  key={stage.id} className="c-stragehome-image-wrape">
+                                <img src={stage.images[0].path} alt="商品名" />
+                            </span>
+                        ))
+                    )}
+            </Swiper>
         </div>
     )
 }

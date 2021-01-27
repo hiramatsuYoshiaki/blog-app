@@ -1,5 +1,5 @@
 import React from 'react'
-
+ 
 const TopImageArea = props => {
     return (
         <div className="l-container-fluid c-imagearea">

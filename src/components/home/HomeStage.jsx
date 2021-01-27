@@ -3,9 +3,7 @@ import {StageSwiper} from './index'
 
 const HomeStage = props => {
     return (
-        // <div className="c-stagehome-box">
-            <StageSwiper stages={props.stages}/>
-        // </div>
+            <StageSwiper stages={props.stages} className="c-new-Stage" />
     )
 }
 

@@ -5,7 +5,7 @@ import { fetchStages } from '../reducks/stage/operators'
 import { getPosts } from '../reducks/posts/selectors'
 import { getStages } from '../reducks/stage/selectors'
 
-import { HomeStage } from '../components/home/index'
+import { HomeStage, NewPosts } from '../components/home/index'
 import { Newest, Recent } from '../components/post/index'
 
 const Home = () => {
@@ -13,7 +13,8 @@ const Home = () => {
     const selector = useSelector((state) => state)
     const posts = getPosts(selector)
     const stages = getStages(selector)
-    console.log(stages);
+    // console.log(stages);
+    console.log(posts);
 
     useEffect(() => {
         dispatch(fetchPosts())
@@ -23,30 +24,9 @@ const Home = () => {
     return ( 
         <div>
             <HomeStage stages={stages}/>
-            {
-                posts.length > 0 && (
-                    posts.map((post, index) => (
-                        <div key={post.id}>
-                            {
-                                (index === 0) &&
-                                <Newest post={post} />
-                            }
-                            {
-                                (index > 0 && index < 10 ) &&
-                                    <Recent post={post}/>
-                            }
-                            
-                            {/* <h1>{index +1  }:{post.title}</h1>
-                            <p>記事：{post.article}</p>
-                            <p>タイプ：{post.type}</p>
-                            <p>投稿日：{post.postDate}</p> */}
-
-                        </div>
-                    ))
-                )
-            }
-        </div>
+            <NewPosts posts={posts}/>
+        </div> 
     )
-}
+} 
 
 export default Home
