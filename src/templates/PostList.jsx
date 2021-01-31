@@ -11,8 +11,8 @@ const PostList = () => {
 
     useEffect(() => {
         dispatch(fetchPosts())
-    }, [dispatch])
-
+    }, [])
+  
     return (
         <div>
             {

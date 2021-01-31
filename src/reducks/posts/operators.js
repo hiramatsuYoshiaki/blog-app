@@ -1,4 +1,4 @@
-import { fetchPostsAction, deletePostsAction } from  './actions'
+import { fetchPostsAction, deletePostsAction} from  './actions'
 import { push } from 'connected-react-router'
 import { db, FirebaseTimestamp } from '../../firebase/index'
 
@@ -30,6 +30,7 @@ export const fetchPosts = () => {
         })
     }
 }
+
 
 export const savePost = (id, title, article, type, postDate, topImages, postImages, stage, tags, location) => {
     return async (dispatch) => {

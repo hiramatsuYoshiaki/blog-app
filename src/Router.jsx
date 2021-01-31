@@ -13,6 +13,8 @@ import {
   TagsList,
   LocationEdit,
   LocationList,
+  PostListGrid,
+
 } from './templates/index'
 import Auth from './Auth'
 const Router = () => {
@@ -20,6 +22,7 @@ const Router = () => {
          <Switch>
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="(/)?" component={Home} />
+            <Route exact path="/post/listgrid" component={PostListGrid} />
             <Route path="/post/detail(:id)?" component={PostDetail} />
         
           <Auth>
@@ -32,7 +35,7 @@ const Router = () => {
             <Route path="/stage/edit(:id)?" component={StageEdit} />
             <Route path="/tags/edit(:id)?" component={TagsEdit} />
             <Route path="/location/edit(:id)?" component={LocationEdit} />
-          
+            
 
          </Auth>
      </Switch>

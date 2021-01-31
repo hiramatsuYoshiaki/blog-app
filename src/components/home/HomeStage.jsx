@@ -3,7 +3,17 @@ import {StageSwiper} from './index'
 
 const HomeStage = props => {
     return (
-            <StageSwiper stages={props.stages} className="c-new-Stage" />
+        <div className='c-home-stage'> 
+            <StageSwiper 
+                stages={props.stages}
+                filter={props.filter} 
+                setFilter={props.setFilter}
+                setStageName={props.setStageName}
+                setStageNo={props.setStageNo}
+                setStageYear={props.setStageYear}
+              />
+        </div>
+        
     )
 }
 

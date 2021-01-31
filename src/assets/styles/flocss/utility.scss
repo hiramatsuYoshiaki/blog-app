@@ -11,6 +11,31 @@
     margin-right: 8px
 }
 .image-size{
-    width:100px;
+    width:300px;
     height:auto;
+}
+.image-size-w200{
+    width:600px;
+    height:auto;
+}
+.image-fit-cover{
+    object-fit: cover;
+    width:200px;
+    height:auto;
+    @media (min-width:600px){
+        width:320px;
+    }
+    @media (min-width:960px){
+        width:420px;
+    }
+    @media (min-width:1260px){
+        width:600px;
+    }
+    // width:33.3%;
+    // height:100px;
+    // object-fit: contain;
+    // object-fit: scale-down;
+    // object-fit: none;
+    vertical-align: bottom;
+    margin:0;
 }

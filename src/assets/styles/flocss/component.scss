@@ -15,14 +15,17 @@
 // $grey-lighter: hsl(0, 0%, 86%) !default;
 // xs:0px     sm:600px    md:960px    lg:1280px   xl:1920px
 @import "./variables.scss";
-//HomeStage----------------------------------------
 
+//Home Stage----------------------------------------
+.c-home-stage{
+    width:100%;
+    background: $black;
+}
 .c-stagehome-box{
     margin:0 auto ;
     width:100%;
     height:auto;
     overflow:hidden;
-    
     @media (min-width:960px) {
         width: 100%;
         height:auto;
@@ -31,7 +34,7 @@
 }
 .c-stragehome-image-wrape{
     margin:0  auto ;
-    padding: 32px 0 32px 0;
+    padding: 48px 0 48px 0;
 }
 .c-stragehome-image-wrape > img{
     display:block;
@@ -44,17 +47,47 @@
         max-width: 960px;
     }
 }
+//home post ----------------------------
+.c-new-post-header{ 
+    width:100%;
+    margin: 8px 0;
+    padding:0px 8px;
+    @media (min-width:960px){
+        margin: 16px 0;
+        padding:0 16px;
+    }
+}
+.c-new-post-header > h2{
+    color:$grey;
+}
+
 .c-new-post-wrape{
-    padding:8px 0;
+    padding:0 0;
     width:100%;
     display:flex;
     flex-flow: row wrap;
     overflow:hidden;
     @media (min-width:960px) {
-        padding:32px 0;
+        padding:0 0;
     }
 }
-
+.c-new-post-button{
+    margin:20px  0 0 auto;
+}
+//home FilterPosts -------------------------------
+.c-filter-posts{
+    background-color:$white-ter;
+    border:1px solid $black-ter
+}
+.c-filter-posts-element{
+    width:100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0;
+    margin:0;
+}
 //topImageArea------------------------------------- 
 .c-imagearea{
     margin:0 0 32px 0;
@@ -249,5 +282,22 @@
     justify-content: center;
     align-items: center;
 
+}
+//PostListOfStage StageImageArea------------------
+.c-stage-image-area{
+    background-color:$black-ter;
+    width:100%;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+.c-stage-image-area-image-wrape{
+    margin:0 auto;
+}
+.c-stage-image-area-image-wrape > img{
+    vertical-align: bottom;
+    margin:0;
+    width:100%;
+    height:auto;
 }
 

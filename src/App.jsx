@@ -1,4 +1,3 @@
-import './assets/styles/reset.scss'
 import './assets/styles/style.scss'
 import { Header, Footer } from './templates/index'
 import Router from './Router'

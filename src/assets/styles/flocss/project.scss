@@ -2,10 +2,12 @@
 // 小さい単位のComponentを集めて、一つのObjectとして扱いたい時
 // Componentとするには大きすぎるObjectとなる時にProjectとして定義する。
 @import "./variables.scss";
+
 .p-media__thumb {
     position: relative;
     overflow: hidden;
     width: 100%;
+    width:600px;
   }
   
   .p-media__thumb::before {

@@ -1,5 +1,3 @@
-export { default as Newest} from './Newest'
-export { default as Recent} from './Recent'
 export { default as ImagesArea} from './ImagesArea'
 
 export { default as ImagePreview} from './ImagePreview'

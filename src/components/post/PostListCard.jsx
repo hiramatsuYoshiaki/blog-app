@@ -85,7 +85,7 @@ const PostListCard = props => {
             <IconButton onClick={handleClick}>
                 <MoreVertIcon></MoreVertIcon>
             </IconButton>
-            <Menu
+            <Menu 
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
@@ -106,6 +106,6 @@ const PostListCard = props => {
             </Menu >
         </div>
     )
-}
+} 
 
 export default PostListCard
