@@ -1,30 +1,8 @@
 import { auth } from '../../firebase/index';
 import { push } from 'connected-react-router'
-import { signInAction } from './actions'
+import { signInAction,signOutAction } from './actions'
 
-export const listenAuthStateChanged = () => {
-    return async (dispatch) => {
-        return auth.onAuthStateChanged((user) => {
-            if (user) {
-                const uid = user.uid
-                dispatch(signInAction({
-                    isSignIn: true,
-                    role: 'admin',
-                    uid: uid,
-                    username:'admin' 　
-                }))
-                
-            } else {
-                dispatch(signInAction({
-                    isSignIn: false,
-                    role: '',
-                    uid: '',
-                    username:'' 　
-                }))
-            }
-        })
-    }
-} 
+
 export const listenAuthState = () => {
     return async (dispatch) => {
         return auth.onAuthStateChanged((user) => {
@@ -36,16 +14,6 @@ export const listenAuthState = () => {
                     uid: uid,
                     username:'admin' 　
                 }))
-                // db.collection('users').doc(uid).get()
-                //         .then(snapshot => {
-                //             const data = snapshot.data()
-                //             dispatch(signInAction({
-                //                 isSignIn: true,
-                //                 role: data.role,
-                //                 uid: uid,
-                //                 username:data.username
-                //             }))
-                //         })
             } else {
                 dispatch(push('/'))
             }
@@ -63,30 +31,29 @@ export const signIn = (email, password) => {
                 const user = result.user
                 if (user) {
                     const uid = user.uid
-                    console.log(user.uid)
                     dispatch(signInAction({
                         isSignIn: true,
                         role:"admin",
                         uid: uid,
                         username:"admin"
                     }))
-                    dispatch(push('/admin'))
+                    dispatch(push('/'))
                 } else {
-                    console.log(user.uid)
                     dispatch(push('/'))
                 }
             }).catch((error) => {
                 alert('管理者以外はログインできません')
-                console.log('login error',error)
+                // console.log('login error',error)
                 dispatch(push('/'))
            }) 
     }
     
 }
 export const signOut = () => {
+    alert('signout')
     return async (dispatch) => {
         return auth.signOut().then(() => {
-            dispatch(signInAction({
+            dispatch(signOutAction({
                 isSignIn: false,
                 role:"",
                 uid: "",

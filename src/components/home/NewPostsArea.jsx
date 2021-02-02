@@ -58,6 +58,17 @@ const NewPostsArea = props => {
                 <CardContent>
                     <h2>{post.title}</h2>
                     <p>{post.postDate.split('T')[0]}</p>
+                    <p>{post.location.name}</p>
+                    {post.tags.length > 0 && (
+                            post.tags.map(tag => (
+                                <span key={tag.id}>
+                                    <span className="c-tag">
+                                        {tag.name}
+                                        </span>
+                                </span>
+                            ))
+                        )} 
+                     
                 </CardContent>
                 <CardActions>
                     <Button

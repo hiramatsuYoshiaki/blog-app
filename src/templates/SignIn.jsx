@@ -2,6 +2,8 @@ import React, {useState, useCallback} from 'react'
 import { TextInput, PrimaryButton } from '../components/UiKit/index'
 import { useDispatch } from 'react-redux'
 import { signIn } from '../reducks/users/operators'
+import { push } from 'connected-react-router'
+
 
 const SignIn = () => {
     const dispatch = useDispatch()
@@ -37,9 +39,13 @@ const SignIn = () => {
                         type={'password'}
                         onChange={inputPassword}
             />
-             <PrimaryButton
+            <PrimaryButton
                     label="サインインする"
                     onClick={() => dispatch(signIn(email, password))}
+            />
+           <PrimaryButton
+                    label="キャンセル"
+                    onClick={()=>dispatch(push('/'))}
             />
             
          </div>

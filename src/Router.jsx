@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router'
 import {
   Home,
   SignIn,
+  SignOut,
   Admin,
   PostEdit,
   PostList,
@@ -22,6 +23,7 @@ const Router = () => {
       <main className='l-main'>
         <Switch>
             <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/signout" component={SignOut} />
             <Route exact path="(/)?" component={Home} />
             <Route exact path="/post/listgrid" component={PostListGrid} />
             <Route path="/post/detail(:id)?" component={PostDetail} />

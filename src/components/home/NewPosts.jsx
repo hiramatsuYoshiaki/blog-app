@@ -22,7 +22,8 @@ const NewPosts = (props) => {
             // titleName('このステージの投稿')
             return  posts.filter(post => post.stage.id === props.filter.key)
         }
-        return posts
+
+        return posts.filter((post,index) => index < 4)
     }
     
     return (
@@ -30,13 +31,18 @@ const NewPosts = (props) => {
             <div className='l-section'>
                 <div className="c-new-post-header">
                     {(props.filter.type === 'post' && props.filter.key === '') &&(
-                        <p>最新の投稿</p>
+                        <p>最新投稿</p>
                     ) }
                     {(props.filter.type === 'stage' && props.filter.key !== '') &&(
-                        <p>{props.stageName}-Stage{props.stageNo}-{props.stageYear}</p>
+                        <p>
+                            <span>Stage{props.stageNo}</span>
+                            <span>{props.stageName}</span>
+                            <span>の投稿</span>
+                            {/* <span>{props.stageYear}</span> */}
+                        </p>
                     ) }
-                    <p>{props.filter.type }</p>
-                    <p>{props.filter.key}</p>
+                    {/* <p>{props.filter.type }</p>
+                    <p>{props.filter.key}</p> */}
                 </div>
                 <div  className="c-new-post-wrape">
                     {filterPosts().length > 0 && (
