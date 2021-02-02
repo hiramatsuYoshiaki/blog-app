@@ -19,12 +19,12 @@ import {
 import Auth from './Auth'
 const Router = () => {
     return (
-         <Switch>
+      <main className='l-main'>
+        <Switch>
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="(/)?" component={Home} />
             <Route exact path="/post/listgrid" component={PostListGrid} />
             <Route path="/post/detail(:id)?" component={PostDetail} />
-        
           <Auth>
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/location/List" component={LocationList} />
@@ -35,10 +35,9 @@ const Router = () => {
             <Route path="/stage/edit(:id)?" component={StageEdit} />
             <Route path="/tags/edit(:id)?" component={TagsEdit} />
             <Route path="/location/edit(:id)?" component={LocationEdit} />
-            
-
-         </Auth>
-     </Switch>
+          </Auth>
+        </Switch>
+    </main>
     )
 }
 

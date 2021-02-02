@@ -26,7 +26,7 @@ const Home = () => {
     }, [])
         
     return ( 
-        <div>
+        <>
             <HomeStage 
                 stages={stages} 
                 filter={filter} 
@@ -39,7 +39,6 @@ const Home = () => {
                 stages={stages} 
                 filter={filter} 
                 setFilter={setFilter}
-                
             />
             <NewPosts 
                 posts={posts}
@@ -48,9 +47,9 @@ const Home = () => {
                 stageName={stageName}
                 stageNo={stageNo}
                 stageYear={stageYear}
-                
                 />
-        </div> 
+                
+        </> 
     )
 } 
 

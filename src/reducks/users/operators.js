@@ -2,6 +2,29 @@ import { auth } from '../../firebase/index';
 import { push } from 'connected-react-router'
 import { signInAction } from './actions'
 
+export const listenAuthStateChanged = () => {
+    return async (dispatch) => {
+        return auth.onAuthStateChanged((user) => {
+            if (user) {
+                const uid = user.uid
+                dispatch(signInAction({
+                    isSignIn: true,
+                    role: 'admin',
+                    uid: uid,
+                    username:'admin' 　
+                }))
+                
+            } else {
+                dispatch(signInAction({
+                    isSignIn: false,
+                    role: '',
+                    uid: '',
+                    username:'' 　
+                }))
+            }
+        })
+    }
+} 
 export const listenAuthState = () => {
     return async (dispatch) => {
         return auth.onAuthStateChanged((user) => {
@@ -11,7 +34,7 @@ export const listenAuthState = () => {
                     isSignIn: true,
                     role: 'admin',
                     uid: uid,
-                    username:'admin' 
+                    username:'admin' 　
                 }))
                 // db.collection('users').doc(uid).get()
                 //         .then(snapshot => {
