@@ -14,11 +14,15 @@ const Home = () => {
     const stages = getStages(selector)
     const [filter,setFilter] = useState({
         type:'post',
-        key:''
+        key:'',
+        locationKey:'',
+        tagKey:'',
     })
     const [stageName,setStageName] = useState('')
     const [stageNo,setStageNo] = useState(0)
     const [stageYear,setStageYear] = useState('')
+    const [volume,setVolume] = useState(1)
+    const [length,setLength] = useState(1)
 
     useEffect(() => {
         dispatch(fetchPosts())
@@ -26,30 +30,42 @@ const Home = () => {
     }, [])
         
     return ( 
-        <>
+        <div> 
             <HomeStage 
                 stages={stages} 
                 filter={filter} 
                 setFilter={setFilter}
+                volume={volume} 
+                setVolume={setVolume}
+                length={length} 
+                setLength={setLength}
                 setStageName={setStageName}
                 setStageNo={setStageNo}
                 setStageYear={setStageYear}
                 />
-            <FilterPosts 
+            <FilterPosts  
                 stages={stages} 
                 filter={filter} 
                 setFilter={setFilter}
+                volume={volume} 
+                setVolume={setVolume}
+                length={length} 
+                setLength={setLength}
             />
             <NewPosts 
                 posts={posts}
                 filter={filter} 
                 setFilter={setFilter}
+                volume={volume} 
+                setVolume={setVolume}
+                length={length} 
+                setLength={setLength}
                 stageName={stageName}
                 stageNo={stageNo}
                 stageYear={stageYear}
                 />
-                
-        </> 
+            <h1>{volume}</h1>
+        </div> 
     )
 } 
 

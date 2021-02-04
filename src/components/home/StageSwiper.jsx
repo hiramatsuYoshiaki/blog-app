@@ -44,7 +44,8 @@ const StageSwiper = props => {
                                         props.setStageName(stage.stage)
                                         props.setStageNo(stage.stageNo)
                                         props.setStageYear(stage.stageYear)
-                                        }}/>
+                                        props.setVolume(1)
+                                        }}/> 
                             </span>
                         ))
                     )}
