@@ -8,24 +8,31 @@ const PostListGrid = () => {
     const dispatch = useDispatch()
     const selector = useSelector((state) => state)
     const posts = getPosts(selector)
-    console.log(posts);
+    const postsSort = () =>{
+        let sorted = posts.sort(function(a,b){
+            if(a.created_at > b.created_at) return -1;
+            if(a.created_at < b.created_at) return 1;
+            return 0;
+        });
+        return sorted
+    }
   
     useEffect(()=> {
-        dispatch(fetchPosts()) 
+        dispatch(fetchPosts())  
     },[])  
 
     return (
-       <div className="l-container">
+       <div className="l-container-fluid c-post-list-grid">
            <div className="l-row">
-                { posts.length > 0 &&(
-                    posts.map(post=> (
+                {  postsSort().length > 0 &&(
+                     postsSort().map(post=> (
                         post.topImages.map(topImage=>(
                             <div key={topImage.id} 
                                 className="l-col-4" 
                                 onClick={() => dispatch(push('/post/detail/' + post.id))}>
                                 <img src={topImage.path} 
                                     alt={post.title} 
-                                    className="image-fit-cover"/>
+                                    className="c-image-fit-cover"/>
                             </div>
                         ))
                     ))

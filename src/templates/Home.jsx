@@ -8,10 +8,13 @@ import { getStages } from '../reducks/stage/selectors'
 import { HomeStage, NewPosts, FilterPosts } from '../components/home/index'
 
 const Home = () => {
+    const defaultVolume = 4
+    //redux
     const dispatch = useDispatch()
     const selector = useSelector((state) => state)
     const posts = getPosts(selector)
     const stages = getStages(selector)
+    //state
     const [filter,setFilter] = useState({
         type:'post',
         key:'',
@@ -21,8 +24,7 @@ const Home = () => {
     const [stageName,setStageName] = useState('')
     const [stageNo,setStageNo] = useState(0)
     const [stageYear,setStageYear] = useState('')
-    const [volume,setVolume] = useState(1)
-    const [length,setLength] = useState(1)
+    const [volume,setVolume] = useState(defaultVolume)
 
     useEffect(() => {
         dispatch(fetchPosts())
@@ -35,10 +37,9 @@ const Home = () => {
                 stages={stages} 
                 filter={filter} 
                 setFilter={setFilter}
+                defaultVolume={defaultVolume} 
                 volume={volume} 
                 setVolume={setVolume}
-                length={length} 
-                setLength={setLength}
                 setStageName={setStageName}
                 setStageNo={setStageNo}
                 setStageYear={setStageYear}
@@ -47,24 +48,21 @@ const Home = () => {
                 stages={stages} 
                 filter={filter} 
                 setFilter={setFilter}
+                defaultVolume={defaultVolume} 
                 volume={volume} 
                 setVolume={setVolume}
-                length={length} 
-                setLength={setLength}
             />
             <NewPosts 
                 posts={posts}
                 filter={filter} 
                 setFilter={setFilter}
+                defaultVolume={defaultVolume} 
                 volume={volume} 
                 setVolume={setVolume}
-                length={length} 
-                setLength={setLength}
                 stageName={stageName}
                 stageNo={stageNo}
                 stageYear={stageYear}
                 />
-            <h1>{volume}</h1>
         </div> 
     )
 } 

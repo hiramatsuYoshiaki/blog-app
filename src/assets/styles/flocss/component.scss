@@ -16,11 +16,12 @@
 // xs:0px     sm:600px    md:960px    lg:1280px   xl:1920px
 @import "./variables.scss";
 // header -----------------------------
-.c-header-logo{
+.c-header-logo{ 
     width: 138px;
     height:56px;
     padding:4px; 
     margin:4px;
+    cursor:pointer;
 }
 .c-header-logo > .logo{
     width:38px;
@@ -31,8 +32,29 @@
     width:72px;
     height:42px;
 }
-.c-header-menu{
+.c-header-tablet-menu{
     margin:0 0 0 auto;
+    display:none;
+    // display:flex;
+    // flex-flow: row nowrap;
+    // justify-content: flex-end;
+    // align-items: center;
+    padding-right:16px;
+    @media (min-width:600px){
+        display:block;
+    }
+    border:1px solid green;
+}
+.c-header-tablet-menu > span{
+    margin-right:8px;
+    cursor:pointer
+}
+.c-header-mobile-menu-icon{
+    margin:0 0 0 auto;
+    display:block;
+    @media (min-width:600px){
+        display:none;
+    }
 }
 
 
@@ -69,6 +91,9 @@
     }
 }
 //home post ----------------------------
+.c-new-post-wrape{
+    background-color:$white;
+}
 .c-new-post-header{ 
     width:100%;
     margin: 8px 0;
@@ -82,7 +107,7 @@
     color:$grey;
 }
 
-.c-new-post-wrape{
+.c-new-post-main{
     padding:0 0;
     width:100%;
     display:flex;
@@ -95,6 +120,11 @@
 .c-new-post-button{
     margin:20px  0 0 auto;
 }
+.c-new-post-footer{
+    width:100%;
+    margin:16px 0 24px 0;
+}
+
 //home FilterPosts -------------------------------
 .c-filter-posts{
     background-color:$white-ter;
@@ -320,5 +350,40 @@
     margin:0;
     width:100%;
     height:auto;
+}
+
+//PostListGrid --------------------------------------
+.c-post-list-grid{
+    background-color:$black;
+    width:100%;
+    flex-grow: 1;
+    // min-height: 100vh;
+}
+.c-image-fit-cover{
+    object-fit: cover; 
+    width:200px;
+    height:auto;
+    @media (min-width:600px){
+        width:320px;
+    }
+    @media (min-width:960px){
+        width:420px;
+    }
+    @media (min-width:1260px){
+        width:640px;
+    }
+    @media (min-width:1920px){
+        width:853px;
+    }
+    @media (min-width:2560px){
+        width:1280px;
+    }
+    @media (min-width:3840px){
+        width:1280px;
+    }
+    vertical-align: bottom;
+    // margin:0;
+    // margin:1px;
+    // border:1px solid grey;
 }
 

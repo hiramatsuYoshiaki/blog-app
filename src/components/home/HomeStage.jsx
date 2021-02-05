@@ -8,6 +8,7 @@ const HomeStage = props => {
                 stages={props.stages}
                 filter={props.filter} 
                 setFilter={props.setFilter}
+                defaultVolume={props.defaultVolume} 
                 volume={props.volume} 
                 setVolume={props.setVolume}
                 setStageName={props.setStageName}

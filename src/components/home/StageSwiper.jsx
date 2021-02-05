@@ -36,15 +36,14 @@ const StageSwiper = props => {
                     {stages.length > 0 &&(
                         stages.map(stage =>(
                             <span  key={stage.id} className="c-stragehome-image-wrape" >
-                                {/* <img src={stage.images[0].path} alt="商品名" 
-                                    onClick={()=> dispatch(push('/stage/posts/list/' + stage.id ))}/> */}
                                 <img src={stage.images[0].path} alt="商品名" 
                                     onClick={() => {
+                                        //投稿表示エリアのフィルターするキーを設定する
                                         props.setFilter({type:'stage',key:stage.id})
                                         props.setStageName(stage.stage)
                                         props.setStageNo(stage.stageNo)
                                         props.setStageYear(stage.stageYear)
-                                        props.setVolume(1)
+                                        props.setVolume(props.defaultVolume)
                                         }}/> 
                             </span>
                         ))

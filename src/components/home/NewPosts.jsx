@@ -1,67 +1,53 @@
-import React,{useEffect,useState,useCallback} from 'react';
+import React,{useEffect,useState} from 'react';
 import {NewPostsArea} from './index'
+import Button from '@material-ui/core/Button';
+import {makeStyles} from '@material-ui/core/styles'
+const useStyles = makeStyles(()=>({
+    more:{
+        width:150,
+        margin: '0 0 0 auto',
+        fontWeight:700,
+        fontSize:'1.5rem',
+        display:'block'
+
+    }
+}))
+
+
 
 const NewPosts = (props) => {
+    const classes = useStyles()
     const [displayPosts,setDispalyPosts] = useState([])
     const [postsLength,setPostLength] = useState(1)
-    
-    // const [volume,setVolume] = useState(1)
-    // const dispalyVolume = useCallback(()=>{
-    //     setVolume(volume + 1)
-    //     console.log('dispalyVolume' + volume);
-    // },[setVolume,volume])
 
-    
-
-    // const maxPostsLength = useState((maxLength)=>{
-    //     setPostLength(maxLength)
-    //     console.log('maxPostsLength' + maxLength);
-    // },[setPostLength])
-    // const [title,setTitle] = useState('')
-    // const titleName = useCallback((name)=>{
-    //     setTitle(name)
-    // },[setTitle])
-    // const filterPosts = useCallback(()=>{
-    //     console.log('filterPosts type:' + props.filter.type);
-    //     console.log('filterPosts volume:' + props.volume);
-    //     console.log(props.posts);
-
-    //     const posts = props.posts
-    //     let filteredPosts = []
-    //     if(props.filter.type === "stage" ){
-    //         filteredPosts =  posts.filter(post => post.stage.id === props.filter.key)
-    //     }
-    //     if(props.filter.type === "tag" ){
-    //         filteredPosts = posts.filter(post => {
-    //             const found = post.tags.find(tag=> tag.id === props.filter.tagKey)
-    //             if (found) {
-    //                 return true
-    //             } else {
-    //                 return false
-    //             }
-    //         }) 
-    //     }
-    //     if(props.filter.type === "post"){
-    //         filteredPosts = posts
-    //     }
-    //     return filteredPosts
-    // },[props.posts,props.filter.type,props.filter.key,props.filter.tagKey])
-
-
+    const upVolume = () => {
+        props.setVolume(props.volume + 4)
+    }
     useEffect(()=>{
-        console.log('useEffect type:' + props.filter.type);
-        console.log('useEffect volume:' + props.volume);
-        console.log(props.posts);
+        // 投稿をフィルタリングする
         let posts = []
-        // let propsLength = 0
         //post--------------------------------------------------------
         if(props.filter.type === "post"){
             posts = props.posts
-            // propsLength = posts.length
-            // posts = props.posts.filter((post,index) => index < props.volume)
+            // 降順
+            posts.sort(function(a,b){
+                if(a.created_at > b.created_at) return -1;
+                if(a.created_at < b.created_at) return 1;
+                return 0;
+            });
         }
+        //stage--------------------------------------------------------
+        if(props.filter.type === "stage" ){
+            posts =  props.posts.filter(post => post.stage.id === props.filter.key)
+            //昇順
+            posts.sort(function(a,b){
+                if(a.created_at < b.created_at) return -1;
+                if(a.created_at > b.created_at) return 1;
+                return 0;
+            });
+        }
+        //tag--------------------------------------------------------
         if(props.filter.type === "tag" ){
-            // let tagPosts = []
             posts = props.posts.filter(post => {
                 const found = post.tags.find(tag=> tag.id === props.filter.tagKey)
                 if (found) {
@@ -70,25 +56,19 @@ const NewPosts = (props) => {
                     return false
                 }
             }) 
-            // propsLength = posts.length
-            // console.log('useEffect newprops ' + props.volume);
-            // posts = tagPosts.filter((post,index) => index < props.volume)
+            // 降順
+            posts.sort(function(a,b){
+                if(a.created_at > b.created_at) return -1;
+                if(a.created_at < b.created_at) return 1;
+                return 0;
+            });
         }
-        if(props.filter.type === "stage" ){
-            // let stagePosts = []
-            posts =  props.posts.filter(post => post.stage.id === props.filter.key)
-            // propsLength = stagePosts.length
-            // posts = stagePosts.filter((post,index) => index < props.volume)
-        }
-        console.log(posts);
-
         setDispalyPosts(posts)
         setPostLength(posts.length)
-        
-    },[props.posts,props.volume,props.filter.type,props.filter.tagKey,props.filter.key])
+    },[props.posts,props.filter.type,props.filter.tagKey,props.filter.key])
 
     return (
-        <div className='l-container-fluid'>
+        <div className='l-container-fluid c-new-post-wrape' >
             <div className='l-section'>
                 <div className="c-new-post-header">
                     {(props.filter.type === 'post' && props.filter.key === '') &&(
@@ -96,24 +76,16 @@ const NewPosts = (props) => {
                     ) }
                     {(props.filter.type === 'tag' && props.filter.key !== '') &&(
                         <p>
-                        {/* <span>Stage{props.stageNo}</span>
-                        <span>{props.stageName}</span> */}
                         <span>タグコレクション</span>
-                        {/* <span>{props.stageYear}</span> */}
                     </p>
                     ) }
                     {(props.filter.type === 'stage' && props.filter.key !== '') &&(
                         <p>
-                            <span>Stage{props.stageNo}</span>
-                            <span>{props.stageName}</span>
-                            <span>の投稿</span>
-                            {/* <span>{props.stageYear}</span> */}
+                            <p>最新ステージ</p>
                         </p>
                     ) }
-                    {/* <p>{props.filter.type }</p>
-                    <p>{props.filter.key}</p> */}
                 </div>
-                <div  className="c-new-post-wrape">
+                <div  className="c-new-post-main">
                     {displayPosts.length > 0 && (
                        displayPosts.map((post,index) =>(
                             index < props.volume &&(
@@ -123,6 +95,7 @@ const NewPosts = (props) => {
                                 id={post.id}
                                 filter={props.filter} 
                                 setFilter={props.setFilter}
+                                defaultVolume={props.defaultVolume} 
                                 volume={props.volume} 
                                 setVolume={props.setVolume}
                                 />
@@ -130,12 +103,11 @@ const NewPosts = (props) => {
                     )}
                 </div>
                 <div className='c-new-post-footer'>
-                    <div>volume:{props.volume}</div>
-                    <div>lemgth:{postsLength}</div>
-                    {/* <div onClick={() => props.setVolume(props.volume + 1)}>もっと見る</div>
-                    <div onClick={() => props.setVolume(1)}>リセット</div> */}
                     {props.volume < postsLength && (
-                        <div onClick={props.setVolume(props.volume + 1)}>もっと見る</div>
+                        <Button color="default" size="large"  className={classes.more}
+                            onClick={() => upVolume()}>
+                            もっと見る
+                        </Button>
                     )}
                 </div>
             </div>

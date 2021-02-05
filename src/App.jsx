@@ -4,11 +4,11 @@ import Router from './Router'
 
 function App() {
   return (
-    <>
+    <div className="l-app-wrape"> 
       <Header />
       <Router />
       <Footer />
-    </>
+    </div>
   );
 } 
 

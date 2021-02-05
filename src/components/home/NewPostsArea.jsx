@@ -13,7 +13,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
     cardWrape:{
-       
         [theme.breakpoints.down('sm')]:{
             margin:8,
             width:'100%',
@@ -46,14 +45,16 @@ const NewPostsArea = props => {
     const dispatch = useDispatch()
     const post = props.post
     const handleClickTga =(ids,e) =>{
+        //投稿表示エリアのフィルターするキーを設定する
         props.setFilter({
             type:'tag',
             key:ids.postId,
             locationKey:'',
             tagKey:ids.tagId,
         })
-        props.setVolume(1)
+        props.setVolume(props.defaultVolume)
     }
+    
     return (
         <Card className={classes.cardWrape}>
             <CardActionArea>
