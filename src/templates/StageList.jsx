@@ -11,12 +11,12 @@ const StageList = () => {
 
     useEffect(() => {
         dispatch(fetchStages()) 
-    },[dispatch])
+    },[])
     return (
         <div>
             <h1>Stage List</h1>
             {
-                stages.length > 0 && (
+                stages.length > 0 && ( 
                     stages.map((stage) => (
                         <StageCard key={stage.id}
                             id={stage.id} sort={stage.sort}

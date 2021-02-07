@@ -16,11 +16,9 @@ const PostListGrid = () => {
         });
         return sorted
     }
-  
     useEffect(()=> {
         dispatch(fetchPosts())  
     },[])  
-
     return (
        <div className="l-container-fluid c-post-list-grid">
            <div className="l-row">
@@ -29,16 +27,16 @@ const PostListGrid = () => {
                         post.topImages.map(topImage=>(
                             <div key={topImage.id} 
                                 className="l-col-4" 
-                                onClick={() => dispatch(push('/post/detail/' + post.id))}>
+                                onClick={() => dispatch(push('/post/detail/' + post.id))}
+                            >
                                 <img src={topImage.path} 
-                                    alt={post.title} 
-                                    className="c-image-fit-cover"/>
+                                   alt={post.title} 
+                                   className="c-image-fit-cover"/>
                             </div>
                         ))
                     ))
                 )}
            </div>
-
        </div>
     )
 

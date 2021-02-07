@@ -20,7 +20,6 @@ const useStyles = makeStyles((hteme) => ({
     toolbar:{
         margin:0,
         padding:0,
-        border:'1px solid white',
     }
 }))
 

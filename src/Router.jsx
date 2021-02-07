@@ -15,6 +15,8 @@ import {
   LocationEdit,
   LocationList,
   PostListGrid,
+  PostListGridImage,
+  StageListGridLine,
 
 } from './templates/index'
 import Auth from './Auth'
@@ -26,6 +28,8 @@ const Router = () => {
             <Route exact path="/signout" component={SignOut} />
             <Route exact path="(/)?" component={Home} />
             <Route exact path="/post/listgrid" component={PostListGrid} />
+            <Route exact path="/post/listgridImage" component={PostListGridImage} />
+            <Route exact path="/stage/listgridline" component={StageListGridLine} />
             <Route path="/post/detail(:id)?" component={PostDetail} />
           <Auth>
             <Route exact path="/admin" component={Admin} />
