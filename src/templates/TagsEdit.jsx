@@ -3,6 +3,8 @@ import { TextInput, PrimaryButton } from '../components/UiKit/index'
 import { useDispatch } from 'react-redux'
 import { saveTag } from '../reducks/tags/operators' 
 import {db} from '../firebase/index'
+import Button from '@material-ui/core/Button'
+import {push} from 'connected-react-router'
 
 
 const TagsEdit = () => {
@@ -24,16 +26,25 @@ const TagsEdit = () => {
         }
     },[id])
     return (
-        <div>
-            <h2>Tags Edit/Add/Delete</h2>
-            <TextInput
-                fullWidth={true} label={"タグ"} multiline={false} required={true}
-                rows={1} value={name} type={"text"} onChange={inputName}
-            />
-            <PrimaryButton 
-                label={"タグを追加"}
-                onClick={() => dispatch(saveTag(id, name))}
-            />
+        <div className="l-container">
+            <div className="l-section ">
+                <div className="c-admin-wrape">
+                <h2>タグ新規作成</h2>
+                    <TextInput
+                        fullWidth={true} label={"タグ"} multiline={false} required={true}
+                        rows={1} value={name} type={"text"} onChange={inputName}
+                    />
+                    <PrimaryButton 
+                        label={"タグを追加"}
+                        onClick={() => dispatch(saveTag(id, name))}
+                    />
+                    <div>
+                        <Button onClick={()=> dispatch(push('/admin'))}>
+                            <p>Back to Admin Menu</p>
+                        </Button> 
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

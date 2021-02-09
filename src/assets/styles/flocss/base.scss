@@ -20,8 +20,9 @@ html {
     //   text-rendering: $body-rendering;
     text-size-adjust: 100%;
   }
-  body {
+body {
+    // $font-body-size: 16px ;
     font-size: $font-body-size; //1.6rem=16px
     //   font-weight: $body-weight;
     //   line-height: $body-line-height;
-  }
+}

@@ -17,6 +17,7 @@ import {
   PostListGrid,
   PostListGridImage,
   StageListGridLine,
+  // CssDesign
 
 } from './templates/index'
 import Auth from './Auth'
@@ -24,6 +25,9 @@ const Router = () => {
     return (
       <main className='l-main'>
         <Switch>
+             {/* test page */}
+            {/* <Route exact path="/css" component={CssDesign} /> */}
+
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/signout" component={SignOut} />
             <Route exact path="(/)?" component={Home} />

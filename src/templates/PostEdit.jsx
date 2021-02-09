@@ -7,6 +7,7 @@ import { savePost } from '../reducks/posts/operators'
 import {StageArea, LocationArea, TagsArea  } from '../components/post/index'
 import {TopImagesArea, AddImagesUpload, PostImagesArea } from '../components/post/index'
 import { db } from '../firebase/index'
+import Button from '@material-ui/core/Button';
 
 const PostEdit = () => {
     const dispatch = useDispatch()
@@ -68,65 +69,72 @@ const PostEdit = () => {
         } 
     },[id,setTitle,setArticle,setType,setPostDate,setTopImages,setStage,setTags,setLocation])
     return (
-        <div>
-            <h2>Post Edit/add/delete</h2>
-            {/* トップ画像 */}
-            <TopImagesArea images={topImages} setImages={setTopImages} />
-            <AddImagesUpload images={topImages} setImages={setTopImages} Multiple={false} title="トップ画像"/>
+        <div className="l-container">
+            <div className="l-section ">
+                <div className="c-admin-wrape">
+                    <h2>新規投稿</h2>
+                    {/* トップ画像 */}
+                    <TopImagesArea images={topImages} setImages={setTopImages} />
+                    <AddImagesUpload images={topImages} setImages={setTopImages} Multiple={false} title="トップ画像"/>
 
-            {/* <ImagesArea images={topImages} setImages={setTopImages} imageTypes={"メイン画像"}
-                blobType={blobTypeJpeg} accept={"image/jpeg"}  media={"image"}/> */}
-            {/* 投稿画像 */}
-            <PostImagesArea images={postImages} setImages={setPostImages} />
-            <AddImagesUpload images={postImages} setImages={setPostImages} Multiple={true} title="投稿画像"/>
-            {/* <ImagesArea images={postImages} setImages={setPostImages} imageTypes={"記事画像"}
-                blobType={blobTypeJpeg} accept={"image/jpeg"} media={"image"} /> */}
-            
+                    {/* <ImagesArea images={topImages} setImages={setTopImages} imageTypes={"メイン画像"}
+                        blobType={blobTypeJpeg} accept={"image/jpeg"}  media={"image"}/> */}
+                    {/* 投稿画像 */}
+                    <PostImagesArea images={postImages} setImages={setPostImages} />
+                    <AddImagesUpload images={postImages} setImages={setPostImages} Multiple={true} title="投稿画像"/>
+                    {/* <ImagesArea images={postImages} setImages={setPostImages} imageTypes={"記事画像"}
+                        blobType={blobTypeJpeg} accept={"image/jpeg"} media={"image"} /> */}
+                    
 
-            {/* タイトル */}
-            <TextInput
-                    fullWidth={true} label={"タイトル"} multiline={false} required={true}
-                    rows={1} value={title} type={"text"} onChange={inputTitle}
-            />
-            {/* 投稿記事 */}
-            <TextInput
-                    fullWidth={true} label={"記事"} multiline={true} required={true}
-                    rows={10} value={article} type={"text"} onChange={inputArticle}
-            />
-            {/* 投稿タイプ */}
-            <SelectBox
-                label={"タイプ"}
-                options={types}
-                required={true}
-                select={setType}
-                value={type}
-                defaultValue={type} 
-            />
+                    {/* タイトル */}
+                    <TextInput
+                            fullWidth={true} label={"タイトル"} multiline={false} required={true}
+                            rows={1} value={title} type={"text"} onChange={inputTitle}
+                    />
+                    {/* 投稿記事 */}
+                    <TextInput
+                            fullWidth={true} label={"記事"} multiline={true} required={true}
+                            rows={10} value={article} type={"text"} onChange={inputArticle}
+                    />
+                    {/* 投稿タイプ */}
+                    <SelectBox
+                        label={"タイプ"}
+                        options={types}
+                        required={true}
+                        select={setType}
+                        value={type}
+                        defaultValue={type} 
+                    />
 
-            {/* 投稿日 */}
-            <DateTimePicers
-               label={"投稿日"}
-                value={postDate}
-                onChange={handleDateChange}
-                defaultValue={postDate}
-            />
-            {/* ステージ */} 
-            {/* <StageArea /> */}
-            <StageArea stage={stage} setStage={setStage} />
-            
-            {/* タグ */}
-            <TagsArea tags={tags} setTgas={setTags} /> 
-            
-            {/* ロケーション */}
-            <LocationArea location={location} setLocation={setLocation} />
-            
-            <PrimaryButton
-                label={"投稿する"}
-                onClick={()=> dispatch(savePost(id, title, article, type, postDate, topImages, postImages, stage, tags, location))}>
-            </PrimaryButton>
-            
-
-            <p onClick={()=> dispatch(push('/'))}>Back to Home</p> 
+                    {/* 投稿日 */}
+                    <DateTimePicers
+                    label={"投稿日"}
+                        value={postDate}
+                        onChange={handleDateChange}
+                        defaultValue={postDate}
+                    />
+                    {/* ステージ */} 
+                    {/* <StageArea /> */}
+                    <StageArea stage={stage} setStage={setStage} />
+                    
+                    {/* タグ */}
+                    <TagsArea tags={tags} setTgas={setTags} /> 
+                    
+                    {/* ロケーション */}
+                    <LocationArea location={location} setLocation={setLocation} />
+                    
+                    <PrimaryButton
+                        label={"投稿する"}
+                        onClick={()=> dispatch(savePost(id, title, article, type, postDate, topImages, postImages, stage, tags, location))}>
+                    </PrimaryButton>
+                    <div>
+                        <Button onClick={()=> dispatch(push('/admin'))}>
+                            <p>Back to Admin Menu</p>
+                        </Button> 
+                    </div>
+                     
+                </div>
+            </div>
         </div>
     )
 }

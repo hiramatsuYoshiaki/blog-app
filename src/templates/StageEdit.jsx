@@ -4,6 +4,8 @@ import { addStage } from '../reducks/stage/operators'
 import { useDispatch } from 'react-redux'
 import { ImagesArea, ImagesUpload } from '../components/stage/index'
 import {db} from '../firebase/index'
+import Button from '@material-ui/core/Button'
+import {push} from 'connected-react-router'
 
 const StageEdit = () => {
     const dispatch = useDispatch()
@@ -44,30 +46,39 @@ const StageEdit = () => {
         }
     },[id])
     return (
-        <div>
-            <h2>Post Edit/add/delete</h2>
-            <TextInput
-                 fullWidth={true} label={"ステージ年"} multiline={false} required={true}
-                 rows={1} value={stageYear} type={"number"} onChange={inputStageYear}
-            />
-            <TextInput
-                 fullWidth={true} label={"ステージ番号"} multiline={false} required={true}
-                 rows={1} value={stageNo} type={"number"} onChange={inputStageNo}
-            />
-            <TextInput
-                 fullWidth={true} label={"ステージ名"} multiline={false} required={true}
-                 rows={1} value={stage} type={"text"} onChange={inputStage}
-            />
-            {/* <ImagesArea images={images} setImages={setImages} imageTypes={"タイトル画像"}
-                blobType={{ type: "image/jpeg" }} accept={"image/jpeg"} media={"image"} /> */}
-            <ImagesArea images={images} setImages={setImages} /> 
+        <div className="l-container">
+            <div className="l-section ">
+                <div className="c-admin-wrape">
+                    <h2>ステージ新規作成</h2>
+                    <TextInput
+                        fullWidth={true} label={"ステージ年"} multiline={false} required={true}
+                        rows={1} value={stageYear} type={"number"} onChange={inputStageYear}
+                    />
+                    <TextInput
+                        fullWidth={true} label={"ステージ番号"} multiline={false} required={true}
+                        rows={1} value={stageNo} type={"number"} onChange={inputStageNo}
+                    />
+                    <TextInput
+                        fullWidth={true} label={"ステージ名"} multiline={false} required={true}
+                        rows={1} value={stage} type={"text"} onChange={inputStage}
+                    />
+                    {/* <ImagesArea images={images} setImages={setImages} imageTypes={"タイトル画像"}
+                        blobType={{ type: "image/jpeg" }} accept={"image/jpeg"} media={"image"} /> */}
+                    <ImagesArea images={images} setImages={setImages} /> 
 
-            <ImagesUpload images={images} setImages={setImages}/>
-            
-            <PrimaryButton
-                label={"ステージ登録"}
-                onClick={() => dispatch(addStage(id, stageYear, stageNo, stage, images))}
-            />
+                    <ImagesUpload images={images} setImages={setImages}/>
+                    
+                    <PrimaryButton
+                        label={"ステージ登録"}
+                        onClick={() => dispatch(addStage(id, stageYear, stageNo, stage, images))}
+                    />
+                    <div>
+                        <Button onClick={()=> dispatch(push('/admin'))}>
+                            <p>Back to Admin Menu</p>
+                        </Button> 
+                    </div>
+                </div>
+            </div>
         </div>
     )
 } 

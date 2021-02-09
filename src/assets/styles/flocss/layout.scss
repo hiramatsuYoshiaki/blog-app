@@ -67,11 +67,18 @@
   .l-container {
     width: 1248px;
     max-width: 100%;
-    
+     
   }
 }
 
 // section
+.l-section {
+  margin-left: -16px;
+  margin-right: -16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 .l-section {
   margin-left: -16px;
   margin-right: -16px;
@@ -89,7 +96,6 @@
     margin-left: 0px;
     margin-right: 0px;
   }
-  
 }
 
 // grid

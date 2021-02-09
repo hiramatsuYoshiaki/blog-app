@@ -23,7 +23,6 @@ h1,
   font-size: $size-1;
   font-weight: 600;
   line-height: 1.5;
-  color:red;
 }
 
 h2,
@@ -70,7 +69,8 @@ h6,
   line-height: 1.5;
 }
 
-p {
+p,
+.p {
   font-size: $size-6;
   font-weight: 500;
   line-height: 1.5;

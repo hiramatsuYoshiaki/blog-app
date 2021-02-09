@@ -6,35 +6,49 @@ import { useDispatch } from 'react-redux'
 import { signOut } from '../reducks/users/operators'
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start'
-    },
+    btn:{
+        fontSize:'2rem'
+    }
   }));
 
 const Admin = () => {
     const classes = useStyles();
     const dispatch = useDispatch()
     return (
-        <div　className={classes.root}>
-            <h1>管理画面</h1>
-            <Button color="primary" onClick={() => dispatch(push('/post/edit'))}>投稿</Button>
-            <Button color="primary" onClick={() => dispatch(push('/post/list'))}>投稿リスト</Button>
-            <Button color="primary" onClick={() => dispatch(push('/location/edit'))}>ロケーション新規作成</Button>
-            <Button color="primary" onClick={() => dispatch(push('/location/list'))}>ロケーションリスト</Button>
-            <Button color="primary" onClick={() => dispatch(push('/stage/edit'))}>ステージ新規作成</Button>
-            <Button color="primary" onClick={() => dispatch(push('/stage/list'))}>ステージリスト</Button>
-            <Button color="primary"  onClick={() => dispatch(push('/tags/edit'))}>タグ新規作成</Button>
-            <Button color="primary"  onClick={() => dispatch(push('/tags/list'))}>タグリスト</Button>
-            <Button color="primary">SNS</Button>
-            <Button color="primary">管理者情報</Button>
-            <Button color="primary" onClick={() => dispatch(signOut())}>管理者ログアウト</Button>
-            <div>
-                <p>hiramatsu3300@gmail.com</p>
-                <p>blogapp3300</p>
-            </div>
-            
+        <div className="l-container ">
+            <div className="l-section c-admin-section">
+                <div　className="u-center-margin">
+                    <div className="u-center-text-align">
+                    <p>管理画面</p>
+                    <div className="u-spacer--8"></div>
+                    <div>
+                        <Button color="inherit" onClick={() => dispatch(push('/post/edit')) } className={classes.btn}>投稿新規作成</Button>
+                        <Button color="inherit" onClick={() => dispatch(push('/post/list'))} className={classes.btn}>投稿リスト</Button>
+                    </div>
+                    <div>
+                        <Button color="inherit" onClick={() => dispatch(push('/location/edit'))} className={classes.btn}>ロケーション新規作成</Button>
+                        <Button color="inherit" onClick={() => dispatch(push('/location/list'))} className={classes.btn}>ロケーションリスト</Button>
+                    </div>
+                    <div>
+                        <Button color="inherit" onClick={() => dispatch(push('/stage/edit'))} className={classes.btn}>ステージ新規作成</Button>
+                        <Button color="inherit" onClick={() => dispatch(push('/stage/list'))} className={classes.btn}>ステージリスト</Button>
+                    </div>
+                    <div>
+                        <Button color="inherit"  onClick={() => dispatch(push('/tags/edit'))} className={classes.btn}>タグ新規作成</Button>
+                        <Button color="inherit"  onClick={() => dispatch(push('/tags/list'))} className={classes.btn}>タグリスト</Button>
+                    </div>
+                    <div>
+                        <Button color="inherit" className={classes.btn}>SNS</Button></div>
+                    <div>
+                        <Button color="inherit" className={classes.btn}>管理者情報</Button></div>
+                        <Button color="inherit" onClick={() => dispatch(signOut())} className={classes.btn}>管理者ログアウト</Button>
+                    {/* <div>
+                        <p>hiramatsu3300@gmail.com</p>
+                        <p>blogapp3300</p>
+                    </div> */}
+                    </div>
+                </div>
+            </div>    
         </div>
     )
 }

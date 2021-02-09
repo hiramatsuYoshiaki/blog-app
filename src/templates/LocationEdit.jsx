@@ -8,6 +8,8 @@ import { VideoArea, VideoUpload } from '../components/location/index'
 import {db} from '../firebase/index'
 import GoogleMapReact from 'google-map-react'
 import {googleMapConfig} from "../googleMap/config";
+import Button from '@material-ui/core/Button'
+import {push} from 'connected-react-router'
 
 const LocationEdit = () => {
     
@@ -72,50 +74,59 @@ const LocationEdit = () => {
         }
         return position
     }
-    return (
-        <div>
-            <h2>Location Edit/add/delete</h2>
-            <h3>Location map</h3>
-            <div className="p-googleMapWrap" >
-                <GoogleMapReact
-                bootstrapURLKeys={{ key: key }}
-                center={{
-                    lat: lat,
-                    lng: lng
-                }}
-                defaultZoom={15} 
-                >
-                    <Marker lat={lat} lng={lng} text="Marker" className="u-marker"/>
-                </GoogleMapReact>
-            </div>
+    return (　
+        <div className="l-container">
+            <div className="l-section ">
+                <div className="c-admin-wrape">
+                    <h2>ロケーション新規作成</h2>
+                    <h3>Location map</h3>
+                    <div className="p-googleMapWrap" >
+                        <GoogleMapReact
+                        bootstrapURLKeys={{ key: key }}
+                        center={{
+                            lat: lat,
+                            lng: lng
+                        }}
+                        defaultZoom={15} 
+                        >
+                            <Marker lat={lat} lng={lng} text="Marker" className="u-marker"/>
+                        </GoogleMapReact>
+                    </div>
 
-            <h3>Location address</h3>
-            <TextInput
-                 fullWidth={true} label={"名称"} multiline={false} required={true}
-                 rows={1} value={name} type={"text"} onChange={inputName}
-            />
-            <TextInput
-                 fullWidth={true} label={"住所"} multiline={true} required={true}
-                 rows={3} value={address} type={"text"} onChange={inputAddress}
-            />
-            <TextInput
-                 fullWidth={true} label={"緯度(latitude)"} multiline={false} required={true}
-                 rows={1} value={lat} type={"number"} onChange={inputLat}
-            />
-            <TextInput
-                 fullWidth={true} label={"経度(longitude)"} multiline={false} required={true}
-                 rows={1} value={lng} type={"number"} onChange={inputLng}
-            />
-            
-            {/* <ImagesArea images={images} setImages={setImages} imageTypes={"グーグルアース"}
-                blobType={blobTypeMp4} accept={"video/mp4"} media={"video"}/>  */}
-            
-            <VideoArea images={images} setImages={setImages}  /> 
-            <VideoUpload images={images} setImages={setImages} />
-            <PrimaryButton
-                label={"新規ロケーション登録"}
-                onClick={() => dispatch(saveLocation(id, name, address, setLocation(lat,lng), images))}
-            />
+                    <h3>Location address</h3>
+                    <TextInput
+                        fullWidth={true} label={"名称"} multiline={false} required={true}
+                        rows={1} value={name} type={"text"} onChange={inputName}
+                    />
+                    <TextInput
+                        fullWidth={true} label={"住所"} multiline={true} required={true}
+                        rows={3} value={address} type={"text"} onChange={inputAddress}
+                    />
+                    <TextInput
+                        fullWidth={true} label={"緯度(latitude)"} multiline={false} required={true}
+                        rows={1} value={lat} type={"number"} onChange={inputLat}
+                    />
+                    <TextInput
+                        fullWidth={true} label={"経度(longitude)"} multiline={false} required={true}
+                        rows={1} value={lng} type={"number"} onChange={inputLng}
+                    />
+                    
+                    {/* <ImagesArea images={images} setImages={setImages} imageTypes={"グーグルアース"}
+                        blobType={blobTypeMp4} accept={"video/mp4"} media={"video"}/>  */}
+                    
+                    <VideoArea images={images} setImages={setImages}  /> 
+                    <VideoUpload images={images} setImages={setImages} />
+                    <PrimaryButton
+                        label={"新規ロケーション登録"}
+                        onClick={() => dispatch(saveLocation(id, name, address, setLocation(lat,lng), images))}
+                    />
+                    <div>
+                        <Button onClick={()=> dispatch(push('/admin'))}>
+                            <p>Back to Admin Menu</p>
+                        </Button> 
+                    </div>
+                </div> 
+            </div> 
         </div> 
     )
 }
