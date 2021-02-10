@@ -7,8 +7,15 @@
 // Projectとして定義するには要素が少なすぎる場合やcomponent単体で使うときに使用
 // u-margin, u-color, u-fontsize, u-clearfix ......
 @import "./variables.scss";
+.u-overflow-hidden{
+    overflow:hidden;
+}
 .u-margin-right-8{
     margin-right: 8px
+}
+.u-image-width-fit{
+    width:100%;
+    height:auto;
 }
 .image-size{
     width:300px;
@@ -26,6 +33,7 @@
     background-color:$white;
 }
 
+
 /*********** Module Spacer ***********/
 .u-spacer--8 {
     height: .8rem;
@@ -36,7 +44,7 @@
   .u-spacer--24 {
     height: 2.4rem;
   }
-  .u-spacer--32 {
+  u-overflow-hidden {
     height: 3.2rem;
   }
   .u-spacer--40 {

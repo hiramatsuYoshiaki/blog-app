@@ -121,7 +121,7 @@ const Postdetail = () => {
             <LocationArea locationName={locationName} locationAddress={locationAddress}
                 locationLat={locationLat}
                 locationLng={locationLng}
-                locationImages={locationImages}
+                locationImages={locationImages} 
                     />
             
             {/* PostListArea--------------------------------------------------------- */}

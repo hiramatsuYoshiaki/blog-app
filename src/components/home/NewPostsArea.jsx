@@ -28,7 +28,11 @@ const useStyles = makeStyles((theme) => ({
             width:'calc(25% - 32px)',
             height:'auto'
         },
-
+        display: 'flex',
+        flexDirection: 'column',
+        // justifyContent:'flex-start',
+        // alignItems:'flex-start',
+        height: '100%',
     },
     button:{
         marginRight:0,
@@ -37,6 +41,16 @@ const useStyles = makeStyles((theme) => ({
     },
     chip:{
         marginRight:4
+    },
+    cardActionArea:{
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent:'flex-start',
+        alignItems:'flex-start',
+    },
+    cardAction:{
+        flexShrink: 0
     }
 }))
 
@@ -57,7 +71,7 @@ const NewPostsArea = props => {
     
     return (
         <Card className={classes.cardWrape}>
-            <CardActionArea>
+            <CardActionArea className={classes.cardActionArea}>
                 {post.topImages.length > 0 && (
                     post.topImages.map(image => (
                         <CardMedia
@@ -71,7 +85,7 @@ const NewPostsArea = props => {
                     ))
                 )} 
                 <CardContent>
-                    <h2>{post.title}</h2>
+                    <h4>{post.title}</h4>
                     <p>{post.postDate.split('T')[0]}</p>
                     <p>{post.location.name}</p>
                     {post.tags.length > 0 && (
@@ -88,9 +102,9 @@ const NewPostsArea = props => {
                         ))
                     )} 
                 </CardContent>
+
             </CardActionArea>
-            <Divider variant="middle" />
-            <CardActions>
+            <CardActions className={classes.cardAction}>
                 <Button
                     variant="contained" 
                     color="primary"
@@ -100,7 +114,7 @@ const NewPostsArea = props => {
                     >
                     投稿を見る
                 </Button>
-                </CardActions>
+            </CardActions>
         </Card>
     )
 }

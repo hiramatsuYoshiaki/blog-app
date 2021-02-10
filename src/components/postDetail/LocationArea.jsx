@@ -19,14 +19,15 @@ const LocationArea = props => {
     const [name,setName] = useState("")
     const [address,setAddress] = useState("")
    
-    const Marker = ({ name }) => (<div className='c-location-marke-wrapin'> 
-        <IconButton className={classes.icon}>
-            <LocationOnIcon style={{ fontSize: 32 }}/>
-        </IconButton>
-        <div className="c-location-marker-text">
-            <h2>{name.name}</h2>
-            {/* <p>{name.address}</p> */}
-        </div>
+    const Marker = ({ name }) => (
+        <div className='c-location-marke-wrapin'> 
+            <IconButton className={classes.icon}>
+                <LocationOnIcon style={{ fontSize: 32 }}/>
+            </IconButton>
+            <div className="c-location-marker-text">
+                <h3>{name.name}</h3>
+                {/* <p>{name.address}</p> */}
+            </div>
         </div>)
 
     useEffect(()=>{
@@ -60,7 +61,6 @@ const LocationArea = props => {
                                         name:name,
                                         address:address
                                     }}
-                                    className="u-marker"
                                 />
                             </GoogleMapReact>
                         </div>

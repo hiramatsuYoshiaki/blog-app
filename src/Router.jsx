@@ -47,7 +47,7 @@ const Router = () => {
             <Route path="/location/edit(:id)?" component={LocationEdit} />
           </Auth>
         </Switch>
-    </main>
+    </main>　
     )
 }
 

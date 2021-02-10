@@ -33,7 +33,7 @@ const AddImagesUpload = props => {
             // Handle successful uploads on complete
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                 // dispatch(hideLoadingAction())
-                const newImage = { id: fileName, path: downloadURL, description: '' };
+                const newImage = { id: fileName, path: downloadURL, description: '', instagram:'', twitter:'' };
                 if (props.Multiple) {
                     props.setImages((prevState => [...prevState, newImage])) //追加する場合の書き方
                 } else {
@@ -48,10 +48,10 @@ const AddImagesUpload = props => {
     }, [props.setImages])
     return (
         <div>
-            <span>{props.title}を追加する</span>
+            <span className="p">{props.title}</span>
             <IconButton className={classes.icon}>
                     <label>
-                        <AddPhotoAlternateIcon />
+                        <AddPhotoAlternateIcon fontSize="large"/>
                         <input className="u-display-none"
                             type="file"
                             id="image"

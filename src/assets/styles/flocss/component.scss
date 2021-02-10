@@ -254,11 +254,16 @@
 .c-postarea-body-tags-title{
     margin-bottom:4px;
 }
+.c-postarea-body-tags-items{
+    display:flex;
+    flex-flow:row wrap
+}
 .c-tag{
     border:1px solid $grey-dark;
     border-radius: 4px;
     padding: 4px;
     margin-right:4px;
+    margin-bottom:4px;
     color: $grey-dark;
 }
 
@@ -313,10 +318,13 @@
 .c-location-marker-text{
     position:absolute;
     color:#f50057;
-    top:0;
+    top:40px;
     left:0;
-    margin-left:48px;
-    width:150px;
+    width: 300px;
+    transform:translatex(-50%);
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .c-locationarea-section-video > video{
@@ -436,3 +444,4 @@
     padding:1.6rem;
     border-radius: .8rem;
 }
+

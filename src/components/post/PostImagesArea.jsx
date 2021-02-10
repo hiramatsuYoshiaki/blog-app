@@ -10,12 +10,18 @@ const PostImagesArea = props => {
                     images.length > 0 && (
                         images.map((image,index) => (
                             <div key={image.id}>
-                                <PostImagesPreview
+                                <PostImagesPreview 
                                         id={image.id}
                                         path={image.path}
                                         description={image.description}
+
+                                        instagram={image.instagram}
+                                        twitter={image.twitter}
+                                        index={index}
+                                        images={props.images}
+                                        setImages={props.setImages}  
                                 />
-                                <ReplaceImagesUpload 
+                                <ReplaceImagesUpload  
                                     images={props.images}
                                     setImages={props.setImages}
                                     index={index}

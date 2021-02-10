@@ -26,7 +26,6 @@ const PostArea = props => {
                         <span>{props.stageYear}</span>
                     </h3>
                     <p  className="c-postarea-header-stagetitle">
-                        
                         <span>{props.stage}</span> 
                     </p>
                 </div>
@@ -73,16 +72,18 @@ const PostArea = props => {
                         <div className="c-postarea-body-tags-title">
                             <LocalOfferIcon  className={classes.icon}/> TAG
                         </div>
+                        <div className="c-postarea-body-tags-items">
+                            {props.tags.length > 0 && (
+                                props.tags.map(tag => (
+                                    <span key={tag.id}>
+                                        <div className="c-tag">
+                                            {tag.name}
+                                        </div>
+                                    </span>
+                                ))
+                            )} 
+                        </div>
                         
-                        {props.tags.length > 0 && (
-                            props.tags.map(tag => (
-                                <span key={tag.id}>
-                                    <span className="c-tag">
-                                        {tag.name}
-                                        </span>
-                                </span>
-                            ))
-                        )} 
                     </div>
                 </div>
                 

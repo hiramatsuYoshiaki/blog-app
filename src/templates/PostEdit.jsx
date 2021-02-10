@@ -48,7 +48,7 @@ const PostEdit = () => {
     const types = [
         {id:"post", name:"記事"},
         {id:"cover", name:"表紙"},
-    ]
+    ] 
     useEffect(() => {
         if (id !== "") {
             db.collection('posts').doc(id).get()
@@ -67,25 +67,29 @@ const PostEdit = () => {
                 throw new Error(error)
             })
         } 
-    },[id,setTitle,setArticle,setType,setPostDate,setTopImages,setStage,setTags,setLocation])
+    },[id,setTitle,setArticle,setType,setPostDate,setTopImages,setStage,setTags,setLocation]) 
     return (
-        <div className="l-container">
+        <div className="l-container"> 
             <div className="l-section ">
                 <div className="c-admin-wrape">
                     <h2>新規投稿</h2>
-                    {/* トップ画像 */}
+                    <div className="u-spacer--24"></div>
+                    <h3>トップ画像</h3>
+                    <AddImagesUpload images={topImages} setImages={setTopImages} 
+                        Multiple={false} title="トップ画像を追加/変更"/> 
                     <TopImagesArea images={topImages} setImages={setTopImages} />
-                    <AddImagesUpload images={topImages} setImages={setTopImages} Multiple={false} title="トップ画像"/>
-
+                    <div className="u-spacer--24"></div>
                     {/* <ImagesArea images={topImages} setImages={setTopImages} imageTypes={"メイン画像"}
                         blobType={blobTypeJpeg} accept={"image/jpeg"}  media={"image"}/> */}
-                    {/* 投稿画像 */}
+                     <h3>投稿画像</h3>
+                    <AddImagesUpload images={postImages} setImages={setPostImages} 
+                        Multiple={true} title="投稿画像追加"/>
                     <PostImagesArea images={postImages} setImages={setPostImages} />
-                    <AddImagesUpload images={postImages} setImages={setPostImages} Multiple={true} title="投稿画像"/>
+                    
                     {/* <ImagesArea images={postImages} setImages={setPostImages} imageTypes={"記事画像"}
                         blobType={blobTypeJpeg} accept={"image/jpeg"} media={"image"} /> */}
                     
-
+                    <div className="u-spacer--24"></div>
                     {/* タイトル */}
                     <TextInput
                             fullWidth={true} label={"タイトル"} multiline={false} required={true}
@@ -135,7 +139,7 @@ const PostEdit = () => {
                      
                 </div>
             </div>
-        </div>
+        </div> 
     )
 }
 
