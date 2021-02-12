@@ -19,7 +19,6 @@
     margin:0 auto;
 }
 
-
 // header -----------------------------
 .c-header-logo{ 
     width: 138px;
@@ -343,6 +342,38 @@
     align-items: center;
 
 }
+.c-snsarea{
+    margin:0 0 32px 0;
+    padding:32px 0;
+    overflow: hidden;
+    background: $black-ter;
+    overflow: hidden;
+    color:$white;
+}
+.c-snsarea-header{
+    margin: 0 auto 16px;
+}
+.c-snsarea-body{
+    width:100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    @media (min-width: 960px) {
+        flex-flow: row wrap;
+        justify-content: space-around;
+    }
+}
+// .c-snsarea-body-element{
+//     width:100%;
+//     overflow: hidden;
+//     @media(min-width:540px){
+//         width:50%;
+//     }
+//     @media(min-width:957px){
+//         width:33.333%;
+//     }
+//     // margin:.8rem;
+// }
 //PostListOfStage StageImageArea------------------
 .c-stage-image-area{
     background-color:$black-ter;
@@ -408,6 +439,9 @@
     // margin:1px;
     // border:1px solid grey;
 }
+
+
+
 //管理画面関連------------------------------------------------
 .c-admin-section{
     margin-top:2.4rem;

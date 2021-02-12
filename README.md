@@ -293,3 +293,21 @@ service cloud.firestore {
 ```
 
 `firebase deploy --only firestore:rules`
+
+# instagram enmed 
+1. ndex.htmlにスクリプトをインポートします
+'blog-app/public/index.html'
+```
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script async src="http://www.instagram.com/embed.js" type="text/javascript"></script>
+  </body>
+</html>
+```
+2. 
+```
+  useEffect(()=>{
+        if (window.instgrm) window.instgrm.Embeds.process()
+  },[])
+```

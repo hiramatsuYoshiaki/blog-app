@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { db } from '../firebase/index'
 import moment from 'moment'
-import {TopImageArea,PostArea,LocationArea,Pagination} from '../components/postDetail/index'
+import {TopImageArea,PostArea,LocationArea,Pagination,SNSArea} from '../components/postDetail/index'
 
 import { getPosts } from '../reducks/posts/selectors'
 import { useDispatch, useSelector } from 'react-redux'
@@ -123,13 +123,11 @@ const Postdetail = () => {
                 locationLng={locationLng}
                 locationImages={locationImages} 
                     />
-            
+             
             {/* PostListArea--------------------------------------------------------- */}
             {/* <PostListArea  */}
             {/* SNSrea--------------------------------------------------------- */}
-            {/* <SNSArea /> */}
-
-            
+            <SNSArea images={topImages} postImages={postImages}/> 
             {/* <h1>{id}</h1>
             <h1>{title}</h1>
             <h1>{article}</h1>
