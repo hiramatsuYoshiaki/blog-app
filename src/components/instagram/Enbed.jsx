@@ -11,18 +11,20 @@ const Enbed = props => {
                                 padding:0, 
                                 width:"99.375%", 
                                 width:"-webkit-calc(100% - 2px)", 
-                                width:"calc(100% - 2px)" }
+                                width:"calc(100% - 2px)" 
+                            }
     const styleLink = { background:"#FFFFFF", 
                         lineHeight:0, 
                         padding:"0 0", 
                         textAlign:"center", 
                         textDecoration:"none", 
-                        width:"100%"}
+                        width:"100%"
+                    }
     useEffect(()=>{
         if (window.instgrm) window.instgrm.Embeds.process()
     },[])
     return (
-        <>
+        <> 
              <blockquote 
               class="instagram-media" 
               data-instgrm-captioned 
@@ -30,7 +32,8 @@ const Enbed = props => {
               style={styleBlokquote}
               >
                 <a href={props.path} 
-                    style={styleLink} target={"_blank"}
+                    style={styleLink} 
+                    target={"_blank"}
                 >
                 </a>
             </blockquote>

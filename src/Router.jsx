@@ -17,7 +17,7 @@ import {
   PostListGrid,
   PostListGridImage,
   StageListGridLine,
-  // CssDesign
+  BlogData
 
 } from './templates/index'
 import Auth from './Auth'
@@ -35,6 +35,7 @@ const Router = () => {
             <Route exact path="/post/listgridImage" component={PostListGridImage} />
             <Route exact path="/stage/listgridline" component={StageListGridLine} />
             <Route path="/post/detail(:id)?" component={PostDetail} />
+            <Route path="/blog/data" component={BlogData} />
           <Auth>
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/location/List" component={LocationList} />
