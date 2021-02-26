@@ -7,7 +7,7 @@ import { getPosts } from '../reducks/posts/selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPosts } from '../reducks/posts/operators'
 
-const Postdetail = () => {
+const Postdetail = () => { 
 
     const dispatch = useDispatch()
     const selector = useSelector((state) => state)

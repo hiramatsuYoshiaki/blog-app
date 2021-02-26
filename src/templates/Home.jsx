@@ -30,7 +30,7 @@ const Home = () => {
         dispatch(fetchPosts())
         dispatch(fetchStages()) 
     }, [])
-        
+         
     return ( 
         <div> 
             <HomeStage 

@@ -7,6 +7,9 @@ import { push } from 'connected-react-router'
 import moment from 'moment'
 import Button from '@material-ui/core/Button';
 import {makeStyles} from '@material-ui/core/styles'
+import {useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 const useStyles= makeStyles((theme) => ({
     grid:{
         backgroundColor:'#fff'
@@ -27,19 +30,14 @@ const useStyles= makeStyles((theme) => ({
         width:'auto',
         height:'100%',
         maxHeight:'120px'
-        // [theme.breakpoints.down('sm')]:{
-        //     width:'auto',
-        //     height:'52px'
-        // },
-        // [theme.breakpoints.up('sm')]:{
-        //     width:'auto',
-        //     height:'52px'
-        // },
-        // [theme.breakpoints.up('md')]:{
-        //     width:'auto',
-        //     height:'52px'
-        // },
+        
     },
+    locationWrape:{
+    },
+    typeWrape:{
+    },
+    stageWrape:{
+    }
     
 }))
 
@@ -49,6 +47,13 @@ const BlogData = () => {
     const selector = useSelector((state) => state) 
     const posts = getPosts(selector)
     let postRows = []
+
+    const theme = useTheme();
+    // const isDownSM = useMediaQuery(theme.breakpoints.down('sm'));
+    // const isUpSM = useMediaQuery(theme.breakpoints.up('sm'));
+    const isDownSM = !useMediaQuery('(min-width:600px)');
+    const isDownMD = !useMediaQuery('(min-width:960px)');
+
     // console.log('BlogData');
     // console.log(posts);
 
@@ -76,93 +81,75 @@ const BlogData = () => {
         headerName: '投稿',
         flex: 1,
         renderCell:(params)=>(
-            <div className={classes.postsWrape}>
+            <div className={classes.postsWrape} >
                 <img src={params.getValue('image') } className={classes.images}/>
                 <div className={classes.postBody}>
-                    {/* <Button
-                        variant="text"
-                        color="primary"
-                        size="small"
-                        onClick={()=> dispatch(push('/post/detail/' + params.getValue('id')))}
-                        >
-                        投稿を見る
-                    </Button> */}
-                    <h4>{params.getValue('title')}</h4>
-                    <p>{params.getValue('postDate')}</p>
-                    <p>{params.getValue('stageName')}</p>
-                    <p>No.{params.getValue('stageNo')}</p>
+                    <div onClick={()=> dispatch(push('/post/detail/' + params.getValue('id')))}>
+                        <h4>{params.getValue('title')}</h4>
+                        <p>{params.getValue('postDate')}</p>
+                    </div>
+                    <div onClick={()=> dispatch(push('/stage/listgridline'))}>
+                        <p>STAGE{params.getValue('stageNo')}</p>
+                        <p>{params.getValue('stageName')}</p>
+                    </div>
+                   
                     
                 </div>
-            </div>
+            </div> 
             
         )},
-        // {field:'title',
-        // headerName:'タイトル',
-        // flex: 1,
-        // },
-        // {field:'postDate',
-        // headerName:'投稿日',
-        // flex:1,
-        // },
-        // {field:'id',
-        // headerName:'見る',
-        // renderCell:(params)=>(
-        //     <Button
-        //       variant="contained"
-        //       color="primary"
-        //       size="small"
-        //       style={{ marginLeft: 16 }}
-        //       onClick={()=> dispatch(push('/post/detail/' + params.getValue('id')))}
-        //     >
-        //       投稿を見る
-        //     </Button>
-        // )},
-        // {field:'stageYear',
-        // headerName:'年',
-        // flex: 1,
-        // },
-        // {field:'stageName',
-        // headerName:'ステージ',
-        // width:'300px',
-        // flex: 1,
-        // },
-        // {field:'stageNo',
-        // headerName:'番号',
-        // flex: 1,
-        // },
+       
         {field:'location',
         headerName:'ロケーション',
         flex: 0.3,
+        hide: isDownSM,
         renderCell:(params)=>(
-            <h6>{params.getValue('location')}</h6>
+            // <div className={classes.locationWrape} onClick={()=> dispatch(push('/location/edit/' + params.getValue('locationId')))}>
+            <div className={classes.locationWrape} onClick={()=> dispatch(push('/location/List'))}>
+                <h6>{params.getValue('location')}</h6>
+            </div>
         )
         },
         {field:'type',
-        headerName:'投稿タイプ',
+        headerName:'投稿タイプ', 
         flex: 0.2,
+        hide: isDownMD,
         renderCell:(params)=>(
-            <p>{params.getValue('type')}</p>
+            <div className={classes.typeWrape}>
+                <p>{params.getValue('type')}</p>
+            </div>
+        )
+        },
+        {field:'stageNo',
+        headerName:'ステージ',
+        flex: 0.2,
+        hide: isDownMD,
+        renderCell:(params)=>(
+            <div className={classes.stageWrape} onClick={()=> dispatch(push('/stage/listgridline'))}>
+                <p>STAGE{params.getValue('stageNo')}</p>
+            </div>
         )
         },
     ]
     const rowData = () => {
-        // console.log('useCallback rowData');
         posts.map(post => {
             let timestampDate = post.created_at.toDate()
             let m = moment(timestampDate );
             let mFormatted = m.format();
             let mYYMMDD = mFormatted.split('T')
             let YYMMDD = mYYMMDD[0]
-            let HHmmSS = mYYMMDD[1].split('+')
+            // let HHmmSS = mYYMMDD[1].split('+')
             postRows.push({
                 id:post.id,
                 image:post.topImages[0].path,
                 title:post.title,
                 postDate: YYMMDD,
                 location:post.location.name,  
+                locationId:post.location.id,  
                 stageYear:post.stage.stageYear, 
                 stageNo:post.stage.stageNo, 
                 stageName:post.stage.stage, 
+                stageId:post.stage.id, 
                 type:post.type, 
             })
         })

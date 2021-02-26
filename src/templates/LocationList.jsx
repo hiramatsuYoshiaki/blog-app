@@ -19,7 +19,7 @@ const LocationList = () => {
                 <div className="c-admin-wrape">
                     <section className="c-section-wrapin">
                         <h2>ロケーションリスト</h2>
-                        <div className="p-grid__row">
+                        <div className="p-grid__row"> 
                             {
                                 locations.length > 0 && (
                                     locations.map(location => (

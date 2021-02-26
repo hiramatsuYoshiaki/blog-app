@@ -1,14 +1,16 @@
 import React,{useEffect} from  'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {fetchPosts} from '../reducks/posts/operators'
-import {fetchStages} from '../reducks/stage/operators'
-import {getPosts} from '../reducks/posts/selectors'
-import {getStages} from '../reducks/stage/selectors'
 import {push} from 'connected-react-router'
+import {fetchStages} from '../reducks/stage/operators'
+import {getStages} from '../reducks/stage/selectors'
 import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-const useStyles = makeStyles((_theme) => ({
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import{PostsInStage} from '../components/stage/index'
+
+const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -17,82 +19,71 @@ const useStyles = makeStyles((_theme) => ({
       padding:'8px 0'
     },
     gridList: {
-      flexWrap: 'nowrap',
+      flexWrap: 'nowrap', 
       width: '100%',
-    //   border:'1px solid white',
-    //   backgroundColor:'white'
     },
+    heading:{
+        color:'rgba(0, 0, 0, 0.8)',
+    },
+    subHeading:{
+        color:'rgba(0, 0, 0, 0.5)'
+    },
+    accordion:{
+        width:'100%',
+    },
+    summary:{
+        width:'100%',
+        height:'100px',
+        display:'flex',
+        flexFlow:'row wrape',
+        justifyContent:'space-between',
+        alignItems:'center',
+        padding:'0 .8rem'
+    },
+    stageImage:{
+        width:'auto',
+        height:'100%',
+        display:'block',
+        marginRight:'1.6rem'
+    }
   }));
 
 const StageListGridLine = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
     const selector = useSelector((state) => state)
-    const posts = getPosts(selector)
     const stages = getStages(selector)
-    const postsSort = () =>{
-        let sorted = posts.sort(function(a,b){
-            if(a.created_at > b.created_at) return -1;
-            if(a.created_at < b.created_at) return 1;
-            return 0;
-        });
-        return sorted
-    }
-
-    const postInStage = (id) => {
-        const filterPosts =  posts.filter(post => post.stage.id === id)
-
-        let sorted = filterPosts.sort(function(a,b){
-            if(a.created_at > b.created_at) return 1;
-            if(a.created_at < b.created_at) return -1;
-            return 0;
-        });
-        return sorted
-
-    }
 
     useEffect(()=> {
-        dispatch(fetchPosts()) 
         dispatch(fetchStages())  
     },[])  
-    return (
-        <div className="l-container-fluid ">
+    return ( 
+        <div className="l-container ">
             <div className="l-section ">
-                <div>
                     { stages.length > 0 &&(
                         stages.map(stage => (
-                            <div>
-                                <h1 style={{color:'#fff', marginRight:16}}>{stage.stage}</h1>
-                                <GridList className={classes.gridList} cols={2.5} cellHeight={'auto'}>
-                                    {postInStage(stage.id).map(post=>(
-                                        post.topImages.map(topImage=>(
-                                            <GridListTile key={topImage.id} cols={1} onClick={()=> dispatch(push('/post/detail/' + post.id))}> 
-                                                <img src={topImage.path} alt={topImage.description} className="c-image-fit-cover"/>
-                                            </GridListTile>
-                                        ))
-                                    ))}
-                                </GridList>
-                            </div>
+                            <Accordion className={classes.accordion} key={stage.id}>
+                                <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                >
+                                    <div className={classes.summary}>
+                                        <div>
+                                            <div className={classes.subHeading}>
+                                                <span classNmae=".h4">STAGE{stage.stageNo}-</span>
+                                                <span classNmae="p">{stage.stageYear}</span>
+                                            </div>
+                                            <h4 className={classes.heading}>{stage.stage}</h4>
+                                        </div>
+                                        <img src={stage.images[0].path} alt="" className={classes.stageImage}/>
+                                    </div>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <PostsInStage stage={stage}/>
+                                </AccordionDetails>
+                            </Accordion>
                         ))
                     )}
-                </div>
-                
-
-                {/* <div className={classes.root}>
-                    <GridList className={classes.gridList} cols={2.5} cellHeight={'auto'}>
-                        {  postsSort().length > 0 &&(
-                            postsSort().map(post=> (
-                                post.topImages.map(topImage=>(
-                                    <GridListTile key={topImage.id} cols={1}>
-                                        <img src={topImage.path} alt={topImage.description} className="c-image-fit-cover"/>
-                                    </GridListTile> 
-                                ))
-                            ))
-                        )}
-                    </GridList>
-                </div> */}
             </div>
-
         </div>
     )
 }

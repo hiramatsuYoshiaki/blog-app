@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
         width:48,
         color:' #f50057',
     }
-}))
+})) 
 const LocationArea = props => {
     const classes = useStyles()
     const key = googleMapConfig.key
@@ -52,7 +52,7 @@ const LocationArea = props => {
                                     lat: lat,
                                     lng: lng
                                 }}
-                                defaultZoom={15}
+                                defaultZoom={15} 
                             >
                                 <Marker 
                                     lat={lat} 

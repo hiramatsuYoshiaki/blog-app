@@ -311,6 +311,10 @@
    height: 50vh;
    width: 100%;
 }
+.c-locationarea-map-googlemap {
+   height: 100vh;
+   width: 100%;
+}
 .c-location-marke-wrapin{
     position:relative;
 }
@@ -325,6 +329,7 @@
     justify-content: center;
     align-items: center;
 }
+
 
 .c-locationarea-section-video > video{
     height: 50vh;
