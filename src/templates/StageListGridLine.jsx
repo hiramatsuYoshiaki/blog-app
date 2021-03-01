@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         flexFlow:'row wrape',
         justifyContent:'space-between',
         alignItems:'center',
-        padding:'0 .8rem'
+        padding:'0 .8rem' 
     },
     stageImage:{
         width:'auto',
@@ -55,7 +55,7 @@ const StageListGridLine = () => {
     const stages = getStages(selector)
 
     useEffect(()=> {
-        dispatch(fetchStages())  
+        dispatch(fetchStages())   
     },[])  
     return ( 
         <div className="l-container ">

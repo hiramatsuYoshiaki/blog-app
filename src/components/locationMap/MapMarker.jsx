@@ -197,7 +197,6 @@ const containerStyle = {
     const dispatch = useDispatch()
     const key = googleMapConfig.key
     const locations = props.locations
-    console.log(locations);
     const [size, setSize] = useState(undefined);
     const infoWindowOptions = {
         pixelOffset: size,

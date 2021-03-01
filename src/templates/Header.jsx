@@ -125,7 +125,7 @@ const Header = () => {
                             <span style={{color:'#fff'}}>LOCATION</span>
 
                         </IconButton>
-                        <IconButton >
+                        <IconButton onClick={()=>dispatch(push('/about'))}>
                             < PersonIcon className={classes.iconWhite}/>
                             <span style={{color:'#fff'}}>ABOUT</span>
                         </IconButton>
@@ -178,7 +178,7 @@ const Header = () => {
                                 </ListItemIcon>
                                 <ListItemText primary="LOCATION" />
                             </ListItem>
-                            <ListItem button>
+                            <ListItem button  onClick={()=>dispatch(push('/about'))} >
                                 <ListItemIcon>
                                     <PersonIcon className={classes.icon}/>
                                 </ListItemIcon>

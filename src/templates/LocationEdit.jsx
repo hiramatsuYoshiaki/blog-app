@@ -19,7 +19,7 @@ const LocationEdit = () => {
     //window.location.pathname.split('/location/edit')[1]  /id 
     let id = window.location.pathname.split('/location/edit')[1]
     if (id !== '') {
-        id = id.split('/')[1]
+        id = id.split('/')[1] 
     }
 
     const key = googleMapConfig.key
