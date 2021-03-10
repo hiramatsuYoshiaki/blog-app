@@ -20,7 +20,10 @@ import {
   PostListGridImage,
   StageListGridLine,
   BlogData,
-  About
+  About,
+  LandingPage,
+  TopPage,
+  CanvasTest
 
 } from './templates/index'
 import Auth from './Auth'
@@ -42,6 +45,9 @@ const Router = () => {
             <Route exact path="/stage/List" component={StageList} />
             <Route exact path="/location/List" component={LocationList} />
             <Route exact path="/location/map" component={LocationMap} />
+            <Route exact path="/landingpage" component={LandingPage} />
+            <Route exact path="/topPage" component={TopPage} />
+            <Route exact path="/canvasTest" component={CanvasTest} />
            
             <Route exact path="/tags/List" component={TagsList} />
             <Route exact path="/about" component={About} />

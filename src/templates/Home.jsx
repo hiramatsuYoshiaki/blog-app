@@ -42,7 +42,7 @@ const Home = () => {
                 setVolume={setVolume}
                 setStageName={setStageName}
                 setStageNo={setStageNo}
-                setStageYear={setStageYear}
+                setStageYear={setStageYear} 
                 />
             <FilterPosts  
                 stages={stages} 

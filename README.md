@@ -312,3 +312,9 @@ service cloud.firestore {
         if (window.instgrm) window.instgrm.Embeds.process()
   },[])
 ```
+
+
+# React.useRef】イベントリスナー内で最新のステートを参照できない時の対処法
+https://qiita.com/impl_s/items/0c9f326c90052ebd77da
+
+React.useRef()を使うことで、常に最新の状態を参照することができます。

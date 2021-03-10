@@ -8,6 +8,7 @@ import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 const useStyles = makeStyles((theme) => ({
     // paper: {
     //   padding: '6px 16px',
@@ -19,85 +20,43 @@ const useStyles = makeStyles((theme) => ({
         color:'grey'
     }
   }));
-const timelineDate = [
-    {id:'2009',date:'2009',name:'TOURdeHDR First generation',dotType:'default', color:'default'},
-    {id:'2013',date:'2013',name:'TOURdeHDR+ Second generation',dotType:'default', color:'primary'},
-    {id:'2017',date:'2017',name:'h-works Special Site Collections',dotType:'outlined', color:'secondary'},
-    {id:'2017',date:'2017',name:'h-works Special Site Collections',dotType:'outlined', color:'secondary'},
-    {id:'2021',date:'2021',name:'h-works Third generation',dotType:'default', color:'default'},
+const histories = [
+    {id:'200901',date:'2009',name:'TOURdeHDR First generation',variant:'default', color:'primary',link:'http://tourdehrd.blog62.fc2.com/'},
+    {id:'201301',date:'2013',name:'TOURdeHDR+ Second generation',variant:'default', color:'primary', link:'http://tourdehdr.sakuratan.com/site2/'},
+    {id:'201501',date:'2013-15',name:'TOURdeHDR+ Gallery 2013-15',variant:'default', color:'primary', link:'http://tourdehdr.sakura.ne.jp/web3/tourdehdr_web3/'},
+    {id:'201601',date:'2016',name:'TOURdeHDR+ Gallery',variant:'outlined', color:'default', link:'http://tourdehdr.sakura.ne.jp/web3/cyber-shot-gallery/'},
+    {id:'201602',date:'2016',name:'TOURdeHDR+ AWARD 2016',variant:'outlined', color:'secondary', link:'http://tourdehdr.sakura.ne.jp/web3/cyber-shot-gallery/nomi.html'},
+    {id:'201701',date:'2017',name:'TOURdeHDR+ Gallery',variant:'outlined', color:'default', link:'http://tourdehdr.sakura.ne.jp/web3/tourdehdr-gallery2017/index.html'},
+    {id:'201702',date:'2017',name:'TOURdeHDR+ AWARD 2017',variant:'outlined', color:'secondary', link:'http://tourdehdr.sakura.ne.jp/web3/digest2017/#/'},
+    {id:'201801',date:'2018',name:'TOURdeHDR+ AWARD Gallery',variant:'outlined', color:'secondary', link:'http://tourdehdr.sakura.ne.jp/web3/bgvideo-2018/#/'},
+    {id:'202001',date:'2020',name:'h-works Third generation',variant:'default', color:'primary', link:'https://tourdehdr3.netlify.app/'},
+    {id:'202101',date:'2021',name:'h-works 4th generation',variant:'default', color:'primary', link:'https://blog-app-4302d.web.app/'},
 ]
 
 const TimelineSection = props => {
     const classes = useStyles()
     return (
         <div className="c-timeline-wraper">
-            <h5>Timeline</h5>
+            <h5>HISTORY</h5>
             <Timeline align="alternate">
-                <TimelineItem>
-                <TimelineOppositeContent>
-                    <Typography >2009</Typography>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineDot />
-                    <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent >
-                    <Typography>TOURdeHDR First generation</Typography>
-                </TimelineContent>
-                </TimelineItem>
-                {/* ------------------------------------------------------ */}
-                <TimelineItem>
-                <TimelineOppositeContent>
-                    <Typography >2013</Typography>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineDot color="primary"/>
-                    <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>
-                    <Typography>TOURdeHDR+ Second generation</Typography>
-                </TimelineContent>
-                </TimelineItem>
-                {/* ------------------------------------------------------ */}
-                <TimelineItem>
-                <TimelineOppositeContent>
-                    <Typography >2018</Typography>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineDot variant="outlined" color="secondary"/>
-                    <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>
-                    <Typography>h-works Special Site Collections</Typography>
-                </TimelineContent>
-                </TimelineItem>
-                {/* ------------------------------------------------------ */}
-                <TimelineItem>
-                <TimelineOppositeContent>
-                    <Typography >2017</Typography>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineDot variant="outlined" color="secondary"/>
-                    <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>
-                    <Typography>h-works Special Site Collections</Typography>
-                </TimelineContent>
-                </TimelineItem>
-                {/* ------------------------------------------------------ */}
-                <TimelineItem>
-                <TimelineOppositeContent>
-                    <Typography >2021</Typography>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineDot color="primary"/>
-                    <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>
-                    <Typography>h-works Third generation</Typography>
-                </TimelineContent>
-                </TimelineItem>
-                {/* ------------------------------------------------------ */}
+                {histories.map(history=>(
+                    <TimelineItem key={history.id}>
+                        <TimelineOppositeContent>
+                            <Typography >{history.date}</Typography>
+                        </TimelineOppositeContent>
+                        <TimelineSeparator>
+                            <TimelineDot variant={history.variant} color={history.color}/>
+                            <TimelineConnector />
+                        </TimelineSeparator>
+                        <TimelineContent >
+                            <Typography>
+                                <Link href={history.link}  target="_blank" color="inherit">
+                                    {history.name} 
+                                </Link>
+                            </Typography>
+                        </TimelineContent>
+                    </TimelineItem>
+                ))}
             </Timeline>
         </div>
     )
