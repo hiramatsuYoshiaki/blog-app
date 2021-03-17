@@ -2,7 +2,17 @@
 // 小さい単位のComponentを集めて、一つのObjectとして扱いたい時
 // Componentとするには大きすぎるObjectとなる時にProjectとして定義する。
 @import "./variables.scss";
+//react-curtains  curtains.js WebGL  を使用するためのクラス------------
+// curtains canvas container
 
+.curtains-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+//-------------------------------react-curtains
 
 .p-media__thumb {
     position: relative;

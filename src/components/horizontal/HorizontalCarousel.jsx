@@ -1,10 +1,10 @@
 import React,{useState,useEffect,useRef} from 'react'
-import { makeStyles } from '@material-ui/core/styles';
 import {useDispatch} from 'react-redux'
 import {push} from 'connected-react-router'
-
+import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     img: {
+        // marginRight:'20%',
         [theme.breakpoints.down('sm')]: {
             width:'128px',
             height:'80px'
@@ -83,21 +83,6 @@ const HorizontalCarousel = props => {
         }
     },[])
 
-    // useEffect(()=>{
-    //     console.log( 'sliderBox');
-    //     const clientWidth = document.getElementById('sliderBox').clientWidth
-    //     console.log('clientWidth',clientWidth);
-    //     console.log('BoxWidthRef.current',BoxWidthRef.current);
-    //     setSliderBoxWidth(clientWidth)
-    // },[])
-
-    // useEffect(() => {
-    //     console.log('useEffect handleResize');
-    //     window.addEventListener('resize', handleResize);
-    //     return () => {
-    //       window.addEventListener('resize', handleResize);
-    //     };
-    //   },[])
     return (
 
         // <div className="c-horizontalCarousel">

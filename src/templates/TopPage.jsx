@@ -15,7 +15,7 @@ const TopPage = () => {
     },[])
     return (
         <div className="l-container" >
-            <div className="l-section" >
+            <div className="l-section" > 
                 <div>
                     <HorizontalCrousel stages={stages}/>
                     <VerticalCarousel stages={stages}/>

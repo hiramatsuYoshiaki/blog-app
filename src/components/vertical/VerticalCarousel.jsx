@@ -14,14 +14,14 @@ const VerticalCarousel = props => {
         if (event.deltaY < 0 && positionRef.current < 0) {
             console.log('scrolling up');
             console.log(positionRef.current);
-            setPosition(prevPosition => prevPosition + 16)
+            setPosition(prevPosition => prevPosition + 12)
         }
         if ((event.deltaY > 0) && ((sliderBoxHeightRef.current + positionRef.current) > 0)  ) {
             console.log('scrolling down');
             console.log(positionRef.current);
             console.log(sliderBoxHeightRef.current);
             console.log(sliderBoxHeightRef.current + positionRef.current);
-            setPosition(prevPosition => prevPosition - 16) 
+            setPosition(prevPosition => prevPosition - 12) 
         } 
         // if (event.deltaY < 0  ) {
         //     console.log('scrolling up');
@@ -54,10 +54,9 @@ const VerticalCarousel = props => {
             {stages.length > 0 && (
                 stages.map(stage=>(
                     <div key={stage.id} className="c-verticalCarousel-element">
-                        {/* {stage.stage}---Pos:{position} Height:{sliderBoxHeight} */}
-                        <div className="c-verticalCarousel-title">
-                            <div>{stage.stage}:{sliderBoxHeight}</div> 
-                        </div>
+                        <h1 className="c-glitch c-verticalCarousel-glich" 
+                            data-text={stage.stage} >{stage.stage}
+                        </h1>
                     </div>
                 ))
             )}
