@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         overflow: 'hidden',
         paddingBottom: '66.6%',
+        border:'1px solid grey'
       },
       
       MultiplePlanesLandscapeInner: {
@@ -40,15 +41,27 @@ const useStyles = makeStyles((theme) => ({
         padding: '0.125em 0.25em',
       },
       
+    //   MultiplePlanesPlane: {
+    //     position: 'absolute',
+    //     top: 0,
+    //     right: 0,
+    //     bottom: 0,
+    //     left: 0,
+    //     '& img': {
+    //         display: 'none',
+    //       }
+
+    //   },
       MultiplePlanesPlane: {
         position: 'absolute',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
+        top:'5%',
+        right:'5%',
+        bottom:'5%',
+        left:'5%',
         '& img': {
             display: 'none',
           }
+
       },
     //   @media screen and (max-width: 980px) {
     //     .MultiplePlanes-element {
@@ -107,7 +120,8 @@ const fragmentShader = `
     gl_FragColor = texture2D(planeTexture, vTextureCoord);
   }
 `;
-const SinglePlane = ({ index = 1, onPlaneReady = () => {} }) => {
+const SinglePlaneHorizontal = ({ index = 1, onPlaneReady = () => {} }) => {
+    
     const classes = useStyles()
     const uniforms = {
         planeDeformation: {
@@ -125,40 +139,67 @@ const SinglePlane = ({ index = 1, onPlaneReady = () => {} }) => {
       };
     
     const imageIndex = (index % 4) + 1;
+    console.log(onPlaneReady);
     return (
-    <div className={classes.MultiplePlanesElement}>
-      <div className={classes.MultiplePlanesTitle}>{"Title " + (index + 1)}</div>
-      <div className={classes.MultiplePlanesElementInner}>
-        <div className={classes.MultiplePlanesLandscape}>
-          <div className={classes.MultiplePlanesLandscapeInner}>
+        // <div className={classes.MultiplePlanesElement}>
             <Plane
-              className={classes.MultiplePlanesPlane}
-              // plane init parameters
-              vertexShader={vertexShader}
-              fragmentShader={fragmentShader}
-              shareProgram={true}
-              widthSegments={10}
-              heightSegments={10}
-              drawCheckMargins={drawCheckMargins}
-              uniforms={uniforms}
-              // plane events
-              onReady={onPlaneReady}
+                className={classes.MultiplePlanesPlane}
+                // plane init parameters
+                vertexShader={vertexShader}
+                fragmentShader={fragmentShader}
+
+                shareProgram={true}
+                widthSegments={10}
+                heightSegments={10}
+                drawCheckMargins={drawCheckMargins}
+
+                uniforms={uniforms}
+                // plane events
+                onReady={onPlaneReady}
             >
-              <img
-                src={"https://unsplash.it/1920/1080?random=" + imageIndex}
-                data-sampler="planeTexture"
-                alt=""
-              />
+                <img
+                    src={"https://unsplash.it/1920/1080?random=" + imageIndex}
+                    data-sampler="planeTexture"
+                    alt=""
+                />
             </Plane>
-          </div>
-        </div>
-      </div>
-    </div>
+        // </div>
+    // <div className={classes.MultiplePlanesElement}>
+    //     <div className={classes.MultiplePlanesTitle}>
+    //         {"Title Horizontal TEST  " + (index + 1)}
+    //     </div>
+    //     <div className={classes.MultiplePlanesElementInner}>
+    //         <div className={classes.MultiplePlanesLandscape}>
+    //             <div className={classes.MultiplePlanesLandscapeInner}>
+    //                 <Plane
+    //                     className={classes.MultiplePlanesPlane}
+    //                     // plane init parameters
+    //                     vertexShader={vertexShader}
+    //                     fragmentShader={fragmentShader}
+
+    //                     shareProgram={true}
+    //                     widthSegments={10}
+    //                     heightSegments={10}
+    //                     drawCheckMargins={drawCheckMargins}
+    //                     uniforms={uniforms}
+    //                     // plane events
+    //                     onReady={onPlaneReady}
+    //                 >
+    //                     <img
+    //                         src={"https://unsplash.it/1920/1080?random=" + imageIndex}
+    //                         data-sampler="planeTexture"
+    //                         alt=""
+    //                     />
+    //                 </Plane>
+    //             </div>
+    //         </div>
+    //     </div>
+    // </div>
     )
 }
 
 
-export default SinglePlane
+export default SinglePlaneHorizontal
 // react-curtains
 // https://www.npmjs.com/package/react-curtains
 // https://codesandbox.io/s/react-curtains-multiple-planes-zh9bt?file=/src/components/MultiplePlanes/index.js:1959-1978

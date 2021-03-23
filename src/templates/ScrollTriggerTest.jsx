@@ -1,4 +1,4 @@
-import React,{useEffect,useRef} from 'react'
+import React,{useEffect,useRef} from 'react' 
 import {makeStyles} from '@material-ui/core/styles'
 import { gsap } from "gsap";
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
@@ -38,36 +38,39 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         overflowX: 'hidden',
       }
-}))
+})) 
 
 const ScrollTriggerTest = () => {
     const classes = useStyles()
     let container = useRef(null)
     useEffect(()=>{
         gsap.to(container.current, {
-            x: () => -(container.current.scrollWidth - document.documentElement.clientWidth) + "px",
+            x: () => -(container.current.scrollWidth - 
+                document.documentElement.clientWidth) + "px",
             scrollTrigger: {
               start: "center center",
               trigger: container.current,
               invalidateOnRefresh: true,
               pin: true,
               scrub: 1,
-              anticipatePin: 1, // can help avoid flash
+              anticipatePin: 1, // can help avoid flash 
               end: () => "+=" + container.current.offsetWidth
             }
         })
-    },[])
+    },[]) 
 
     return (
         <div className={classes.root}>
             <div className={classes.text}>horizontal scrolling</div>
             <aside id="containerWrapper">
                 <main ref={container} className={classes.main}>
+
                     <section className={classes.section}></section>
                     <section className={classes.section}></section>
                     <section className={classes.section}></section>
                     <section className={classes.section}></section>
                     <section className={classes.section}></section>
+                    
                 </main>
             </aside>
             <div className={classes.text}>this is the end</div>

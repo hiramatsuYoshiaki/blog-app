@@ -4,6 +4,7 @@ import {makeStyles} from '@material-ui/core/styles'
 import {Vec2} from 'curtainsjs'
 const useStyles = makeStyles((theme) =>({
     SimplePlane:{
+      // position:'relative',
         position:'absolute',
         top:'5%',
         right:'5%',

@@ -11,12 +11,18 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 2,
         textAlign: 'center',
         overflowAnchor: 'none',
-        border:'1px solid white'
+
+        //test
+        // width:'auto', 
+        // height:'200vh' 
     },
     
     MultiplePlanesWrapper: {
         display: 'flex',
-        flexWrap: 'wrap',
+        flexWrap: 'wrap ',
+        //test
+        // flexDirection:'row'
+
     },
     
     MultiplePlanesAddPlanes: {
@@ -40,7 +46,6 @@ const MultiplePlane = props => {
     const [planes, setPlanes] = useState([]);
 
     const planesDeformations = useRef(0);
-
 
     useCurtainsEvent(
         "onRender",
@@ -70,7 +75,7 @@ const MultiplePlane = props => {
         // threshold
         if (delta.y > 60) {
           delta.y = 60;
-        } else if (delta.y < -60) {
+        } else if (delta.y < -60) { 
           delta.y = -60;
         }
     
@@ -92,7 +97,7 @@ const MultiplePlane = props => {
 
     const buildPlane = (index) => {
         return (
-            <SinglePlane 
+            <SinglePlane  
                 key={index} 
                 index={index} 
                 onPlaneReady={onPlaneReady} 
@@ -103,7 +108,10 @@ const MultiplePlane = props => {
     for (let i = 0; i < nbPlanes; i++) {
         allPlanes.push(buildPlane(i));
     }
-    console.log(allPlanes);
+
+
+
+
     return (
         <div className={classes.MultiplePlanes}>
             <div className={classes.MultiplePlanesWrapper}>
@@ -111,6 +119,7 @@ const MultiplePlane = props => {
                     return planeEl;
                 })}
             </div>
+            
             <button 
                 className={classes.MultiplePlanesAddPlanes} 
                 onClick={addPlanes}

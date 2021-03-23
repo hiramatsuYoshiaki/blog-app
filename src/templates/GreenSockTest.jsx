@@ -98,7 +98,6 @@ const GreenSockTest = () => {
                     duration:1,
                     autoAlpha:1,
                     ease:'none',
-                    //aaa
                     scrollTrigger:{
                         id:`section-${index+1}`,
                         trigger:el,

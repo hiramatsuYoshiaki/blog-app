@@ -14,4 +14,4 @@ const SlideshowUsingGSAP = props => {
 }
 
 
-export default SlideshowUsingGSAP
+export default SlideshowUsingGSAP    

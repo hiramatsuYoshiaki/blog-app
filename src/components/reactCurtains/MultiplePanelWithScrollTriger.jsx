@@ -1,8 +1,84 @@
-import React,{useRef,useState,useEffect} from 'react' 
-import {Plane,useCurtains} from 'react-curtains'
-import gsap from 'gsap'
+import React,{useRef,useState,useEffect} from 'react'
 import {makeStyles} from '@material-ui/core/styles'
+//react-curtains
+// import {Plane,useCurtains,useCurtainsEvent} from 'react-curtains'
+// import SinglePlaneHorizontal from "./SinglePlaneHorizontal.jsx";
+import {Plane,useCurtains} from 'react-curtains'
+// gsap
+import {gsap} from  'gsap'
+import {ScrollTrigger} from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+
 const useStyles = makeStyles((theme) => ({
+    //gsap
+    root:{
+        width:'100%',
+        height:'100%',
+        backgroundColor:'white',
+        overflow:'hidden'
+    },
+    main: {
+        display:'flex',
+        flexWrap:'wrap',
+        flexDirection:'column',
+        height:'70vh',
+        willChange: 'transform',
+      },
+      
+      section: {
+        background: 'blue',
+        height:'100%',
+        display:'flex',
+        width: '60vw',
+        marginRight: '4vw',
+        'nth-child(2n)': {
+            background: '#eee',
+        },
+        position: 'relative',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'center',
+
+      },
+      text: {
+        height: '80vh',
+        padding: '5%',
+        display:'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '2em',
+        width: '100%',
+        overflowX: 'hidden',
+      },
+      //react-curtains
+    //   MultiplePlanes: {
+    //     width: '80vw',
+    //     margin: '0 auto',
+    //     padding: '40px 0',
+    //     position: 'relative',
+    //     zIndex: 2,
+    //     textAlign: 'center',
+    //     overflowAnchor: 'none',
+    // },
+    
+    // MultiplePlanesWrapper: {
+    //     display: 'flex',
+    //     flexWrap: 'wrap',
+    // },
+    
+    // MultiplePlanesAddPlanes: {
+    //     '-webkit-appearance': 'none',
+    //     border: 0,
+    //     font: 'inherit',
+    //     cursor: 'pointer',
+    //     background: '#ee6557',
+    //     color: 'white',
+    //     display: 'inline-block',
+    //     padding: '0.25em 0.5em',
+    //     '&:hover': {
+    //         background: 'black',
+    //     }
+    // },
     Slideshow: {
         position: 'absolute',
         top: '5%',
@@ -20,10 +96,10 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         alignContent: 'center',
         '& img':{
-            display: 'none' 
+            display: 'none'
         }
       } 
-      
+
 }))
 const vertexShader = `
   precision mediump float;
@@ -84,8 +160,76 @@ const fragmentShader = `
     gl_FragColor = finalColor;
   }
 `;
-const Slideshow = props => {
+
+const MultiplePanelWithScrollTriger = props => {
     const classes = useStyles()
+    //react-curtains
+    // const [nbPlanes, setNbPlanes] = useState(4);
+    // const [planes, setPlanes] = useState([]);
+
+    // const planesDeformations = useRef(0);
+    // useCurtainsEvent(
+    //     "onRender",
+    //     (curtains) => {
+    //       // update our planes deformation
+    //       // increase/decrease the effect
+    //       planesDeformations.current = curtains.lerp(
+    //         planesDeformations.current,
+    //         0,
+    //         0.075
+    //       );
+    
+    //       // update planes deformations
+    //       planes.forEach((plane) => {
+    //         plane.uniforms.planeDeformation.value = planesDeformations.current;
+    //       });
+    //     },
+    //     [planes]
+    //   );
+    // useCurtainsEvent("onScroll", (curtains) => {
+    //     // get scroll deltas to apply the effect on scroll
+    //     const delta = curtains.getScrollDeltas();
+    
+    //     // invert value for the effect
+    //     delta.y = -delta.y;
+    
+    //     // threshold
+    //     if (delta.y > 60) {
+    //       delta.y = 60;
+    //     } else if (delta.y < -60) { 
+    //       delta.y = -60;
+    //     }
+    
+    //     if (Math.abs(delta.y) > Math.abs(planesDeformations.current)) {
+    //       planesDeformations.current = curtains.lerp(
+    //         planesDeformations.current,
+    //         delta.y,
+    //         0.5
+    //       );
+    //     }
+    //   });
+    // // const addPlanes = () => {
+    // //     setNbPlanes(nbPlanes + 4);
+    // //   };
+    
+    // const onPlaneReady = (plane) => {
+    //     setPlanes((planes) => [...planes, plane]);
+    //   };
+
+    // const buildPlane = (index) => {
+    //     return (
+    //         <SinglePlaneHorizontal 
+    //             key={index} 
+    //             index={index} 
+    //             onPlaneReady={onPlaneReady} 
+    //         />
+    //     );
+    //   };
+    // const allPlanes = [];
+    // for (let i = 0; i < nbPlanes; i++) {
+    //     allPlanes.push(buildPlane(i));
+    // }
+    // console.log(allPlanes);
     const [plane, setPlane] = useState(null);
     const slideshowInner = useRef(null);
     // slideshow states
@@ -174,8 +318,22 @@ const Slideshow = props => {
         [plane]
       );
 
-
- 
+    //gsap
+    let container = useRef(null)
+    useEffect(()=>{
+        gsap.to(container.current, {
+            x: () => -(container.current.scrollWidth - document.documentElement.clientWidth) + "px",
+            scrollTrigger: {
+              start: "center center",
+              trigger: container.current,
+              invalidateOnRefresh: true,
+              pin: true,
+              scrub: 1,
+              anticipatePin: 1, // can help avoid flash
+              end: () => "+=" + container.current.offsetWidth
+            }
+        })
+    },[])
     return (
         <Plane
             className={classes.Slideshow} 
@@ -203,8 +361,34 @@ const Slideshow = props => {
             </div>
 
         </Plane>
+        // <div className={classes.root}>
+        //     <div className={classes.text}>horizontal scrolling</div>
+        //     <aside id="containerWrapper">
+        //         <main ref={container} className={classes.main}>
+
+        //             <section className={classes.section}></section>
+        //             <section className={classes.section}></section>
+        //             <section className={classes.section}></section>
+        //             <section className={classes.section}></section>
+        //             <section className={classes.section}></section>
+        //             <section className={classes.section}></section>
+
+                    
+        //                 {/* {allPlanes.map((planeEl,index) =>(
+        //                     <section className={classes.section} key={index}>
+        //                         <div className={classes.MultiplePlanesWrapper}>
+        //                             {planeEl}
+        //                         </div>
+        //                     </section>
+        //                 ))} */}
+                   
+                    
+        //         </main>
+        //     </aside>
+        //     <div className={classes.text}>this is the end</div>
+        // </div>
     )
 }
 
 
-export default Slideshow
+export default MultiplePanelWithScrollTriger

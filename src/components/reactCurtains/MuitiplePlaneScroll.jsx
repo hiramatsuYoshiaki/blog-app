@@ -20,10 +20,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         alignContent: 'center',
         '& img':{
-            display: 'none' 
+            display: 'none'
         }
       } 
-      
 }))
 const vertexShader = `
   precision mediump float;
@@ -84,7 +83,8 @@ const fragmentShader = `
     gl_FragColor = finalColor;
   }
 `;
-const Slideshow = props => {
+const MuitiplePlaneScroll = props => {
+    console.log('start MuitiplePlaneScroll--1');
     const classes = useStyles()
     const [plane, setPlane] = useState(null);
     const slideshowInner = useRef(null);
@@ -94,6 +94,7 @@ const Slideshow = props => {
     const isChanging = useRef(false);
     const tween = useRef(null);
     useEffect(() => {
+      console.log('useEffect--2');
         if (slideshowInner.current) {
           setMaxTextures(slideshowInner.current.childElementCount - 2);
         }
@@ -115,14 +116,17 @@ const Slideshow = props => {
         }
       };
     const onLoading = (plane, texture) => {
+      console.log('onLoading--4 rendaring in panel');
         // improve texture rendering on small screens with LINEAR_MIPMAP_NEAREST minFilter
         texture.setMinFilter(texture.gl.LINEAR_MIPMAP_NEAREST);
       };
     
       const onReady = (plane) => {
+        console.log('onLady rendaring in panel');
         setPlane(plane);
       };
       const onClick = () => {
+        console.log('onClick');
         if (!isChanging.current && plane) {
           isChanging.current = true;
     
@@ -157,6 +161,7 @@ const Slideshow = props => {
     
       useCurtains(
         (curtains) => {
+          console.log('useCurtains--3');
           if (plane) {
             // first we set our very first image as the active texture
             activeTex.current = plane.createTexture({
@@ -173,9 +178,6 @@ const Slideshow = props => {
         },
         [plane]
       );
-
-
- 
     return (
         <Plane
             className={classes.Slideshow} 
@@ -199,12 +201,10 @@ const Slideshow = props => {
                 <img src="https://unsplash.it/1920/1080?random=2" alt="" />
                 <img src="https://unsplash.it/1920/1080?random=3" alt="" />
                 <img src="https://unsplash.it/1920/1080?random=4" alt="" />
-
             </div>
-
         </Plane>
     )
 }
 
 
-export default Slideshow
+export default MuitiplePlaneScroll

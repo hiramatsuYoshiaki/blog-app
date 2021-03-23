@@ -11,7 +11,7 @@ const LandingPage = () => {
   // const [scrollX, setScrollX] = useState(bodyOffset.left);
   // const [scrollDirection, setScrollDirection] = useState();
   
-  const listener = event => {
+  const listener = event => { 
         console.log('listener scroll');
         console.log('event' + event);
         // setBodyOffset(document.body.getBoundingClientRect());

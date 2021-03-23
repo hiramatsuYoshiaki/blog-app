@@ -8,8 +8,8 @@ const ReactCurtainsSlideshowGSAP = () => {
             pixelRatio={Math.min(1.5, window.devicePixelRatio)}
             autoRender={false} // we'll use gsap ticker in App.js instead
         >
-            <SlideshowUsingGSAP />
-        </Curtains>
+            <SlideshowUsingGSAP /> 
+        </Curtains> 
     )
 }
 

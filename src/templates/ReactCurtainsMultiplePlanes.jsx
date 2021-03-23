@@ -5,7 +5,7 @@ import MuitiplePlane from '../components/reactCurtains/MultiplePlane.jsx'
 const ReactCurtainsMultiplePlanes = () => {
     return (
         <Curtains pixelRatio={Math.min(1.5, window.devicePixelRatio)}>
-            <MuitiplePlane />
+            <MuitiplePlane />  
         </Curtains>
     )
 }
