@@ -1,5 +1,5 @@
-import React,{useRef} from 'react'
-import {gsap,Back,TweenLite} from 'gsap'
+import React from 'react'
+import {Back,TweenLite} from 'gsap'
 import Transition from 'react-transition-group/Transition'
 const duration = 5000
 const defaultStyle = {
@@ -21,6 +21,9 @@ const ChildrenTest = props => {
         mountOnEnter={true}
         unmountOnExit={true}
         addEndListener={(n,done) =>{
+            // console.log(n);
+            // console.log(done);
+            //nはtransitionタグの子要素全部
             if (props.in) {
             TweenLite.to(n, 1, {
               autoAlpha: 1,

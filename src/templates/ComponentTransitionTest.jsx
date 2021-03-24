@@ -17,5 +17,5 @@ const ComponentTransitionTest = () => {
     )
 }
 
-export default ComponentTransitionTest
+export default ComponentTransitionTest 
 

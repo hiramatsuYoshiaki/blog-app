@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.jsx';
 import reportWebVitals from './reportWebVitals';
-// import { Curtains } from "react-curtains";
 //Redux
 import { Provider } from 'react-redux'
 import createStore from './reducks/store/store'
@@ -18,11 +17,9 @@ export const store = createStore(history);
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      {/* <Curtains pixelRatio={Math.min(1.5, window.devicePixelRatio)}> */}
         <App />
-      {/* </Curtains> */}
     </ConnectedRouter>
     </Provider >,
-  document.getElementById('root')
+  document.getElementById('root') 
 );
 reportWebVitals();

@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const Header = () => {
+const HeaderTransitionTest = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
     const [isOpen,setIsOpen] = useState(false)
@@ -91,41 +91,16 @@ const Header = () => {
                         <img src={hlogoName} alt="h-works logo" className="logoName"/>
                     </div>
                     <div className="c-header-tablet-menu">
-                        <IconButton onClick={handleClick} aria-controls="simple-menu" aria-haspopup="true">
-                            < CropOriginalIcon className={classes.iconWhite}/>
-                            <span style={{color:'#fff'}} >POST</span>
-                        </IconButton>
-                        <Menu
-                            id="simple-menu"
-                            anchorEl={anchorEl}
-                            keepMounted
-                            open={Boolean(anchorEl)}
-                            onClose={handleClose}
-                            className={classes.menu}
-                            >
-                                <MenuItem onClick={handleClose} >
-                                    <span onClick={()=>dispatch(push('/post/listGrid'))}>GRID</span>
-                                    <IconButton onClick={()=>dispatch(push('/post/listGrid'))} >
-                                        < ViewCompactIcon className={classes.icon}/>
-                                    </IconButton>
-                                </MenuItem> 
-                                <MenuItem onClick={handleClose} >
-                                    <span onClick={()=>dispatch(push('/blog/data'))}>LIST</span>
-                                    <IconButton onClick={()=>dispatch(push('/blog/data'))}>
-                                        < ListIcon className={classes.icon}/>
-                                    </IconButton>
-                                </MenuItem> 
-                        </Menu>
-                        <IconButton onClick={()=>dispatch(push('/stage/listgridline'))}>
+                        <IconButton onClick={()=>dispatch(push('/homeTransitionTest'))}>
                             < CollectionsIcon className={classes.iconWhite}/>
-                            <span style={{color:'#fff'}}>STAGE</span>
+                            <span style={{color:'#fff'}}>HOME</span>
                         </IconButton>
-                        <IconButton onClick={()=>dispatch(push('/location/map'))}>
+                        <IconButton onClick={()=>dispatch(push('/contactTransitionTest'))}>
                             < LocationOnIcon className={classes.iconWhite}/>
-                            <span style={{color:'#fff'}}>LOCATION</span>
+                            <span style={{color:'#fff'}}>CONTACT</span>
 
                         </IconButton>
-                        <IconButton onClick={()=>dispatch(push('/about'))}>
+                        <IconButton onClick={()=>dispatch(push('/aboutTransitionTest'))}>
                             < PersonIcon className={classes.iconWhite}/>
                             <span style={{color:'#fff'}}>ABOUT</span>
                         </IconButton>
@@ -141,44 +116,19 @@ const Header = () => {
                         anchor="right"
                         >
                         <List component="nav">
-                            <ListItem button  onClick={() => handleClickOpenDrwerPost()}>
-                                <ListItemIcon>
-                                    < CropOriginalIcon className={classes.icon}/>
-                                </ListItemIcon>
-                                <ListItemText primary="POST" />
-                                {toggleDrwerPost ? <ExpandLess /> : <ExpandMore />}
-                            </ListItem>
-                            <Collapse in={toggleDrwerPost} timeout="auto" unmountOnExit>
-                                <List component="div" disablePadding>
-                                    <ListItem button className={classes.nested} onClick={()=>dispatch(push('/post/listGrid'))}>
-                                        <ListItemIcon>
-                                            <ViewCompactIcon className={classes.icon}/>
-                                        </ListItemIcon>
-                                        <ListItemText primary="GRID" />
-                                    </ListItem>
-                                </List>
-                                <List component="div" disablePadding>
-                                    <ListItem button className={classes.nested} onClick={()=>dispatch(push('/blog/data'))}>
-                                        <ListItemIcon>
-                                            <ListIcon className={classes.icon}/>
-                                        </ListItemIcon>
-                                        <ListItemText primary="LIST" />
-                                    </ListItem>
-                                </List>
-                            </Collapse>
-                            <ListItem button onClick={()=>dispatch(push('/stage/listgridline'))}>
+                            <ListItem button onClick={()=>dispatch(push('/homeTransitionTest'))}>
                                 <ListItemIcon>
                                     <CollectionsIcon className={classes.icon}/>
                                 </ListItemIcon>
-                                <ListItemText primary="STAGE" />
+                                <ListItemText primary="HOME" />
                             </ListItem>
-                            <ListItem button onClick={()=>dispatch(push('/location/map'))}>
+                            <ListItem button onClick={()=>dispatch(push('/contactTransitionTest'))}>
                                 <ListItemIcon>
                                     <LocationOnIcon className={classes.icon}/>
                                 </ListItemIcon>
-                                <ListItemText primary="LOCATION" />
+                                <ListItemText primary="CONTACT" />
                             </ListItem>
-                            <ListItem button  onClick={()=>dispatch(push('/about'))} >
+                            <ListItem button  onClick={()=>dispatch(push('/aboutTransitionTest'))} >
                                 <ListItemIcon>
                                     <PersonIcon className={classes.icon}/>
                                 </ListItemIcon>
@@ -192,4 +142,4 @@ const Header = () => {
     )
 } 
 
-export default Header
+export default HeaderTransitionTest
