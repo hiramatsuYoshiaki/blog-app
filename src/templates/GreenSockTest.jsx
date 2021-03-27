@@ -3,7 +3,6 @@ import logo from '../assets/img/h-logo.svg';
 import { makeStyles } from '@material-ui/core/styles';
 import { gsap } from "gsap";
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
-// import { applyMiddleware } from 'redux';
 gsap.registerPlugin(ScrollTrigger)
 
 const useStyles = makeStyles((theme) => ({
@@ -127,6 +126,6 @@ const GreenSockTest = () => {
     )
 }
 
-export default GreenSockTest
+export default GreenSockTest 
 
 //https://ihatetomatoes.net/react-and-greensock-tutorial-for-beginners/

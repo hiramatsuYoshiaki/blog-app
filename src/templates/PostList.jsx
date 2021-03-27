@@ -12,7 +12,7 @@ const PostList = () => {
     const posts = getPosts(selector)
 
     useEffect(() => {
-        dispatch(fetchPosts())
+        dispatch(fetchPosts()) 
     }, [])
   
     return (

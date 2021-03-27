@@ -19,6 +19,7 @@ html {
     min-width: $body-min-width;
     //   text-rendering: $body-rendering;
     text-size-adjust: 100%;
+    background-color:$black;
   }
 body {
     // $font-body-size: 16px ;
@@ -26,4 +27,5 @@ body {
     //   font-weight: $body-weight;
     //   line-height: $body-line-height;
     font-family:$font-family;
+    background-color:$black;
 }

@@ -19,7 +19,7 @@ const Home = () => {
         type:'post',
         key:'',
         locationKey:'',
-        tagKey:'', 
+        tagKey:'',  
     })
     const [stageName,setStageName] = useState('')
     const [stageNo,setStageNo] = useState(0)
@@ -29,7 +29,7 @@ const Home = () => {
     useEffect(() => {
         dispatch(fetchPosts())
         dispatch(fetchStages()) 
-    }, [])
+    }, []) 
          
     return ( 
         <div> 

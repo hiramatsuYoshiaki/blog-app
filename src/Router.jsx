@@ -1,4 +1,4 @@
-import React,{useRef} from 'react'
+import React from 'react'
 import { Route, Switch } from 'react-router'
 
 import {
@@ -39,76 +39,32 @@ import {
   ReactCurtainsMultipleplanesUsingGSAP,
   GsapTest,
   PageTransitionTest,
-  ComponentTransitionTest
+  ComponentTransitionTest,
+  LoadingDisplayTest,
+  ImageLoadingTest,
+  LoadingDispalyFetchDataTest,
 
 } from './templates/index'
 import Auth from './Auth'
-import { TransitionGroup, Transition } from "react-transition-group";
-import { gsap } from "gsap";
 
-const completeCall = (target, parent) => {
-  gsap.set(target, { clearProps: "position, width" });
-  parent && gsap.set(parent, { clearProps: "overflow" });
-};
 
 const Router = () => {
   
-    const parentNode = useRef(null);
-      // console.log(parentNode);
-
-    const onEnterHandler = (node) => {
-      //   console.log('onEnterHandler');
-      //   console.log(node);
-      gsap.killTweensOf(node);
-      // Set initial position and styles
-      gsap.set(node, {
-        position: "absolute", left: 0,
-        x: 100, autoAlpha: 0
-      });
-      gsap.set(parentNode.current, { overflow: "hidden" })
-      // Create the animation for the incoming component
-      gsap.to(node, {
-        duration: 0.4, autoAlpha: 1,
-        x: 0,
-        onComplete: completeCall,
-        onCompleteParams: [node, parentNode.current]
-      });
-    };
-
-    const onExitHandler = (node) => {
-      // console.log('onExitHandler');
-      // console.log(node);
-      gsap.killTweensOf(node);
-      // Set initial position and styles
-      gsap.set(node, {
-        position: "absolute", left: 0
-      });
-      // Create the animation for the incoming component 
-      gsap.to(node, {
-        duration: 0.4, autoAlpha: 0,
-        x: -100
-      });
-    };
+    
 
 
     return (
       <main className='l-main'>
-        <Route render={({ location }) => (
-              <TransitionGroup component={null}>
-                  <Transition
-                      timeout={500}
-                      key={location.pathname}
-                      onEnter={onEnterHandler}
-                      onExit={onExitHandler}
-                  >
-
             <Switch>
                 {/* test page */} 
                 {/* <Route exact path="/css" component={CssDesign} /> */}
                 
                 <Route exact path="/signin" component={SignIn} />
                 <Route exact path="/signout" component={SignOut} />
-                <Route exact path="(/)?" component={Home} />
+                {/* <Route exact path="(/)?" component={Home} /> */}
+                <Route exact path="(/)?" component={Landing} />
+                <Route exact path="(/HOME)?" component={Home} />
+
                 <Route exact path="/post/list" component={PostList} />
                 <Route exact path="/post/listgrid" component={PostListGrid} />
                 <Route exact path="/post/listgridImage" component={PostListGridImage} />
@@ -161,7 +117,13 @@ const Router = () => {
                 <Route exact path="/PageTransitionTest" component={PageTransitionTest} />
                 {/* ComponentTransitionTest */}
                 <Route exact path="/ComponentTransitionTest" component={ComponentTransitionTest} />
-                
+                {/* loading display test */}
+                <Route exact path="/LoadingDisplayTest" component={LoadingDisplayTest} />
+                {/*ImageLoadingTest */}
+                <Route exact path="/ImageLoadingTest" component={ImageLoadingTest} />
+                {/*LoadingDispalyFetchDataTest */}
+                <Route exact path="/LoadingDispalyFetchDataTest" component={LoadingDispalyFetchDataTest} />
+
               <Auth>
                 <Route exact path="/admin" component={Admin} />
                 <Route path="/post/edit(:id)?" component={PostEdit} />
@@ -170,9 +132,6 @@ const Router = () => {
                 <Route path="/location/edit(:id)?" component={LocationEdit} />
               </Auth>
             </Switch>
-                    </Transition>
-                </TransitionGroup> 
-        )} />
     </main>　
     )
 }

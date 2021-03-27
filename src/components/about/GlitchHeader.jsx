@@ -7,9 +7,9 @@ const GlitchHeader = props => {
                 <h1 className="c-glitch c-about-glich" 
                     data-text="TOURdeHDR" >TOURdeHDR
                 </h1>
-                <span className="c-about-header-sub" >h-works</span>
+                {/* <span className="c-about-header-sub" >h-works</span> */}
             </div>
         </div> 
     )
 }
-export default GlitchHeader
+export default GlitchHeader  

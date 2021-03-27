@@ -39,3 +39,6 @@ export { default as ReactCurtainsMultipleplanesUsingGSAP } from './ReactCurtains
 export { default as GsapTest } from './GsapTest'
 export { default as PageTransitionTest } from './PageTransitionTest'
 export { default as ComponentTransitionTest } from './ComponentTransitionTest'
+export { default as LoadingDisplayTest } from './LoadingDisplayTest'
+export { default as ImageLoadingTest } from './ImageLoadingTest'
+export { default as LoadingDispalyFetchDataTest } from './LoadingDispalyFetchDataTest'
