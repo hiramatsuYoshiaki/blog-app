@@ -1,4 +1,4 @@
-import React,{useEffect,useState,useRef,useCallback} from 'react'
+import React,{useEffect,useState,useRef} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import {fetchPosts} from '../reducks/posts/operators'
 import {getPosts} from '../reducks/posts/selectors'
@@ -6,7 +6,9 @@ import logo from '../assets/img/h-logo.svg';
 import { makeStyles } from '@material-ui/core/styles';
 import { gsap } from "gsap";
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
-import {ReactCurtainsSlideshowGSAP} from '../components/landing/index'
+import {ReactCurtainsSlideshowGSAP, PostsArea} from '../components/landing/index'
+
+
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -26,18 +28,18 @@ const useStyles = makeStyles((theme) => ({
         margin: '0 auto 0 auto', 
         position:'relative',
     },
-    landingSection:{
-        maxWidth: 'calc(80% - 50px)',
+    landingMain:{
+        margin: '100px auto 100px auto',
+    },
+    landingPostsWraper:{
         margin: '0 auto 100px auto',
-        padding: '50px',
-        backgroundColor: '#fff',
-        display: 'flex',
-        alignContent: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
+    },
+    landingStagesWraper:{
+        margin: '0 auto 100px auto',
     },
     landingFooter: {
         backgroundColor: '#262626',
+        width:'100%',
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
@@ -48,50 +50,23 @@ const useStyles = makeStyles((theme) => ({
         margin: '0 auto 100px auto', 
     },
 }))
-const sections = [
-    {
-        title:'Stage 1',
-        subtitle:'Subtitle 1'
-    },
-    {
-        title:'Stage 2',
-        subtitle:'Subtitle 2'
-    },
-    {
-        title:'Stage 3',
-        subtitle:'Subtitle 3'
-    },
-    {
-        title:'Stage 4',
-        subtitle:'Subtitle 3'
-    },
-    {
-        title:'Stage 5',
-        subtitle:'Subtitle 3'
-    },
-]
+
 
 const Landing = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
     const selector = useSelector((state) => state)
-    // const posts = getPosts(selector)
-    const [posts, setPosts] = useState(getPosts(selector))
+    const postsAll = getPosts(selector)
+    const displayNumber = 4
 
-    console.log('Landing');
-    console.log(posts);
-   
-   
-    useEffect(()=>{
-        dispatch(fetchPosts())
-    },[])
-    useEffect(()=>{
-        setPosts(getPosts(selector))
-    },[getPosts(selector)])
+    const [posts,setPosts] = useState([])
     
     const footerRef = useRef(null);
     const revealRefs = useRef([])
+
     revealRefs.current = []
+
+    
     
     // セクションへのすべての参照をrevealRefs.current配列に追加する
     const addToRefs = el => {
@@ -132,8 +107,25 @@ const Landing = () => {
                 }
                 )
         })
-
     },[])
+    useEffect(()=>{
+        let postsSort = []
+        //投稿記事を選択------
+        postsSort = postsAll.filter(posts => posts.type === 'post')
+        // ソート降順
+        postsSort.sort(function(a,b){
+            if(a.created_at > b.created_at) return -1;
+            if(a.created_at < b.created_at) return 1;
+            return 0;
+        });
+        // setPosts(postsSort)
+        setPosts(postsSort.slice(0, displayNumber))
+    },[postsAll])
+    useEffect(()=>{
+        dispatch(fetchPosts())  
+    },[])
+    
+
     return (
         // <div className="l-container-fluid">
         //     <div className="l-section-fluid ">
@@ -141,17 +133,27 @@ const Landing = () => {
                     <header className={classes.landingHeader} >
                         <ReactCurtainsSlideshowGSAP posts={posts}/>
                     </header>
-                    {sections.map(({title,subtitle}) => (
-                        <div className={classes.landingSection} key={title} ref={addToRefs}>
-                            <h2>{title}</h2>
-                            <p>{subtitle}</p>
+                  
+                    <main className={classes.landingMain}>
+                        <div className={classes.landingPostsWraper}>
+                            {posts.map((post) => (
+                                <div key={post.id} ref={addToRefs}>
+                                    <PostsArea post={post}/>
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                        <div className={classes.landingPostsWraper}>
+                            <h1 style={{color:'white'}}>stages</h1>
+                        </div>
+                    </main> 
+
                     <footer ref={footerRef} className={classes.landingFooter} >
                         <h1 className={{color:'white'}}>Footer </h1>
                         {/* <img src={logo} className={classes.appLogo} alt="logo" />
                         <button onClick={() => toggleBackground()}>Change background</button> */}
                     </footer>
+                    
+                   
                 </div>
         //     </div>
         // </div>

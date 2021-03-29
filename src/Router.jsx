@@ -23,6 +23,7 @@ import {
   BlogData,
   About,
   Landing,
+  LandingRoot,
   LandingPage,
   TopPage,
   CanvasTest,
@@ -62,7 +63,7 @@ const Router = () => {
                 <Route exact path="/signin" component={SignIn} />
                 <Route exact path="/signout" component={SignOut} />
                 {/* <Route exact path="(/)?" component={Home} /> */}
-                <Route exact path="(/)?" component={Landing} />
+                <Route exact path="(/)?" component={LandingRoot} />
                 <Route exact path="(/HOME)?" component={Home} />
 
                 <Route exact path="/post/list" component={PostList} />
@@ -73,12 +74,14 @@ const Router = () => {
                 <Route exact path="/stage/List" component={StageList} />
                 <Route exact path="/location/List" component={LocationList} />
                 <Route exact path="/location/map" component={LocationMap} />
-                <Route exact path="/landing" component={Landing} />
+                
 
 
                 {/* blog test page ++++++++++++++++++++++++++++++++++++++++ */}
+                <Route exact path="/landingroot" component={LandingRoot} />
                 <Route exact path="/landingpage" component={LandingPage} />
                 <Route exact path="/topPage" component={TopPage} />
+                <Route exact path="/landing" component={Landing} />
 
     
                 <Route exact path="/tags/List" component={TagsList} />

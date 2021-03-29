@@ -1,4 +1,4 @@
-import React,{useEffect,useRef} from 'react' 
+import React,{useEffect,useRef} from 'react'
 import {makeStyles} from '@material-ui/core/styles'
 import { gsap } from "gsap";
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
       }
 })) 
 
-const ScrollTriggerTest = () => {
+const StagesArea = () => {
     const classes = useStyles()
     let container = useRef(null)
     useEffect(()=>{
@@ -58,23 +58,29 @@ const ScrollTriggerTest = () => {
             }
         })
     },[]) 
-
     return (
-        <div className={classes.root}>
-            <div className={classes.text}>horizontal scrolling</div>
+        <>
+            <div className={classes.text}>最近のステージ </div>
             <aside id="containerWrapper">
                 <main ref={container} className={classes.main}>
+                    <div className={classes.section}></div>
+                    <div className={classes.section}></div>
+                    <div className={classes.section}></div>
+                    <div className={classes.section}></div>
+                    <div className={classes.section}></div>
+                    <div className={classes.section}></div>
+                    <div className={classes.section}></div>
+                    <div className={classes.section}></div>
+                    <div className={classes.section}></div>
+                    {/* <section className={classes.section}></section>
                     <section className={classes.section}></section>
                     <section className={classes.section}></section>
-                    <section className={classes.section}></section>
-                    <section className={classes.section}></section>
-                    <section className={classes.section}></section>
+                    <section className={classes.section}></section> */}
                 </main>
             </aside>
-            <div className={classes.text}>this is the end</div>
-        </div>
+            <div className={classes.text}>TOURdeHDR</div>
+        </>
     )
 }
 
-export default ScrollTriggerTest
-// https://codepen.io/wplit/pen/PoZewOW
+export default StagesArea

@@ -27,7 +27,7 @@ const NewPosts = (props) => {
         // 投稿をフィルタリングする
         let posts = []
         //post--------------------------------------------------------
-        if(props.filter.type === "post"){
+        if(props.filter.type === "post"){ 
             posts = props.posts
             // 降順
             posts.sort(function(a,b){
@@ -68,7 +68,7 @@ const NewPosts = (props) => {
     },[props.posts,props.filter.type,props.filter.tagKey,props.filter.key])
 
     return (
-        <div className='l-container-fluid c-new-post-wrape' >
+        <div className='l-container-fluid c-new-post-wrape' > 
             <div className='l-section'>
                 <div className="c-new-post-header">
                     {(props.filter.type === 'post' && props.filter.key === '') &&(

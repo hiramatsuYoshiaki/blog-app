@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         color:'white'
     },
     myDiv:{
-        height:'20rem', 
+        height:'30rem', 
         width:'30rem',
         backgroundColor:'grey'
     }
@@ -30,7 +30,7 @@ const HoverEffect = () => {
     })
     return (
         <div className={classes.myDiv}>
-            <h1>Test</h1>
+            {/* <h1>Test</h1> */}
             <div ref={myRef} className={classes.myDiv}></div>
         </div>
     )

@@ -1,3 +1,5 @@
 export { default as ReactCurtainsSlideshowGSAP } from './ReactCurtainsSlideshowGSAP'
 export { default as SlideshowUsingGSAP } from './SlideshowUsingGSAP'
 export { default as Slideshow } from './Slideshow'
+export { default as PostsArea } from './PostsArea'
+export { default as StagesArea } from './StagesArea'

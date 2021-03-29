@@ -22,11 +22,7 @@ const useStyles = makeStyles((theme) => ({
         alignContent: 'center',
         '& img':{
             display: 'none',
-            // width:'100%',
-            // height:'auto'
         },
-        // width:'100vw',
-        // heught:'100vh'
       } 
       
 }))
@@ -95,14 +91,35 @@ const Slideshow = props => {
     const classes = useStyles()
     console.log('Slideshow');
     console.log(props.posts);
+    const posts = props.posts
+    // const [selectedPosts,setSelectedPosts] = useState([])
+    // console.log('selectedPosts',selectedPosts);
+    // useEffect(()=>{
+    //     const filterPosts =props.posts.filter(posts => posts.type === 'post')
+    //     setSelectedPosts(filterPosts)
+    // },[props.posts])
+
     // const [value, setValue] = React.useState(null)
     // setValue({...value, props.newValue})
 
     // const [posts, setPosts] = useState([])
-    const posts = props.posts
+    // const posts = props.posts
+    // console.log(props.posts);
     // setPosts(prevState => [...prevState,propsPosts]);//配列に追加
 
     // console.log('posts',posts);
+    // const [postsImage,setPostsImage] = useState([])
+    // useEffect(()=>{
+    //   console.log('setPostsImage');
+    //   console.log(props.posts);
+    //   if(props.posts.length > 0){
+    //     // setPostsImage(prevState => [...prevState,...props.posts]);
+    //     console.log('setPostsImage length > 0');
+    //     setPostsImage(props.posts)
+    //   }
+    //   console.log(postsImage);
+      
+    // },[props.posts])
 
 
 
@@ -187,19 +204,21 @@ const Slideshow = props => {
       if (slideshowInner.current) {
         setMaxTextures(slideshowInner.current.childElementCount - 2);
       }
-  
       let currentTween = tween.current;
       return () => {
         if (currentTween) {
           currentTween.kill();
         }
       };
-    }, []);
+    }, [slideshowInner.current]);
+    
     
 
 
  
     return (
+      <div>
+      {posts.length > 0 ?(
         <Plane
             className={classes.Slideshow} 
             // plane init parameters
@@ -220,11 +239,22 @@ const Slideshow = props => {
                   </h1>
                   <span className="c-about-header-sub" >h-works</span> 
                 </div>
+                {/* <div className="c-about-header-wraper">
+                  <div>posts length: {posts.length}</div>
+                  {
+                    posts.length > 0 &&(
+                      posts.map((post) => (
+                        <div key={post.topImages[0].id}>{post.topImages[0].path}</div>
+                      ))
+                    )
+                  }
+                </div> */}
                
                 <img
                     src="https://www.curtainsjs.com/examples/medias/displacement.jpg"
                     data-sampler="displacement"
                     alt=""
+                    key="displacement"
                 />
                 {/* <img src="https://unsplash.it/1920/1080?random=1" alt="" />
                 <img src="https://unsplash.it/1920/1080?random=2" alt="" />
@@ -233,26 +263,27 @@ const Slideshow = props => {
 
                
                 {
-                posts.length > 0 ?(
-                  posts.map((post) => (
-                    <img src={post.topImages[0].path} 
-                      alt={post.title} 
-                      key={post.topImages[0].id}
-                    />
-                  ))
-                )
-                :(
-                  <img src={noImage} alt="" />
-                )
+                  // posts.length > 0 ?(
+                    posts.map((post) => (
+                      <img src={post.topImages[0].path} 
+                        alt={post.title} 
+                        key={post.topImages[0].id}
+                      />
+                    ))
+                  // )
+                  // :(
+                  //   <img src={noImage} alt="" />
+                  // )
                 }
 
-                {/* <img src={posts[0].topImages[0].path} alt="" /> 
-                <img src={posts[1].topImages[0].path} alt="" /> 
-                <img src={posts[2].topImages[0].path} alt="" />  */}
-
             </div>
-
         </Plane>
+        ):
+      (
+        <h1 style={{color:'red'}}>Loading...</h1>
+      ) }
+      </div>
+
     )
 }
 
