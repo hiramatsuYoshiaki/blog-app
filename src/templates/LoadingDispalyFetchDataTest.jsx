@@ -76,7 +76,6 @@ const LoadingDispalyFetchDataTest = () => {
                         open={true} 
                         style={{display: posts.length > 0 ? "none" : "flex"}}
             >
-                
                 <CircularProgress color="inherit" />
                 <p>Now Loading....</p>
                 

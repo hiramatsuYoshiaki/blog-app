@@ -720,3 +720,44 @@ skew to change the 'thickness' of the glitch.*/
         font-size: $size-1;
     }   
 }
+.c-landingRoot-bg{
+    opacity:0.7;
+	animation:shake 2.2s infinite linear;
+	z-index:-1;
+	position:absolute;
+	top:-15px;
+	bottom:-15px;
+	left:-15px;
+	right:-15px;
+	background:black 50% 0% no-repeat;
+	background-size:cover;
+	&:before,&:after {
+		animation:shake 1s infinite ease-in-out;
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top:0;
+		left:-3px;
+		background: inherit;
+		// background-color:red;
+		background-color:rgb(4, 235, 252);
+		mix-blend-mode: screen;
+		background-blend-mode: darken; 
+	}
+	&:after{
+		animation-delay:0.2s;
+		left:3px;
+		// background-color:blue;
+		background-color: hsl(217, 71%, 53%);
+    }
+    @keyframes shake{
+        0%{ transform:translate(0,0); }
+        20%{ transform:translate(1px,1px); }
+        30%{ transform:translate(-1px,-1px); }
+        50%{ transform:translate(2px,0px); }
+        60%{ transform:translate(-1px,-1px); }
+        80%{ transform:translate(1px,-2px); }
+        100%{ transform:translate(0px-1px); }
+    }
+}

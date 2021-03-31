@@ -55,8 +55,9 @@ const StageListGridLine = () => {
     const stages = getStages(selector)
 
     useEffect(()=> {
-        dispatch(fetchStages())   
+        dispatch(fetchStages())    
     },[])  
+
     return ( 
         <div className="l-container ">
             <div className="l-section ">
@@ -69,8 +70,8 @@ const StageListGridLine = () => {
                                     <div className={classes.summary}>
                                         <div>
                                             <div className={classes.subHeading}>
-                                                <span classNmae=".h4">STAGE{stage.stageNo}-</span>
-                                                <span classNmae="p">{stage.stageYear}</span>
+                                                <span className=".h4">STAGE{stage.stageNo}-</span>
+                                                <span className="p">{stage.stageYear}</span>
                                             </div>
                                             <h4 className={classes.heading}>{stage.stage}</h4>
                                         </div>
@@ -78,7 +79,7 @@ const StageListGridLine = () => {
                                     </div>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <PostsInStage stage={stage}/>
+                                    <PostsInStage stage={stage}/> 
                                 </AccordionDetails>
                             </Accordion>
                         ))

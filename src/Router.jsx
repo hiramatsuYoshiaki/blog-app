@@ -73,7 +73,7 @@ const Router = () => {
                 <Route exact path="/stage/listgridline" component={StageListGridLine} />
                 <Route exact path="/stage/List" component={StageList} />
                 <Route exact path="/location/List" component={LocationList} />
-                <Route exact path="/location/map" component={LocationMap} />
+                <Route exact path="/location/map" component={LocationMap} /> 
                 
 
 
@@ -88,6 +88,9 @@ const Router = () => {
                 <Route exact path="/about" component={About} />
                 <Route path="/post/detail(:id)?" component={PostDetail} /> 
                 <Route path="/location/detail(:id)?" component={LocationDetail} /> 
+                
+                {/* syuuseicyuu  landingRoot --> stagelistGrid*/}
+                <Route path="/stage/detail(:id)?" component={StageListGridLine} /> 
 
                 {/* test--------------------------------------------------------------------- */}
                 {/* canvas test  */}

@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         overflow:'hidden'
     },
     main: {
-        display:'flex',
+        display:'flex',  
         flexWrap:'wrap',
         flexDirection:'column',
         height:'70vh',
@@ -73,7 +73,7 @@ const ScrollTriggerTest = () => {
             </aside>
             <div className={classes.text}>this is the end</div>
         </div>
-    )
+    ) 
 }
 
 export default ScrollTriggerTest

@@ -1,4 +1,7 @@
 import React from 'react'
+import {useDispatch} from 'react-redux'
+import {push} from 'connected-react-router' 
+
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     landingPosts:{
@@ -19,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
             width:'50vw',
         },
+        cursor:'pointer'
+        
     },
     textArea:{
         display:'block',
@@ -42,9 +47,10 @@ const useStyles = makeStyles((theme) => ({
             [theme.breakpoints.up('lg')]: {
                 fontSize:'4rem',
             },
+            cursor:'pointer',
         },
         '& p':{
-            color:'hsl(0, 0%, 98%)  '//$white-bis
+            color:'hsl(0, 0%, 98%)  ',//$white-bis
         },
         backgroundColor:'hsl(0, 0%, 7%)'//$black-bis
     }, 
@@ -53,28 +59,38 @@ const useStyles = makeStyles((theme) => ({
         mixwidth:'375px',
         height:'auto',
         display:'block',
-        margin:'0, auto, 0, auto'
+        margin:'0, auto, 0, auto',
+        
+        
     },
+    
 }))
 
 
 const PostsArea = (props) => {
     const classes = useStyles()
+    const dispatch = useDispatch()
     return (
         <div className={classes.landingPosts}>
-            <div className={classes.imageArea}>
+            <div className={classes.imageArea} onClick={() => dispatch(push('/post/detail/' + props.post.id))}>
                 <img src={props.post.topImages[0].path} 
                     alt={props.post.title} 
                     key={props.post.topImages[0].id}
                     className={classes.img}
+                    
                 />
             </div>
-            <div className={classes.textArea}>
+            <div className={classes.textArea} >
                 <h3 className="c-glitch c-about-glich" 
-                    data-text={props.post.title} >{props.post.title}
+                    data-text={props.post.title} 
+                    onClick={() => dispatch(push('/post/detail/' + props.post.id))}
+                    >
+                        {props.post.title}
                 </h3>
                 <p>{props.post.article}</p>
             </div>
+            
+            
         </div>
     )
 }

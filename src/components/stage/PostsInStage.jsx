@@ -67,10 +67,10 @@ const PostsInStage = props => {
     return (
         <List className={classes.list}>
             {postsInStage(stageId).map((post, index ) => (
-                <>
+                <div key={post.id} >
                     <ListItem 
                         alignItems="flex-start" 
-                        key={post.id} 
+                        
                         onClick={() => dispatch(push('/post/detail/' + post.id))}
                     >
                         <ListItemAvatar>
@@ -80,15 +80,13 @@ const PostsInStage = props => {
                         primary={post.title}
                         secondary={
                             <React.Fragment>
-                                <p>
                                     {dateToString(post.created_at.toDate())}
-                                </p>
                             </React.Fragment>
                         }                
                         />
                     </ListItem>
                     <Divider  />
-                </>
+                </div>
             ))}
         </List>
     )

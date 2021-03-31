@@ -1,85 +1,99 @@
 import React,{useEffect,useRef} from 'react'
 import {makeStyles} from '@material-ui/core/styles'
-import { gsap } from "gsap";
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
-gsap.registerPlugin(ScrollTrigger)
+import {useDispatch} from 'react-redux'
+import {push} from 'connected-react-router'
+
 const useStyles = makeStyles((theme) => ({
-    root:{
+   wraper:{
         width:'100%',
         height:'100%',
-        backgroundColor:'white',
+        overflow:'hidden',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        flexDirection:'column',
+        [theme.breakpoints.up('md')]: {
+            flexDirection:'row-reverse',
+        },
+    },
+    header:{
+        width:'100%',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        flexDirection:'column',
+        [theme.breakpoints.up('md')]: {
+            justifyContent:'center',
+            alignItems:'center',
+            width:'50%',
+        },
+        
+    },
+    textWraper:{
+        width:'80%',
+        padding:'1.6rem',
+        border:'1px solid lightgrey',
+        textAlign:'center',
+        marginBottom:'1.6rem',
+        [theme.breakpoints.up('md')]: {
+            marginBottom:0,
+        },
+        cursor:'pointer'
+    },
+    images:{
+        cursor:'pointer',
         overflow:'hidden'
     },
-    main: {
-        display:'flex',
-        flexWrap:'wrap',
-        flexDirection:'column',
-        height:'70vh',
-        willChange: 'transform',
-      },
-      
-      section: {
-        background: 'blue',
-        height:'100%',
-        display:'flex',
-        width: '60vw',
-        marginRight: '4vw',
-        'nth-child(2n)': {
-            background: '#eee',
-        }
-      },
-      text: {
-        height: '80vh',
-        padding: '5%',
-        display:'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '2em',
-        width: '100%',
-        overflowX: 'hidden',
-      }
+    gbWraper:{
+        position:'relative',
+        width:'500px',
+        height:'500px',
+        maxWidth:'500px',
+        backgroundColor:'red',
+        opacity:'0.7',
+    },
+    bg:{
+        width:'300px',
+        height:'300px',
+        backgroundColor:'red',
+        // width:'100%',
+        // height:'auto',
+        // maxWidth:'500px'
+    }
 })) 
 
-const StagesArea = () => {
+const StagesArea = (props) => {
     const classes = useStyles()
-    let container = useRef(null)
-    useEffect(()=>{
-        gsap.to(container.current, {
-            x: () => -(container.current.scrollWidth - 
-                document.documentElement.clientWidth) + "px",
-            scrollTrigger: {
-              start: "center center",
-              trigger: container.current,
-              invalidateOnRefresh: true,
-              pin: true,
-              scrub: 1,
-              anticipatePin: 1, // can help avoid flash 
-              end: () => "+=" + container.current.offsetWidth
-            }
-        })
-    },[]) 
+    const dispatch = useDispatch()
     return (
-        <>
-            <div className={classes.text}>最近のステージ </div>
-            <aside id="containerWrapper">
-                <main ref={container} className={classes.main}>
-                    <div className={classes.section}></div>
-                    <div className={classes.section}></div>
-                    <div className={classes.section}></div>
-                    <div className={classes.section}></div>
-                    <div className={classes.section}></div>
-                    <div className={classes.section}></div>
-                    <div className={classes.section}></div>
-                    <div className={classes.section}></div>
-                    <div className={classes.section}></div>
-                    {/* <section className={classes.section}></section>
-                    <section className={classes.section}></section>
-                    <section className={classes.section}></section>
-                    <section className={classes.section}></section> */}
-                </main>
-            </aside>
-            <div className={classes.text}>TOURdeHDR</div>
-        </>
+        <div className={classes.wraper}>
+                <div className={classes.header}>
+                    <div className={classes.textWraper} onClick={()=> dispatch(push(`/stage/detail/${props.stage.id}`))}>
+                        
+                        <h5 className={classes.glitch}>{props.stage.stage}</h5> 
+
+                        <p>STAGE{props.stage.stageNo}</p>
+                        <p>{props.stage.stageYear}</p>
+                    </div>
+                </div>
+                <div className={classes.images} onClick={()=> dispatch(push(`/stage/detail/${props.stage.id}`))}>
+                    <img src={props.stage.images[0].path} 
+                    alt={props.stage.stage} 
+                    style={{width:'100%',height:'auto',maxWidth:'500px'}}/>
+                   {/* <div className={classes.gbWraper} >
+                        <div 
+                            className="c-landingRoot-bg" 
+                            style={{
+                                // backgroundImage: `url(https://images.unsplash.com/photo-1547976705-2b3313d73728?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80)`,
+                                backgroundImage: `url(${props.stage.images[0].path})`,
+                                // backgroundSize: 'center'
+                            }}
+                            >
+                        </div>
+                    </div> */}
+                </div>
+               
+        </div>
     )
 }
 

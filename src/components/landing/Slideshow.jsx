@@ -89,8 +89,8 @@ const fragmentShader = `
 
 const Slideshow = props => {
     const classes = useStyles()
-    console.log('Slideshow');
-    console.log(props.posts);
+    // console.log('Slideshow');
+    // console.log(props.posts);
     const posts = props.posts
     // const [selectedPosts,setSelectedPosts] = useState([])
     // console.log('selectedPosts',selectedPosts);
@@ -218,7 +218,7 @@ const Slideshow = props => {
  
     return (
       <div>
-      {posts.length > 0 ?(
+      {posts.length > 0 &&(
         <Plane
             className={classes.Slideshow} 
             // plane init parameters
@@ -278,10 +278,9 @@ const Slideshow = props => {
 
             </div>
         </Plane>
-        ):
-      (
-        <h1 style={{color:'red'}}>Loading...</h1>
-      ) }
+        )
+        // :(<h1 style={{color:'red'}}>Loading...</h1>) 
+      }
       </div>
 
     )
