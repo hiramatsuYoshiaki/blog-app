@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     landingPosts:{
         maxWidth: '100%',
+        height:'100%',//必須
         margin: '0 auto 20px auto',
         display: 'flex',
         alignContent: 'center',
@@ -77,7 +78,6 @@ const PostsArea = (props) => {
                     alt={props.post.title} 
                     key={props.post.topImages[0].id}
                     className={classes.img}
-                    
                 />
             </div>
             <div className={classes.textArea} >
@@ -89,8 +89,6 @@ const PostsArea = (props) => {
                 </h3>
                 <p>{props.post.article}</p>
             </div>
-            
-            
         </div>
     )
 }

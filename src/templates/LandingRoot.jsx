@@ -12,7 +12,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 
 
 
-import { gsap } from "gsap";
+import { gsap, power2 } from "gsap";
 import {ScrollTrigger} from 'gsap/ScrollTrigger' 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
         backgroundColor:'black',
-        '& p':{
+        '& p':{ 
             margin:'16px'
         },
         display:'flex',
@@ -37,12 +37,25 @@ const useStyles = makeStyles((theme) => ({
         height:'100%',
         overflow:'hidden'
     },
+    aside:{
+        // border:'1px solid green'
+    },
+    title:{ 
+        dispaly:'fixed',
+        width:'100%',
+        height:'100%',
+        overflow:'hidden',
+        textAling:'center',
+        color:'white',
+    },
     main: {
         display:'flex',
         flexWrap:'wrap',
         flexDirection:'column',
         height:'50vh',
         willChange: 'transform',
+        // border:'1px solid red',
+        // padding:'30px 0'
       },
       
     section: {
@@ -57,7 +70,6 @@ const useStyles = makeStyles((theme) => ({
         'nth-child(2n)': {
             background: '#eee',
         },
-        border:'3px solid white'
     },
     top: {
         minHeight: '50vh',
@@ -70,6 +82,7 @@ const useStyles = makeStyles((theme) => ({
         // justifyContent: 'center',
         // flexDirection:'column',
         // fontSize: '2em',
+        // border:'1px solid red'
     },
     bottom: {
         minHeight: '50vh',
@@ -81,6 +94,7 @@ const useStyles = makeStyles((theme) => ({
         // alignItems: 'center',
         // justifyContent: 'center',
         // fontSize: '2em',
+        // border:'1px solid yellow'
     
     },
     //header---
@@ -98,6 +112,22 @@ const useStyles = makeStyles((theme) => ({
         margin: '100px auto 100px auto',
         overflow:'hidden',
     },
+    // md 960
+    postArea:{
+        // minHeight:'800px',
+        border:'1px solid white',
+        width:'350px',
+        height:'500px',
+        [theme.breakpoints.up('md')]: {  
+            width:'960px',
+            height:'640px',
+        },
+        [theme.breakpoints.up('lg')]: {
+            width:'1200px',
+            height:'900px',
+        },
+
+    }
 }))  
 
 const LandingRoot = () => {
@@ -106,21 +136,18 @@ const LandingRoot = () => {
     const selector = useSelector((state) => state)
     const postsAll = getPosts(selector)
     const stagesAll = getStages(selector)
-    // console.log('stagesAll',stagesAll);
 
     const [posts,setPosts] = useState([])
     const [stages,setStages] = useState([])
     const displayNumber = 4 //4投稿表示
     const displayYear = 2 //今年と昨年表示
-    // console.log('post',posts);
-    // console.log('stages',stages);
 
+    let stagesBox = useRef(null)
+    let postsBox = useRef(null)
     let container = useRef(null)
-    // console.log('container.current',container.current);
-    // console.log(stages);
-    
     const [bottomMarginTop,setbottomMarginTop] = useState(0)
-    // let bottomMarginTop = 2000
+    let titleStage = useRef(null)
+    let titlePosts = useRef(null)
     
     
     // Gsap fadein arrey
@@ -128,15 +155,23 @@ const LandingRoot = () => {
     revealRefs.current = []
     // セクションへのすべての参照をrevealRefs.current配列に追加する
     const addToRefs = el => {
+
+        // console.log('addToRefs');
+        // console.log(el);
         if(el && !revealRefs.current.includes(el)){
             revealRefs.current.push(el)
+            // console.log(revealRefs.current);
+            // console.log(revealRefs.current.el);
         }
     }
     useEffect(()=>{
+        console.log('gsap fade in');
         // 我々は持っているすべてのセクションへのアクセスをを使用して新しいGSAPトゥイーンを作成し。次に、それらをループして、scrollTriggerます。
+       
         revealRefs.current.forEach((el,index)=> {
+            console.log(el);
             gsap.fromTo(el,
-                { autoAlpha:0 },
+                { autoAlpha:0},
                 { duration:1,
                     autoAlpha:1,
                     ease:'none',
@@ -144,25 +179,29 @@ const LandingRoot = () => {
                         id:`section-${index+1}`,
                         trigger:el,
                         start:`top center+=100`,
-                        toggleActions:`play none none reverse`
+                        // end: "center top",
+                        toggleActions:`play none none reverse`,
+                        markers: true,
+                        pin: false, 
                     }
                 }
             )
         })
-    },[])
+    },[{...revealRefs.current}])
     //gsap scrolltrigger
     
     useEffect(()=>{
 
-        // console.log(container.current.scrollWidth);
-        // console.log('clientWidth',document.documentElement.clientWidth);
-        // console.log(container.current.offsetWidth);
+        console.log(container.current.scrollWidth);
+        console.log('clientWidth',document.documentElement.clientWidth);
+        console.log(container.current.offsetWidth);
         setbottomMarginTop(document.documentElement.clientWidth)
         // console.log('document.documentElement.clientWidth',document.documentElement.clientWidth);
 
         gsap.to(container.current, {
             x: () => -(container.current.scrollWidth - 
                 document.documentElement.clientWidth) + "px", 
+            duration:.2,
             scrollTrigger: {
               start: "center center",
               trigger: container.current,
@@ -171,12 +210,26 @@ const LandingRoot = () => {
               scrub: 1,
               anticipatePin: 1, // can help avoid flash 
               end: () => "+=" + container.current.offsetWidth,
-            //   ease:'power1.out',
             }
         })
-
+        gsap.fromTo(stagesBox.current,
+            { autoAlpha:0 },
+            { duration:.2,
+                autoAlpha:1,
+                ease:'power2.out',
+                scrollTrigger:{
+                    // scrub: 1,
+                    trigger:stagesBox.current,
+                    start:`top center+=100`,
+                    toggleActions:`play none none reverse`
+                    
+                }
+            }
+        )
         
-    },[{...container.current}]) 
+   
+    },[{...container.current},{...stagesBox.current}]) 
+    
 
     //fetch posts
     useEffect(()=>{ 
@@ -216,15 +269,18 @@ const LandingRoot = () => {
         // <div className="l-container-fluid">
         //     <div className="l-section ">
                 <div className={classes.root} >
-                    <div className={classes.top}>
+                    <div className={classes.top} >
                         <div className={classes.landingWraper}>
                             <header className={classes.landingHeader} >
                                 <ReactCurtainsSlideshowGSAP posts={posts}/>
                             </header>
                         </div>
                     </div>
-            
-                    <aside id="containerWrapper">
+                    
+                    <aside id="containerWrapper" className={classes.aside} ref={stagesBox}>
+                        <div className={classes.title} ref={titleStage}>
+                            <h3>STAGES</h3>
+                        </div>
                         <main ref={container} className={classes.main}>
                             {
                                 stages.map((stage) => (
@@ -235,12 +291,16 @@ const LandingRoot = () => {
                             }
                         </main>
                     </aside>
-
-                    <div className={classes.bottom} style={{marginTop:`${bottomMarginTop}px`}}>
+                    
+                    <div className={classes.bottom} style={{marginTop:`${bottomMarginTop}px`}} ref={postsBox}>
+                        <div className={classes.title} ref={titlePosts}>
+                                <h3>POSTS</h3>
+                        </div>
                         <div className={classes.landingPostsWraper}>
                             {posts.map((post) => (
-                                <div key={post.id} ref={addToRefs}>
-                                    <PostsArea post={post}/> 
+                                <div key={post.id} ref={addToRefs}
+                                     className={classes.postArea}> 
+                                    <PostsArea post={post} />  
                                 </div>
                             ))}
                         </div>

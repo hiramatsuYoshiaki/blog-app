@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 
 const PostEdit = () => {
     const dispatch = useDispatch()
-
+ 
     let id = window.location.pathname.split('/post/edit')[1]
     if (id !== '') {
         id = id.split('/')[1] 

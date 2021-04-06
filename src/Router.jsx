@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router'
 
 import {
   Home,
+  HomeBlog,
   SignIn,
   SignOut,
   Admin,
@@ -22,6 +23,7 @@ import {
   StageListGridLine,
   BlogData,
   About,
+  Top,
   Landing,
   LandingRoot,
   LandingPage,
@@ -44,6 +46,10 @@ import {
   LoadingDisplayTest,
   ImageLoadingTest,
   LoadingDispalyFetchDataTest,
+  ScrollTriggerHorizontal,
+  GsapChengeBackgroundColor,
+  LocomotiveScrollSimpleTest,
+  GsapDynamicBackgroundColorHorizontal
 
 } from './templates/index'
 import Auth from './Auth'
@@ -63,8 +69,8 @@ const Router = () => {
                 <Route exact path="/signin" component={SignIn} />
                 <Route exact path="/signout" component={SignOut} />
                 {/* <Route exact path="(/)?" component={Home} /> */}
-                <Route exact path="(/)?" component={LandingRoot} />
-                <Route exact path="(/HOME)?" component={Home} />
+                <Route exact path="(/)?" component={HomeBlog} />
+                {/* <Route exact path="(/home)?" component={Home} /> */}
 
                 <Route exact path="/post/list" component={PostList} />
                 <Route exact path="/post/listgrid" component={PostListGrid} />
@@ -82,6 +88,8 @@ const Router = () => {
                 <Route exact path="/landingpage" component={LandingPage} />
                 <Route exact path="/topPage" component={TopPage} />
                 <Route exact path="/landing" component={Landing} />
+                <Route exact path="/top" component={Top} />
+                <Route exact path="/HomeBlog" component={HomeBlog} />
 
     
                 <Route exact path="/tags/List" component={TagsList} />
@@ -119,6 +127,8 @@ const Router = () => {
                 <Route exact path="/ReactCurtainsMultipleplanesUsingGSAP" component={ReactCurtainsMultipleplanesUsingGSAP} />
                 {/* gsapTest */}
                 <Route exact path="/gsapTest" component={GsapTest} />
+                {/* ScrollTriggerHorizontal */}
+                <Route exact path="/ScrollTriggerHorizontal" component={ScrollTriggerHorizontal} />
                 {/* PageTransitionTest */}
                 <Route exact path="/PageTransitionTest" component={PageTransitionTest} />
                 {/* ComponentTransitionTest */}
@@ -129,6 +139,12 @@ const Router = () => {
                 <Route exact path="/ImageLoadingTest" component={ImageLoadingTest} />
                 {/*LoadingDispalyFetchDataTest */}
                 <Route exact path="/LoadingDispalyFetchDataTest" component={LoadingDispalyFetchDataTest} />
+                {/*GsapChengeBackgroundColor */}
+                <Route exact path="/GsapChengeBackgroundColor" component={GsapChengeBackgroundColor} />
+                {/*LocomotiveScrollSimpleTest */}
+                <Route exact path="/LocomotiveScrollSimpleTest" component={LocomotiveScrollSimpleTest} />
+                {/*GsapDynamicBackgroundColorHorizontal */}
+                <Route exact path="/GsapDynamicBackgroundColorHorizontal" component={GsapDynamicBackgroundColorHorizontal} />
 
               <Auth>
                 <Route exact path="/admin" component={Admin} />

@@ -81,7 +81,7 @@ const StageListGridLine = () => {
                                 <AccordionDetails>
                                     <PostsInStage stage={stage}/> 
                                 </AccordionDetails>
-                            </Accordion>
+                            </Accordion> 
                         ))
                     )}
             </div>

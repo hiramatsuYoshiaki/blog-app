@@ -1,5 +1,6 @@
 export {default as Header} from './Header'
 export {default as Home} from './Home'
+export {default as HomeBlog} from './HomeBlog'
 export {default as Footer} from './Footer'
 export {default as SignIn} from './SignIn'
 export {default as SignOut} from './SignOut'
@@ -14,6 +15,7 @@ export {default as StageList} from './StageList'
 export {default as TagsEdit} from './TagsEdit'
 export {default as TagsList} from './TagsList'
 export {default as Landing} from './Landing'//test
+export {default as Top} from './Top'//test
 export {default as LandingRoot} from './LandingRoot'//test
 export { default as LandingPage } from './LandingPage'//tset
 export {default as LocationEdit} from './LocationEdit'
@@ -43,3 +45,7 @@ export { default as ComponentTransitionTest } from './ComponentTransitionTest'
 export { default as LoadingDisplayTest } from './LoadingDisplayTest'
 export { default as ImageLoadingTest } from './ImageLoadingTest'
 export { default as LoadingDispalyFetchDataTest } from './LoadingDispalyFetchDataTest'
+export { default as ScrollTriggerHorizontal } from './ScrollTriggerHorizontal'
+export { default as GsapChengeBackgroundColor } from './GsapChengeBackgroundColor'
+export { default as LocomotiveScrollSimpleTest } from './LocomotiveScrollSimpleTest'
+export { default as GsapDynamicBackgroundColorHorizontal } from './GsapDynamicBackgroundColorHorizontal'
