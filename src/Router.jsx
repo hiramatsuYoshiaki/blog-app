@@ -49,7 +49,8 @@ import {
   ScrollTriggerHorizontal,
   GsapChengeBackgroundColor,
   LocomotiveScrollSimpleTest,
-  GsapDynamicBackgroundColorHorizontal
+  GsapDynamicBackgroundColorHorizontal,
+  GsapHorizontal,
 
 } from './templates/index'
 import Auth from './Auth'
@@ -69,7 +70,8 @@ const Router = () => {
                 <Route exact path="/signin" component={SignIn} />
                 <Route exact path="/signout" component={SignOut} />
                 {/* <Route exact path="(/)?" component={Home} /> */}
-                <Route exact path="(/)?" component={HomeBlog} />
+                <Route exact path="(/)?" component={GsapDynamicBackgroundColorHorizontal} />
+                {/* <Route exact path="(/)?" component={HomeBlog} /> */}
                 {/* <Route exact path="(/home)?" component={Home} /> */}
 
                 <Route exact path="/post/list" component={PostList} />
@@ -145,6 +147,10 @@ const Router = () => {
                 <Route exact path="/LocomotiveScrollSimpleTest" component={LocomotiveScrollSimpleTest} />
                 {/*GsapDynamicBackgroundColorHorizontal */}
                 <Route exact path="/GsapDynamicBackgroundColorHorizontal" component={GsapDynamicBackgroundColorHorizontal} />
+              
+                {/*GsapHorizontal */}
+                <Route exact path="/GsapHorizontal" component={GsapHorizontal} />
+              
 
               <Auth>
                 <Route exact path="/admin" component={Admin} />
