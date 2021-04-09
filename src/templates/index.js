@@ -50,3 +50,4 @@ export { default as GsapChengeBackgroundColor } from './GsapChengeBackgroundColo
 export { default as LocomotiveScrollSimpleTest } from './LocomotiveScrollSimpleTest'
 export { default as GsapDynamicBackgroundColorHorizontal } from './GsapDynamicBackgroundColorHorizontal'
 export { default as GsapHorizontal } from './GsapHorizontal'
+export { default as GsapScrollingTrigerTest } from './GsapScrollingTrigerTest'

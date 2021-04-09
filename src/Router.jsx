@@ -51,6 +51,7 @@ import {
   LocomotiveScrollSimpleTest,
   GsapDynamicBackgroundColorHorizontal,
   GsapHorizontal,
+  GsapScrollingTrigerTest
 
 } from './templates/index'
 import Auth from './Auth'
@@ -150,6 +151,8 @@ const Router = () => {
               
                 {/*GsapHorizontal */}
                 <Route exact path="/GsapHorizontal" component={GsapHorizontal} />
+                {/*GsapScrollingTrigerTest */}
+                <Route exact path="/GsapScrollingTrigerTest" component={GsapScrollingTrigerTest} />
               
 
               <Auth>

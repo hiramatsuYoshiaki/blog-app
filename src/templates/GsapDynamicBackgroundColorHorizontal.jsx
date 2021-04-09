@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '100%',
         width: '100%',
         overscrollBehavior: 'none',//overscroll-behavior プロパティは、スクロール領域の境界に達したときにブラウザーが何をするかを設定します。
+        margin:0,
+        padding:0,
     },
     
     section: {
@@ -32,14 +34,16 @@ const useStyles = makeStyles((theme) => ({
         padding: '50px 10vw',
         margin: 'auto',
         placeItems: 'center',
-        // border:'1px solid white'
+        border:'1px solid white',
     },
     horizontalScroll: {
         height: '100vh',
         overflow: 'hidden',
         display: 'flex',
         left: 0,
-        // border:'3px solid red'
+        border:'3px solid red',
+        margin:0,
+        padding:0,
       },
     credit: {
         fontFamily: 'Termina, sans-serif',
@@ -59,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
         '& > *': {
         minWidth: '60vw',
         padding: '0 5vw',
+        border:'1px solid blue'
     }
     },
     
@@ -97,6 +102,14 @@ const useStyles = makeStyles((theme) => ({
       },
     span:{
         display:'block'
+    },
+    imgBox:{
+        width:'900px',
+        height:'600px',
+        backgroundColor:'red',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
     }
 }))
 // const horizontalElements = [
@@ -113,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const GsapDynamicBackgroundColorHorizontal = () => {
-    gsap.registerPlugin(ScrollTrigger);
+    
     const classes = useStyles()
     const bodyRef = useRef(null)
     const containerRef = useRef(null)
@@ -124,42 +137,39 @@ const GsapDynamicBackgroundColorHorizontal = () => {
     HorizontalSectionRefs.current = []
     // セクションへのすべての参照をsectionRefs.current配列に追加する
     const  addToRefs = el => {
-        // console.log('HorizontalSectionRefs');
-        // console.log('addToRefs el',el);
-        // if(el.querySelector(".pinWrap")){
-        //     console.log('pinWrap',el.querySelector(".pinWrap"));
-        // }
-        // section all chenge background color
+        //section all
         if(el && !sectionRefs.current.includes(el) ){
             sectionRefs.current.push(el)
-            // console.log('addToRefs el',el);
-            // console.log('addToRefs el',el.dataset.bgcolor);
-            // console.log('sectionRefs.current',sectionRefs.current);
         }
         //horizontal section slide
         if(el && !HorizontalSectionRefs.current.includes(el) && el.querySelector(".pinWrap")){
             HorizontalSectionRefs.current.push(el)
-            console.log('HorizontalSectionRefs el ',el);
-            console.log('HorizontalSectionRefs.current',HorizontalSectionRefs.current);
+            // console.log('HorizontalSectionRefs el ',el);
+            // console.log('HorizontalSectionRefs.current',HorizontalSectionRefs.current);
         }
     }
-   
     
     useEffect(()=>{
-        
-
+        gsap.registerPlugin(ScrollTrigger);
+        console.log('useEffect----------------------------------------');
         // LocomotiveScroll
-        containerRef.current.setAttribute("data-scroll-container", "");
+        // containerRef.current.setAttribute("data-scroll-container", "");
         const scroller = new LocomotiveScroll({
             el: containerRef.current,
             smooth: true,
             getDirection: true 
         });
+        // scroller.on("scroll", function (t) {
+        //         document.documentElement.setAttribute("data-direction", t.direction);
+        // });
+        // scroller.on("scroll", ScrollTrigger.update);
+
         scroller.on("scroll", function (t) {
-                document.documentElement.setAttribute("data-direction", t.direction);
+            scroller.on("scroll", ScrollTrigger.update);
         });
             
-        scroller.on("scroll", ScrollTrigger.update);
+        
+        console.log(scroller);
 
         ScrollTrigger.scrollerProxy(containerRef.current, {
             scrollTop(value) {
@@ -179,11 +189,12 @@ const GsapDynamicBackgroundColorHorizontal = () => {
         })
 
 
+        console.log('Pinning and horizontal scrolling');
         // Pinning and horizontal scrolling
-        HorizontalSectionRefs.current.forEach(horizontalSection =>{
-            // console.log(horizontalSection);
+        HorizontalSectionRefs.current.forEach((horizontalSection, i )=>{
+            console.log(horizontalSection);
             let pinWrap = horizontalSection.querySelector(".pinWrap")
-            // console.log('pinWrap',pinWrap);
+            console.log('pinWrap',pinWrap);
             let pinWrapWidth = pinWrap.offsetWidth
             let horizontalScrollLength = pinWrapWidth - window.innerWidth
             // console.log('pinWrapWidth',pinWrapWidth);
@@ -193,13 +204,14 @@ const GsapDynamicBackgroundColorHorizontal = () => {
                     x: -horizontalScrollLength,
                     ease: "none", 
                     scrollTrigger:{
-                        scroller:containerRef.current,
+                        id:`section-${i+1}`,
                         scrub:true,
                         trigger:horizontalSection,
                         pin:true,
                         start:"top top",
                         end:()=> `+=${pinWrapWidth}`,
-                        invalidateOnRefresh: true
+                        invalidateOnRefresh: true,
+                        markers: true,
                     },
             })
         })
@@ -225,16 +237,20 @@ const GsapDynamicBackgroundColorHorizontal = () => {
                   gsap.to(bodyRef.current, {
                     backgroundColor: prevBg,
                     color: prevText,
-                    overwrite: "auto" }) 
+                    overwrite: "auto" }) ,
             });
         });
-
-        
-        
         ScrollTrigger.addEventListener("refresh", () => scroller.update());
         ScrollTrigger.refresh();
-
-    },[bodyRef.current,containerRef.current,sectionRefs.current,HorizontalSectionRefs.current,addToRefs])
+    },[
+        bodyRef,
+        containerRef,
+        sectionRefs,
+        HorizontalSectionRefs,
+        window.innerWidth,
+        window.innerHeight,
+        addToRefs,
+    ])
     // },[{...containerRef.current},{...HorizontalSectionRefs.current}, {...sectionRefs.current}, {...bodyRef.current}])
 
     return (
@@ -254,9 +270,12 @@ const GsapDynamicBackgroundColorHorizontal = () => {
                 <section className={classes.horizontalScroll} data-textcolor="#bcb8ad" data-bgcolor="#815946" ref={addToRefs} >
                     <div className={classes.pinWrap + " pinWrap"} >
                         <h2>This whole horizontal section should be brown</h2>
-                        <img src="https://images.pexels.com/photos/5207262/pexels-photo-5207262.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" />
+                        {/* <img src="https://images.pexels.com/photos/5207262/pexels-photo-5207262.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" />
                         <img src="https://images.pexels.com/photos/3371358/pexels-photo-3371358.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" />
-                        <img src="https://images.pexels.com/photos/3618545/pexels-photo-3618545.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" />
+                        <img src="https://images.pexels.com/photos/3618545/pexels-photo-3618545.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" /> */}
+                        <div className={classes.imgBox}>image1</div>
+                        <div className={classes.imgBox}>image2</div>
+                        <div className={classes.imgBox}>image3</div>
                     </div>
                 </section>
 
