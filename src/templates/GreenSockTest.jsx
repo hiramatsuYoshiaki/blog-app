@@ -129,3 +129,4 @@ const GreenSockTest = () => {
 export default GreenSockTest 
 
 //https://ihatetomatoes.net/react-and-greensock-tutorial-for-beginners/
+// 2021.4.13 removal animation-page

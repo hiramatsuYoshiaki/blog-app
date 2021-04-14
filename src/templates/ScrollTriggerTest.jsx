@@ -78,3 +78,4 @@ const ScrollTriggerTest = () => {
 
 export default ScrollTriggerTest
 // https://codepen.io/wplit/pen/PoZewOW
+// 2021.4.13 removal animation-page

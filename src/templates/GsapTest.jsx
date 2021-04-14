@@ -181,15 +181,6 @@ const GsapTest = () => {
             <div className={classes.spacer}></div>
             <div ref={boxTeal800} className={classes.box + " " + classes.boxTeal800}>ScrollTrigger </div>
             <div className={classes.spacer}></div>
-
-
-
-
-
-
-
-
-
             
             <div className={classes.spacer200}></div>
             <div className={classes.spacer200}></div>
@@ -203,3 +194,4 @@ const GsapTest = () => {
 }
 
 export default GsapTest
+// 2021.4.13 removal animation-page

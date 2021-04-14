@@ -41,7 +41,6 @@ import {
   ReactCurtainsSelectiveRenderTargets,
   ReactCurtainsMultipleplanesUsingGSAP,
   GsapTest,
-  PageTransitionTest,
   ComponentTransitionTest,
   LoadingDisplayTest,
   ImageLoadingTest,
@@ -56,12 +55,7 @@ import {
 } from './templates/index'
 import Auth from './Auth'
 
-
 const Router = () => {
-  
-    
-
-
     return (
       <main className='l-main'>
             <Switch>
@@ -70,10 +64,12 @@ const Router = () => {
                 
                 <Route exact path="/signin" component={SignIn} />
                 <Route exact path="/signout" component={SignOut} />
-                {/* <Route exact path="(/)?" component={Home} /> */}
-                <Route exact path="(/)?" component={GsapDynamicBackgroundColorHorizontal} />
+
+                
+                <Route exact path="(/)?" component={LandingRoot} />
+                {/* <Route exact path="(/)?" component={GsapDynamicBackgroundColorHorizontal} /> */}
                 {/* <Route exact path="(/)?" component={HomeBlog} /> */}
-                {/* <Route exact path="(/home)?" component={Home} /> */}
+                <Route exact path="/home" component={Home} />
 
                 <Route exact path="/post/list" component={PostList} />
                 <Route exact path="/post/listgrid" component={PostListGrid} />
@@ -83,17 +79,10 @@ const Router = () => {
                 <Route exact path="/stage/List" component={StageList} />
                 <Route exact path="/location/List" component={LocationList} />
                 <Route exact path="/location/map" component={LocationMap} /> 
-                
-
 
                 {/* blog test page ++++++++++++++++++++++++++++++++++++++++ */}
                 <Route exact path="/landingroot" component={LandingRoot} />
-                <Route exact path="/landingpage" component={LandingPage} />
-                <Route exact path="/topPage" component={TopPage} />
                 <Route exact path="/landing" component={Landing} />
-                <Route exact path="/top" component={Top} />
-                <Route exact path="/HomeBlog" component={HomeBlog} />
-
     
                 <Route exact path="/tags/List" component={TagsList} />
                 <Route exact path="/about" component={About} />
@@ -101,57 +90,67 @@ const Router = () => {
                 <Route path="/location/detail(:id)?" component={LocationDetail} /> 
                 
                 {/* syuuseicyuu  landingRoot --> stagelistGrid*/}
-                <Route path="/stage/detail(:id)?" component={StageListGridLine} /> 
+                <Route path="/stage/detail(:id)?" component={StageListGridLine} />  
 
                 {/* test--------------------------------------------------------------------- */}
-                {/* canvas test  */}
-                <Route exact path="/canvasTest" component={CanvasTest} />
-                {/* canvas circle animatin test */}
-                <Route exact path="/canvasCircle" component={CanvasCircle} />
-                {/* gsap ScrollTrigger timeline tutorial test */}
-                <Route exact path="/greenSockTest" component={GreenSockTest} />
-                {/* WebGL Distortion Hover Effects test  */}
-                <Route exact path="/hoverEffect" component={HoverEffect} /> 
-                {/* Three.js test npm i */}
-                <Route exact path="/threeTest" component={ThreeTest} />  
-                {/* gsap ScrollTrigger Test*/}
-                <Route exact path="/ScrollTriggerTest" component={ScrollTriggerTest} />
-                {/* react-curtains Basic plane test (curtains.js WebGL) */}
-                <Route exact path="/ReactCurtainsBasicPlane" component={ReactCurtainsBasicPlane} />
-                {/* react-curtains Simple plane test (curtains.js WebGL) */}
-                <Route exact path="/ReactCurtainesSimplePlane" component={ReactCurtainesSimplePlane} />
-                {/* react-curtains Multiple plane test (curtains.js WebGL) */}
-                <Route exact path="/ReactCurtainsMultiplePlanes" component={ReactCurtainsMultiplePlanes} />
-                {/* react-curtains Slideshow useing GSAP test (curtains.js WebGL) */}
-                <Route exact path="/ReactCurtainsSlideshowGSAP" component={ReactCurtainsSlideshowGSAP} />
-                {/* react-curtains Selective Render Targets test (curtains.js WebGL) */}
-                <Route exact path="/ReactCurtainsSelectiveRenderTargets" component={ReactCurtainsSelectiveRenderTargets} />
-                {/* react-curtains Multiple plane useing GSAPtest (curtains.js WebGL) */}
-                <Route exact path="/ReactCurtainsMultipleplanesUsingGSAP" component={ReactCurtainsMultipleplanesUsingGSAP} />
-                {/* gsapTest */}
-                <Route exact path="/gsapTest" component={GsapTest} />
-                {/* ScrollTriggerHorizontal */}
-                <Route exact path="/ScrollTriggerHorizontal" component={ScrollTriggerHorizontal} />
-                {/* PageTransitionTest */}
-                <Route exact path="/PageTransitionTest" component={PageTransitionTest} />
-                {/* ComponentTransitionTest */}
-                <Route exact path="/ComponentTransitionTest" component={ComponentTransitionTest} />
-                {/* loading display test */}
-                <Route exact path="/LoadingDisplayTest" component={LoadingDisplayTest} />
-                {/*ImageLoadingTest */}
-                <Route exact path="/ImageLoadingTest" component={ImageLoadingTest} />
                 {/*LoadingDispalyFetchDataTest */}
                 <Route exact path="/LoadingDispalyFetchDataTest" component={LoadingDispalyFetchDataTest} />
-                {/*GsapChengeBackgroundColor */}
+
+
+                {/* test remove XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */}
+                {/* dell */}
+                <Route exact path="/landingpage" component={LandingPage} /> 
+                <Route exact path="/topPage" component={TopPage} />
+                <Route exact path="/top" component={Top} />
+                <Route exact path="/HomeBlog" component={HomeBlog} />
+                {/* canvas test  remove*/}
+                <Route exact path="/canvasTest" component={CanvasTest} />
+                {/* canvas circle animatin test remove*/}
+                <Route exact path="/canvasCircle" component={CanvasCircle} />
+                {/* gsap ScrollTrigger timeline tutorial test remove*/}
+                <Route exact path="/greenSockTest" component={GreenSockTest} />
+                {/* WebGL Distortion Hover Effects test  remove*/}
+                <Route exact path="/hoverEffect" component={HoverEffect} /> 
+                {/* Three.js test  remove*/}
+                <Route exact path="/threeTest" component={ThreeTest} />  
+                {/* gsap ScrollTrigger Test remove */}
+                <Route exact path="/ScrollTriggerTest" component={ScrollTriggerTest} />
+                {/* react-curtains Basic plane test (curtains.js WebGL) remove */}
+                <Route exact path="/ReactCurtainsBasicPlane" component={ReactCurtainsBasicPlane} />
+                {/* react-curtains Simple plane test (curtains.js WebGL) remove*/}
+                <Route exact path="/ReactCurtainesSimplePlane" component={ReactCurtainesSimplePlane} />
+                {/* react-curtains Multiple plane test (curtains.js WebGL) remove*/}
+                <Route exact path="/ReactCurtainsMultiplePlanes" component={ReactCurtainsMultiplePlanes} />
+                {/* react-curtains Slideshow useing GSAP test (curtains.js WebGL) remove*/}
+                <Route exact path="/ReactCurtainsSlideshowGSAP" component={ReactCurtainsSlideshowGSAP} />
+                {/* react-curtains Selective Render Targets test (curtains.js WebGL) remove*/}
+                <Route exact path="/ReactCurtainsSelectiveRenderTargets" component={ReactCurtainsSelectiveRenderTargets} />
+                {/* react-curtains Multiple plane useing GSAPtest (curtains.js WebGL) remove*/}
+                <Route exact path="/ReactCurtainsMultipleplanesUsingGSAP" component={ReactCurtainsMultipleplanesUsingGSAP} />
+                {/* gsapTest remove */}
+                <Route exact path="/gsapTest" component={GsapTest} />
+                {/* ScrollTriggerHorizontal remove */}
+                <Route exact path="/ScrollTriggerHorizontal" component={ScrollTriggerHorizontal} />
+                
+                {/* ComponentTransitionTest removal*/}
+                <Route exact path="/ComponentTransitionTest" component={ComponentTransitionTest} />
+                {/* loading display test remove*/}
+                <Route exact path="/LoadingDisplayTest" component={LoadingDisplayTest} />
+                {/*ImageLoadingTest  remove*/}  
+                <Route exact path="/ImageLoadingTest" component={ImageLoadingTest} />
+
+                
+                
+                {/*GsapChengeBackgroundColor remove*/} 
                 <Route exact path="/GsapChengeBackgroundColor" component={GsapChengeBackgroundColor} />
-                {/*LocomotiveScrollSimpleTest */}
+                {/*LocomotiveScrollSimpleTest remove*/}
                 <Route exact path="/LocomotiveScrollSimpleTest" component={LocomotiveScrollSimpleTest} />
-                {/*GsapDynamicBackgroundColorHorizontal */}
+                {/*GsapDynamicBackgroundColorHorizontal remove*/}
                 <Route exact path="/GsapDynamicBackgroundColorHorizontal" component={GsapDynamicBackgroundColorHorizontal} />
               
-                {/*GsapHorizontal */}
+                {/*GsapHorizontal remove*/}
                 <Route exact path="/GsapHorizontal" component={GsapHorizontal} />
-                {/*GsapScrollingTrigerTest */}
+                {/*GsapScrollingTrigerTest remove*/}
                 <Route exact path="/GsapScrollingTrigerTest" component={GsapScrollingTrigerTest} />
               
 

@@ -14,3 +14,4 @@ const ReactCurtainsSlideshowGSAP = () => {
 }
 
 export default ReactCurtainsSlideshowGSAP
+// 2021.4.14 removal animation-page 

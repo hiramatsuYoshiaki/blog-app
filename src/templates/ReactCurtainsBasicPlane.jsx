@@ -89,3 +89,4 @@ export default ReactCurtainsBasicPlane
 //curtains.js
 // https://www.npmjs.com/package/react-curtains
 // https://codesandbox.io/s/react-curtains-vertex-coordinates-helper-b0b06?file=/src/styles.css:105-198
+// 2021.4.13 removal animation-page 

@@ -90,3 +90,5 @@ const LocomotiveScrollSimpleTest = () => {
 }
 
 export default LocomotiveScrollSimpleTest
+// 2021.4.14 removal animation-page 
+

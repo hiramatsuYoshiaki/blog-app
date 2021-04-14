@@ -16,3 +16,4 @@ const MultipleplanesUsingGSAP = props => {
 }
 
 export default MultipleplanesUsingGSAP  
+// 2021.4.14 removal animation-page 

@@ -37,3 +37,4 @@ const ThreeTest = () => {
 
 export default ThreeTest
 // https://justinclanglinais.medium.com/using-three-js-to-make-a-3d-scene-in-react-js-e24178098eee
+// 2021.4.14 removal animation-page 

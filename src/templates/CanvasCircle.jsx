@@ -65,3 +65,4 @@ const CanvasCircle = () => {
 export default CanvasCircle
 
 // http://www.petecorey.com/blog/2019/08/19/animating-a-canvas-with-react-hooks/
+// 2021.4.14 removal animation-page

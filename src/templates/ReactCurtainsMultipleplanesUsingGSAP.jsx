@@ -15,3 +15,4 @@ const ReactCurtainsMultipleplanesUsingGSAP = () => {
 }
 
 export default ReactCurtainsMultipleplanesUsingGSAP
+// 2021.4.14 removal animation-page 

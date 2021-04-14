@@ -12,10 +12,12 @@ const ComponentTransitionTest = () => {
                 style={{backgroundColor:'green',color:'white', overflow:'hidden'}}>
                 toggle Conponent View
             </button>
-            <ChildrenTest in={isVisible}/>
+            <ChildrenTest in={isVisible}/> 
         </div>
     )
 }
 
 export default ComponentTransitionTest 
+// 2021.4.14 removal animation-page
+
 

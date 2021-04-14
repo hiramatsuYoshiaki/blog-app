@@ -100,3 +100,4 @@ const ScrollTriggerHorizontal = () => {
 export default ScrollTriggerHorizontal
 
 // https://codepen.io/akapowl/pen/ff7dabf8f0946c406bdc61487b4f3f04
+// 2021.4.13 removal animation-page

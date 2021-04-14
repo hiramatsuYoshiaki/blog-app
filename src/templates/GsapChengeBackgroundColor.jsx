@@ -290,3 +290,4 @@ export default GsapChengeBackgroundColor
 // https://codepen.io/cameronknight/pen/RwRebNY
 // Change background colour with GSAP ScrollTrigger
 // CodePen Home
+// 2021.4.13 removal animation-page

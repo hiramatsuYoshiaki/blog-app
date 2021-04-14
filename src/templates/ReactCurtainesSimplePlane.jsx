@@ -11,3 +11,4 @@ const ReactCurtainesSimplePlane = () => {
 }
 
 export default ReactCurtainesSimplePlane
+// 2021.4.13 removal animation-page 

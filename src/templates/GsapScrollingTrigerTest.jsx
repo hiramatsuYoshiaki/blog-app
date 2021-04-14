@@ -19,28 +19,16 @@ const useStyles = makeStyles((theme) => ({
         // height:'100%',
     },
     section:{
-        // minHeight:'100vh',
-        // width:'100%',
-        // minWidth:'100vw',
-        // position:'relative',
-        // paddign:'100px 10vw',
-        // display: 'grid',
-        // gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        // gridGap: '2rem',
-        // padding: '50px 10vw',
-        // margin: 'auto',
-        // placeItems: 'center',
-        // border:'1px solid white',
         height: '100vh',
         overflow: 'hidden',
         display: 'flex',
         left: 0,
         border:'3px solid red',
         margin:0,
-        padding:0,
+        // padding:'0 0 50px 0',
+        position:'relative',
     },
     pinWrap: {
-        // width:'3000px',
         height: '100vh',
         display: 'flex',
         justifyContent: 'flex-start',
@@ -59,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
     //     width: 'auto',
     //     objectFit: 'cover',
     // },
-
 }))
+
 const sectionElements = [
     {   id:1,
         img:"https://images.pexels.com/photos/3062948/pexels-photo-3062948.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
@@ -94,6 +82,7 @@ const GsapScrollingTrigerTest = () => {
     const HorizontalSectionRefs = useRef([])
     HorizontalSectionRefs.current = []
 
+
     const addToRefs = el => {
         // console.log('addToRefs');
         if(el && !sectionRefs.current.includes(el)){
@@ -104,31 +93,23 @@ const GsapScrollingTrigerTest = () => {
         }
         if(el && !HorizontalSectionRefs.current.includes(el) && el.querySelector(".pinWrap")){
             HorizontalSectionRefs.current.push(el)
-            // console.log('HorizontalSectionRefs el ',el);
-            console.log('HorizontalSectionRefs.current',HorizontalSectionRefs.current);
+            // console.log('el.querySelector(".pinWrap")',el.querySelector(".pinWrap"))
+            
         }
     }
-
-    // const getMaxWidth = () => {
-    //     HorizontalSectionRefs.current.forEach(HorizontalSectionRef=>{
-
-    //     })
-    // }
-    
-     
-    
-
-
 
     useEffect(()=>{
         gsap.registerPlugin(ScrollTrigger);
         //Change Color
+        
         sectionRefs.current.forEach((el,i)=>{
             const prevBg = i === 0 ? "" : sectionRefs.current[i - 1].dataset.bgcolor;
             const prevText = i === 0 ? "" :sectionRefs.current[i - 1].dataset.textcolor;
             ScrollTrigger.create({
                 trigger:el,
                 start:"top 50%",
+                marker:true,
+                id:`bg-${i+1}`,
                 onEnter:()=>
                     gsap.to(contentRef.current,{
                         backgroundColor:el.dataset.bgcolor,
@@ -144,18 +125,14 @@ const GsapScrollingTrigerTest = () => {
                         marker:"true"
                     })
             })
-
-
         })
+
         //Horizontal Scroll
         HorizontalSectionRefs.current.forEach((horizontalSection, i )=>{
             console.log(horizontalSection);
             let pinWrap = horizontalSection.querySelector(".pinWrap")
             console.log('pinWrap',pinWrap);
-            // let pinWrapWidth = horizontalSection.offsetWidth
-            // console.log(horizontalSection.offsetWidth);
             let pinWrapWidth = pinWrap.offsetWidth
-            // let pinWrapWidth = 5000
             let horizontalScrollLength = pinWrapWidth - window.innerWidth
             console.log('pinWrapWidth',pinWrapWidth);
             console.log('pinWrap.offsetWidth',pinWrap.offsetWidth);
@@ -174,10 +151,11 @@ const GsapScrollingTrigerTest = () => {
                     start:"top top",
                     end:()=> `+=${pinWrapWidth}`,
                     invalidateOnRefresh: true,
-                    // markers: true,
                 },
             })
         })
+        ScrollTrigger.refresh();
+        
 
     },[{...sectionRefs},{...HorizontalSectionRefs}])
    
@@ -191,18 +169,23 @@ const GsapScrollingTrigerTest = () => {
                         key={element.id}
                         ref={addToRefs}
                     >
-                        <h1  className={classes.h1}>
+                        {/* <h1  className={classes.h1}>
                             SECTION{i+1} 
                         </h1>
                         <img src={element.img} 
                             alt="" 
-                            className={classes.img}/>
+                            className={classes.img}/> */}
+
+                        
                         <div className={classes.pinWrap + " pinWrap"} >
-                            <h2>This whole horizontal section should be brown</h2>
+                            <h2>aaa This whole horizontal section should be brown</h2>
                             <img src="https://images.pexels.com/photos/5207262/pexels-photo-5207262.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" />
                             <img src="https://images.pexels.com/photos/3371358/pexels-photo-3371358.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" />
                             <img src="https://images.pexels.com/photos/3618545/pexels-photo-3618545.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=900" alt="" />
+                            <h1>triger point</h1>
                         </div>
+
+                       
                     </section>
                 ))}
             </div>
@@ -213,3 +196,6 @@ const GsapScrollingTrigerTest = () => {
 }
 
 export default GsapScrollingTrigerTest
+// 2021.4.13 removal animation-page
+//ok ok ok 
+

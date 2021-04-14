@@ -321,3 +321,4 @@ export default GsapDynamicBackgroundColorHorizontal
 // https://codepen.io/cameronknight/pen/oNzxXzr
 // CodePen Home
 // Dynamic background color & horizontal scroll section ( GSAP ScrollTrigger & Locomotive Scroll)
+// 2021.4.13 removal animation-page

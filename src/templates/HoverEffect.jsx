@@ -38,3 +38,4 @@ const HoverEffect = () => {
  
 export default HoverEffect
 // https://github.com/robin-dela/hover-effect/issues/15
+// 2021.4.14 removal animation-page 

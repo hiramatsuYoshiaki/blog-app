@@ -40,7 +40,7 @@ export { default as ReactCurtainsSlideshowGSAP } from './ReactCurtainsSlideshowG
 export { default as ReactCurtainsSelectiveRenderTargets } from './ReactCurtainsSelectiveRenderTargets'
 export { default as ReactCurtainsMultipleplanesUsingGSAP } from './ReactCurtainsMultipleplanesUsingGSAP'
 export { default as GsapTest } from './GsapTest'
-export { default as PageTransitionTest } from './PageTransitionTest'
+// export { default as PageTransitionTest } from './PageTransitionTest'
 export { default as ComponentTransitionTest } from './ComponentTransitionTest'
 export { default as LoadingDisplayTest } from './LoadingDisplayTest'
 export { default as ImageLoadingTest } from './ImageLoadingTest'
