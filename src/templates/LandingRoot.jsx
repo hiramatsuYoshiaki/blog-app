@@ -12,7 +12,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 
 
 
-import { gsap, power2 } from "gsap";
+import { gsap,power2} from "gsap";
 import {ScrollTrigger} from 'gsap/ScrollTrigger' 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -37,8 +37,10 @@ const useStyles = makeStyles((theme) => ({
         height:'100%',
         overflow:'hidden'
     },
-    aside:{
+    stage:{
         // border:'1px solid green'
+        margin:0,
+        padding:0,
     },
     title:{ 
         dispaly:'fixed',
@@ -47,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
         overflow:'hidden',
         textAling:'center',
         color:'white',
+        padding:'2rem 1rem',
     },
     main: {
         display:'flex',
@@ -65,7 +68,8 @@ const useStyles = makeStyles((theme) => ({
         // justifyContent:'center',
         // alignItems:'center',
         // flexDirection:'column',
-        width: '60vw',
+        width: '60vw', 
+        // maxWidth:'400px',
         marginRight: '4vw',
         'nth-child(2n)': {
             background: '#eee',
@@ -84,19 +88,6 @@ const useStyles = makeStyles((theme) => ({
         // fontSize: '2em',
         // border:'1px solid red'
     },
-    bottom: {
-        minHeight: '50vh',
-        width: '100%',
-        overflowX: 'hidden',
-
-        // padding: '5%',
-        // display:'flex',
-        // alignItems: 'center',
-        // justifyContent: 'center',
-        // fontSize: '2em',
-        // border:'1px solid yellow'
-    
-    },
     //header---
     landingWraper:{
         textAlign:'center', 
@@ -108,16 +99,23 @@ const useStyles = makeStyles((theme) => ({
         position:'relative',
         overflow:'hidden',
     },
-    landingPostsWraper:{
-        margin: '100px auto 100px auto',
-        overflow:'hidden',
+    // posts
+    posts: {
+        minHeight: '50vh',
+        width: '100vw',
+        overflowX: 'hidden', 
     },
-    // md 960
+    landingPostsWraper:{
+        margin: '0 auto 100px auto',
+        overflow:'hidden',
+        backgroundColor:'hsl(0, 0%, 7%)'//$black-bis
+    },
     postArea:{
         // minHeight:'800px',
         border:'1px solid white',
-        width:'350px',
-        height:'500px',
+        width:'100%',
+        margin: '0 auto',
+        // md 960
         [theme.breakpoints.up('md')]: {  
             width:'960px',
             height:'640px',
@@ -126,7 +124,6 @@ const useStyles = makeStyles((theme) => ({
             width:'1200px',
             height:'900px',
         },
-
     }
 }))  
 
@@ -181,15 +178,15 @@ const LandingRoot = () => {
                         start:`top center+=100`,
                         // end: "center top",
                         toggleActions:`play none none reverse`,
-                        markers: true,
+                        // markers: true,
                         pin: false, 
                     }
                 }
             )
         })
     },[{...revealRefs.current}])
-    //gsap scrolltrigger
-    
+
+    //gsap scrolltrigger horizontal
     useEffect(()=>{
 
         console.log(container.current.scrollWidth);
@@ -269,6 +266,7 @@ const LandingRoot = () => {
         // <div className="l-container-fluid">
         //     <div className="l-section ">
                 <div className={classes.root} >
+                    {/* content header slideshow with curtain.js */}
                     <div className={classes.top} >
                         <div className={classes.landingWraper}>
                             <header className={classes.landingHeader} >
@@ -277,25 +275,33 @@ const LandingRoot = () => {
                         </div>
                     </div>
                     
-                    <aside id="containerWrapper" className={classes.aside} ref={stagesBox}>
+                    {/* stage area with gsap scrollTggre horizontal  */}
+                    <aside id="containerWrapper" 
+                        className={classes.stage} 
+                        ref={stagesBox}
+                    >
                         <div className={classes.title} ref={titleStage}>
                             <h3>STAGES</h3>
                         </div>
                         <main ref={container} className={classes.main}>
                             {
                                 stages.map((stage) => (
-                                    <section className={classes.section} key={stage.id}>
+                                    <section 
+                                        className={classes.section} 
+                                        key={stage.id}>
                                         <StagesArea stage={stage}/>
                                     </section>
                                 ))
                             }
-                        </main>
+                        </main> 
                     </aside>
                     
-                    <div className={classes.bottom} style={{marginTop:`${bottomMarginTop}px`}} ref={postsBox}>
+                    {/* new post area   */}
+                    <div className={classes.posts} style={{marginTop:`${bottomMarginTop}px`}} ref={postsBox}>
                         <div className={classes.title} ref={titlePosts}>
                                 <h3>POSTS</h3>
                         </div>
+                        
                         <div className={classes.landingPostsWraper}>
                             {posts.map((post) => (
                                 <div key={post.id} ref={addToRefs}
@@ -304,7 +310,8 @@ const LandingRoot = () => {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </div> 
+
                     {/* loading screen */}
                     <Backdrop className={classes.backdrop} 
                                 open={true} 

@@ -8,12 +8,16 @@ const useStyles = makeStyles((theme) => ({
         width:'100%',
         height:'100%',
         overflow:'hidden',
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center',
-        flexDirection:'column',
-        [theme.breakpoints.up('md')]: {
+        display:'block',
+        // display:'flex',
+        // justifyContent:'center',
+        // alignItems:'center',
+        // flexDirection:'column',
+        [theme.breakpoints.up('sm')]: {
+            display:'flex',
             flexDirection:'row-reverse',
+            // justifyContent:'center',
+            // alignItems:'center',
         },
     },
     header:{
@@ -22,44 +26,58 @@ const useStyles = makeStyles((theme) => ({
         justifyContent:'center',
         alignItems:'center',
         flexDirection:'column',
+        [theme.breakpoints.up('sm')]: {
+            width:'30%',
+        },
         [theme.breakpoints.up('md')]: {
-            justifyContent:'center',
-            alignItems:'center',
             width:'50%',
         },
-        
+        border:'1px solid red',
     },
     textWraper:{
-        width:'80%',
-        padding:'1.6rem',
-        border:'1px solid lightgrey',
+        width:'100%',
+        padding:'.8rem',
         textAlign:'center',
-        marginBottom:'1.6rem',
-        [theme.breakpoints.up('md')]: {
-            marginBottom:0,
+        margin:'.8rem 0',
+        cursor:'pointer',
+        '& h5':{
+            marginBottom:'.4rem'
         },
-        cursor:'pointer'
+        '& p':{
+            '& span':{
+                marginRight:'.4rem',
+            }
+        },
+
     },
+    // xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920,
     images:{
         cursor:'pointer',
-        overflow:'hidden'
+        overflow:'hidden',
+
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        flexDirection:'column',
+        // margin:'0 20px',
+        // [theme.breakpoints.up('md')]: {
+        //     margin:'0 0'
+        // },
+        border:'3px solid green',
     },
-    gbWraper:{
-        position:'relative',
-        width:'500px',
-        height:'500px',
-        maxWidth:'500px',
-        backgroundColor:'red',
-        opacity:'0.7',
-    },
-    bg:{
-        width:'300px',
-        height:'300px',
-        backgroundColor:'red',
-        // width:'100%',
-        // height:'auto',
-        // maxWidth:'500px'
-    }
+    // gbWraper:{
+    //     position:'relative',
+    //     width:'500px',
+    //     height:'500px',
+    //     maxWidth:'500px',
+    //     backgroundColor:'red',
+    //     opacity:'0.7',
+    // },
+    // bg:{
+    //     width:'300px',
+    //     height:'300px',
+    //     backgroundColor:'red',
+    // }
 })) 
 
 const StagesArea = (props) => {
@@ -69,11 +87,11 @@ const StagesArea = (props) => {
         <div className={classes.wraper}>
                 <div className={classes.header}>
                     <div className={classes.textWraper} onClick={()=> dispatch(push(`/stage/detail/${props.stage.id}`))}>
-                        
-                        <h5 className={classes.glitch}>{props.stage.stage}</h5> 
-
-                        <p>STAGE{props.stage.stageNo}</p>
-                        <p>{props.stage.stageYear}</p>
+                        <h5>{props.stage.stage}</h5> 
+                        <p>
+                            <span>STAGE{props.stage.stageNo}</span>
+                            <span>{props.stage.stageYear}</span>
+                        </p>
                     </div>
                 </div>
                 <div className={classes.images} onClick={()=> dispatch(push(`/stage/detail/${props.stage.id}`))}>
