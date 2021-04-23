@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PostsArea = (props) => {
     const classes = useStyles()
-    const dispatch = useDispatch()
+    const dispatch = useDispatch() 
     return (
         <div className={classes.landingPosts}>
             <div className={classes.imageArea} >

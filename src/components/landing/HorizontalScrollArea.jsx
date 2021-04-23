@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     stage:{
         margin:0,
         padding:0,
-    },
+    }, 
     title:{ 
         dispaly:'fixed',
         width:'100%',
