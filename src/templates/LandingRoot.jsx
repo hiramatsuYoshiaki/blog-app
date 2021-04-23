@@ -2,17 +2,13 @@ import React,{useEffect,useState,useRef} from 'react'
 import {makeStyles} from '@material-ui/core/styles'
 import {useDispatch,useSelector} from 'react-redux'
 import {fetchPosts} from '../reducks/posts/operators'
-import { fetchStages } from '../reducks/stage/operators'
+import {fetchStages } from '../reducks/stage/operators'
 import {getPosts} from '../reducks/posts/selectors'
 import { getStages } from '../reducks/stage/selectors'
-
 import {ReactCurtainsSlideshowGSAP, PostsArea,StagesArea} from '../components/landing/index'
 import Backdrop from '@material-ui/core/Backdrop'
 import CircularProgress from '@material-ui/core/CircularProgress'
-
-
-
-import { gsap,power2} from "gsap";
+import { gsap} from "gsap";
 import {ScrollTrigger} from 'gsap/ScrollTrigger' 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -38,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
         overflow:'hidden'
     },
     stage:{
-        // border:'1px solid green'
         margin:0,
         padding:0,
     },
@@ -57,19 +52,12 @@ const useStyles = makeStyles((theme) => ({
         flexDirection:'column',
         height:'50vh',
         willChange: 'transform',
-        // border:'1px solid red',
-        // padding:'30px 0'
       },
       
     section: {
         background: ' hsl(0, 0%, 96%)',  //$white-ter 
         height:'100%',
-        // display:'flex',
-        // justifyContent:'center',
-        // alignItems:'center',
-        // flexDirection:'column',
         width: '60vw', 
-        // maxWidth:'400px',
         marginRight: '4vw',
         'nth-child(2n)': {
             background: '#eee',
@@ -79,16 +67,8 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '50vh',
         width: '100%',
         overflowX: 'hidden',
-
-        // padding: '5%',
-        // display:'flex',
-        // alignItems: 'center',
-        // justifyContent: 'center',
-        // flexDirection:'column',
-        // fontSize: '2em',
-        // border:'1px solid red'
     },
-    //header---
+    //header--- 
     landingWraper:{
         textAlign:'center', 
         width:'100%', 
@@ -111,11 +91,9 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor:'hsl(0, 0%, 7%)'//$black-bis
     },
     postArea:{
-        // minHeight:'800px',
-        border:'1px solid white',
         width:'100%',
         margin: '0 auto',
-        // md 960
+        // md 960 
         [theme.breakpoints.up('md')]: {  
             width:'960px',
             height:'640px',
@@ -133,6 +111,9 @@ const LandingRoot = () => {
     const selector = useSelector((state) => state)
     const postsAll = getPosts(selector)
     const stagesAll = getStages(selector)
+
+    const [width,setWidth] = useState(window.innerWidth)
+    const [height,setHeight] = useState(window.innerHeight)
 
     const [posts,setPosts] = useState([])
     const [stages,setStages] = useState([])
@@ -153,20 +134,17 @@ const LandingRoot = () => {
     // セクションへのすべての参照をrevealRefs.current配列に追加する
     const addToRefs = el => {
 
-        // console.log('addToRefs');
+        console.log('addToRefs');
         // console.log(el);
         if(el && !revealRefs.current.includes(el)){
             revealRefs.current.push(el)
             // console.log(revealRefs.current);
-            // console.log(revealRefs.current.el);
+            console.log(revealRefs.current.el);
         }
     }
     useEffect(()=>{
-        console.log('gsap fade in');
         // 我々は持っているすべてのセクションへのアクセスをを使用して新しいGSAPトゥイーンを作成し。次に、それらをループして、scrollTriggerます。
-       
         revealRefs.current.forEach((el,index)=> {
-            console.log(el);
             gsap.fromTo(el,
                 { autoAlpha:0},
                 { duration:1,
@@ -184,16 +162,15 @@ const LandingRoot = () => {
                 }
             )
         })
-    },[{...revealRefs.current}])
+    },[revealRefs])
 
     //gsap scrolltrigger horizontal
     useEffect(()=>{
-
-        console.log(container.current.scrollWidth);
-        console.log('clientWidth',document.documentElement.clientWidth);
-        console.log(container.current.offsetWidth);
+        console.log('useEffect')
+        console.log('container.current.scrollWidth',container.current.scrollWidth);
+        console.log('document.documentElement.clientWidth',document.documentElement.clientWidth);
+        console.log('container.current.offsetWidth',container.current.offsetWidth);
         setbottomMarginTop(document.documentElement.clientWidth)
-        // console.log('document.documentElement.clientWidth',document.documentElement.clientWidth);
 
         gsap.to(container.current, {
             x: () => -(container.current.scrollWidth - 
@@ -223,9 +200,9 @@ const LandingRoot = () => {
                 }
             }
         )
-        
-   
-    },[{...container.current},{...stagesBox.current}]) 
+    },[{...container.current},{...stagesBox.current},width,height]) 
+    // },[container,stagesBox,width,height]) 
+    // },[container.current.scrollWidth,container.current.offsetWidth,stagesBox,width,height]) 
     
 
     //fetch posts
@@ -245,10 +222,10 @@ const LandingRoot = () => {
     useEffect(()=>{
         const now = new Date();
         const selectYear = now.getFullYear()
-        // console.log('selectYear',selectYear);
         let stagesSort = []
         stagesSort = stagesAll
-        stagesSort = stagesAll.filter(stage => stage.stageYear > selectYear - displayYear)//strageYear:number
+        stagesSort = 
+            stagesAll.filter(stage => stage.stageYear > selectYear - displayYear)//strageYear:number
         stagesSort.sort(function(a,b){
             if(a.sort < b.sort) return -1;
             if(a.sort > b.sort) return 1;
@@ -260,12 +237,27 @@ const LandingRoot = () => {
     useEffect(()=>{
         dispatch(fetchPosts())  
         dispatch(fetchStages())
-    },[])
+    },[dispatch])
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+            setHeight(window.innerHeight); 
+        }
+        window.addEventListener("resize", handleResize);
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        };
+    });
 
     return (
         // <div className="l-container-fluid">
         //     <div className="l-section ">
                 <div className={classes.root} >
+                    {/* test display*/}
+                    {/* <div style={{color:'white'}}>
+                        <p>Window width {width}</p>
+                        <p>Window height {height}</p>
+                    </div> */}
                     {/* content header slideshow with curtain.js */}
                     <div className={classes.top} >
                         <div className={classes.landingWraper}>
@@ -297,7 +289,9 @@ const LandingRoot = () => {
                     </aside>
                     
                     {/* new post area   */}
-                    <div className={classes.posts} style={{marginTop:`${bottomMarginTop}px`}} ref={postsBox}>
+                    <div className={classes.posts} 
+                        style={{marginTop:`${bottomMarginTop}px`}} 
+                        ref={postsBox}>
                         <div className={classes.title} ref={titlePosts}>
                                 <h3>POSTS</h3>
                         </div>

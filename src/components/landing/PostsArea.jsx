@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     landingPosts:{
         maxWidth: '100%',
         height:'100%',//必須
+        minHeight:'25vh',
         margin: '0 auto 20px auto',
         display: 'flex',
         alignContent: 'center',

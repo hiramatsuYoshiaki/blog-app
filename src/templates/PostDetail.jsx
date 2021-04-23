@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { db } from '../firebase/index'
 import moment from 'moment'
 import {TopImageArea,PostArea,LocationArea,Pagination,SNSArea} from '../components/postDetail/index'
@@ -6,17 +6,54 @@ import {TopImageArea,PostArea,LocationArea,Pagination,SNSArea} from '../componen
 import { getPosts } from '../reducks/posts/selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPosts } from '../reducks/posts/operators'
+import Backdrop from '@material-ui/core/Backdrop'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import {makeStyles} from '@material-ui/core/styles'
+
+import { gsap,Power2} from "gsap";
+import {ScrollTrigger} from 'gsap/ScrollTrigger' 
+gsap.registerPlugin(ScrollTrigger)
+
+
+const useStyles = makeStyles((theme) => ({ 
+    
+    section:{
+        minHeight:'100vh',
+        margin:'0 0 20px 0'
+    },
+    //loading screen 
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+        backgroundColor:'black',
+        '& p':{ 
+            margin:'16px'
+        },
+        display:'flex',
+        justifyContent:'center', 
+        alignItems:'center',
+        flexDirection:'column',
+        
+      },
+    
+})) 
 
 const Postdetail = () => { 
+    const classes = useStyles()
 
     const dispatch = useDispatch()
-    const selector = useSelector((state) => state)
+    const selector = useSelector((state) => state) 
     const posts = getPosts(selector)
+
+    const postRef = useRef()
+    const locationRef = useRef()
+    const snsRef = useRef()
 
     let id = window.location.pathname.split('/post/detail')[1]
     if (id !== '') {
         id = id.split('/')[1]
     }
+    const [postData,setPostData] = useState(null)
     const [title, setTitle] = useState("")
     const [article, setArticle] = useState("")
     const [type, setType] = useState("")
@@ -40,37 +77,54 @@ const Postdetail = () => {
     const [locationLat, setLocationLat] = useState([])
     const [locationLng, setLocationLng] = useState([])
     const [locationImages, setLocationImages] = useState([])
-   
-    // useEffect(() => {
-    //     if(!posts){
-    //         dispatch(fetchPosts())
-    //     }
+    useEffect(()=>{
+        gsap.fromTo(postRef.current,
+            { autoAlpha:0 },
+            { duration:.4,
+                autoAlpha:1,
+                ease:Power2.easeOut,
+                scrollTrigger:{
+                    // scrub: 2,
+                    trigger:postRef.current,
+                    start:`top center+=100`,
+                    toggleActions:`play none none reverse`,
+                    invalidateOnRefresh: true,
+                    // markers:true,
+                }
+            }
+        )
+        gsap.fromTo(locationRef.current,
+            { autoAlpha:0 },
+            { duration:.4,
+                autoAlpha:1,
+                ease:Power2.easeOut,
+                scrollTrigger:{
+                    // scrub: 2,
+                    trigger:locationRef.current,
+                    start:`top center+=100`,
+                    toggleActions:`play none none reverse`,
+                    invalidateOnRefresh: true,
+                    // markers:true,
+                }
+            }
+        )
+        gsap.fromTo(snsRef.current,
+            { autoAlpha:0 },
+            { duration:.4,
+                autoAlpha:1,
+                ease:Power2.easeOut,
+                scrollTrigger:{
+                    // scrub: 2,
+                    trigger:snsRef.current,
+                    start:`top center+=100`,
+                    toggleActions:`play none none reverse`,
+                    invalidateOnRefresh: true,
+                    // markers:true,
+                }
+            }
+        )
+    },[postRef.current,locationRef.current])
 
-    //     // }else{
-    //         const post = posts.find(post => post.id === id)
-    //         if(post){
-    //             setTitle(post.title)
-    //             setArticle(post.article)
-    //             setType(post.type)
-    //             setPostDate(post.postDate)
-    //             setTopImages(post.topImages)
-    //             setPostImages(post.postImages)
-    //             //stage
-    //             setStage(post.stage.stage)
-    //             setStageNo(post.stage.stageNo)
-    //             setStageYear(post.stage.stageYear)
-    //             setStageImages(post.stage.images)
-    //             //tag
-    //             setTags(post.tags)
-    //             //location
-    //             setLocationName(post.location.name)
-    //             setLocationAddress(post.location.address)
-    //             setLocationLat(post.location.position.lat)
-    //             setLocationLng(post.location.position.lng)
-    //             setLocationImages(post.location.images)
-    //         // }
-    //     }
-    // }, [])
     useEffect(() => {
         if(!posts || posts.length === 0){
             dispatch(fetchPosts())
@@ -95,102 +149,61 @@ const Postdetail = () => {
                 setLocationName(post.location.name)
                 setLocationAddress(post.location.address)
                 setLocationLat(post.location.position.lat)
-                setLocationLng(post.location.position.lng)
+                setLocationLng(post.location.position.lng) 
                 setLocationImages(post.location.images)
 
+                setPostData(post)
+                
             }).catch(error => {
                 throw new Error(error) 
             })
         }
     },[id])  
 
-    
-    return (
-        <main>
+    return (     
+        <main > 
             {/* TopImageArea--------------------------------------------------------- */}
-            <TopImageArea title={title} stage={stage} stageNo={stageNo} stageYear={stageYear} images={topImages}/> 
+            <section className={classes.section}>
+                <TopImageArea title={title} stage={stage} stageNo={stageNo} stageYear={stageYear} images={topImages}/> 
+            </section>
             {/* PostArea--------------------------------------------------------- */}
-            <PostArea stage={stage} stageNo={stageNo} stageYear={stageYear} stageImages={stageImages}
-                        article={article} type={type} postDate={postDate} postImages={postImages}
-                        tags={tags} 
-                        locationName={locationName} locationAddress={locationAddress}
+            <section ref={postRef} className={classes.section}>   
+                <PostArea stage={stage} stageNo={stageNo} stageYear={stageYear} stageImages={stageImages}
+                            article={article} type={type} postDate={postDate} postImages={postImages}
+                            tags={tags} 
+                            locationName={locationName} locationAddress={locationAddress}
+                           
                     />
+            </section> 
             {/* Pagination--------------------------------------------------------- */}
-            <Pagination posts={posts} id={id}/>
+{/* setLabel error map xxxxxxx*/}
+                {/* <Pagination posts={posts} id={id}/> */}
             {/* LocationArea--------------------------------------------------------- */}
-            <LocationArea locationName={locationName} locationAddress={locationAddress}
-                locationLat={locationLat}
-                locationLng={locationLng}
-                locationImages={locationImages} 
-                    />
-             
-            {/* PostListArea--------------------------------------------------------- */}
-            {/* <PostListArea  */}
+            <section ref={locationRef} className={classes.section} >  
+                <LocationArea locationName={locationName} locationAddress={locationAddress}
+                    locationLat={locationLat}
+                    locationLng={locationLng}
+                    locationImages={locationImages}  
+                        />
+            </section> 
             {/* SNSrea--------------------------------------------------------- */}
-            <SNSArea images={topImages} postImages={postImages}/> 
-            {/* <h1>{id}</h1>
-            <h1>{title}</h1>
-            <h1>{article}</h1>
-            <h1>{type}</h1>
-            <h1>{postDate}</h1>
-            <h1>TopImage</h1>
-            {topImages.length > 0 && (
-                topImages.map(image => (
-                    <div key={image.id}>
-                        <img src={image.path} alt={ image.description} className="p-imagePreview__img"/>
-                    </div>
-                ))
-            )}
-            <h1>PostImage</h1>
-            {postImages.length > 0 && (
-                postImages.map(image => (
-                    <div key={image.id}>
-                        <img src={image.path} alt={image.description} className="p-imagePreview__img" />
-                    </div>
-                ))
-            )} */}
-
-
-
-{/*             
-            <h1>Stage</h1>
-            <p>{stage}</p>
-            <p>{stageNo}</p>
-            <p>{stageYear}</p>
-            {stageImages.length > 0 && (
-                stageImages.map(image => (
-                    <div key={image.id}>
-                        <img src={image.path} alt={image.description} className="p-imagePreview__img" />
-                    </div>
-                ))
-            )}
-
-            <h1>Locations</h1>
-            
-            <p>{locationName}</p>
-            <p>{locationAddress}</p>
-            <p>{locationLat}</p>
-            <p>{locationLng}</p>
-            {locationImages.length > 0 && (
-                locationImages.map(image => (
-                    <div key={image.id}>
-                        <video  muted className="p-imagePreview__img">
-                            <source src={image.path} type="video/mp4" />
-                        </video>
-                    </div>
-                ))
-            )}
-            <h1>Tags</h1>
-            
-            {tags.length > 0 && (
-               tags.map(tag => (
-                    <div key={tag.id}>
-                        <p>{tag.name}</p>
-                    </div>
-                ))
-            )} */}
+            <section ref={snsRef} className={classes.section}>  
+                <SNSArea images={topImages} postImages={postImages}/>  
+            </section>
+            <Backdrop 
+                className={classes.backdrop} 
+                open={true} 
+                style={{
+                    display: (postData !== null ) 
+                    ? "none" 
+                    : "flex"
+                }}
+            >
+                <CircularProgress color="inherit" />
+                <p>Now Loading....</p>
+            </Backdrop>
         </main>
     )
 }
 
-export default Postdetail
+export default Postdetail 

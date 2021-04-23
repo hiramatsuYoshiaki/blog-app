@@ -6,7 +6,8 @@ const Pagination = props => {
         <div className="l-container-fluid c-paginations">
             <div className="l-section-fluid" >
                 <div className="c-locationarea-body" >
-                    <RoundPaginations posts={props.posts} id={props.id}/> 
+                    <h1 style={{color:'white'}}>Pagination</h1>
+                    <RoundPaginations posts={props.posts} id={props.id}/>  
                 </div>
             </div>
         </div>

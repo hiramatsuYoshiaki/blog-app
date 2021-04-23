@@ -17,6 +17,7 @@ export {default as TagsList} from './TagsList'
 export {default as Landing} from './Landing'//test
 export {default as Top} from './Top'//test
 export {default as LandingRoot} from './LandingRoot'//test
+export {default as LandingHorizontalScroll} from './LandingHorizontalScroll'//test
 export { default as LandingPage } from './LandingPage'//tset
 export {default as LocationEdit} from './LocationEdit'
 export {default as LocationList} from './LocationList'

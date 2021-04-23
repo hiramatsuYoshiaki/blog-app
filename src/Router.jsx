@@ -26,6 +26,7 @@ import {
   Top,
   Landing,
   LandingRoot,
+  LandingHorizontalScroll,
   LandingPage,
   TopPage,
   CanvasTest,
@@ -65,8 +66,8 @@ const Router = () => {
                 <Route exact path="/signin" component={SignIn} />
                 <Route exact path="/signout" component={SignOut} />
 
-                
-                <Route exact path="(/)?" component={LandingRoot} />
+
+                <Route exact path="(/)?" component={LandingHorizontalScroll} />
                 {/* <Route exact path="(/)?" component={GsapDynamicBackgroundColorHorizontal} /> */}
                 {/* <Route exact path="(/)?" component={HomeBlog} /> */}
                 <Route exact path="/home" component={Home} />
@@ -82,6 +83,7 @@ const Router = () => {
 
                 {/* blog test page ++++++++++++++++++++++++++++++++++++++++ */}
                 <Route exact path="/landingroot" component={LandingRoot} />
+                <Route exact path="/LandingHorizontalScroll" component={LandingHorizontalScroll} />
                 <Route exact path="/landing" component={Landing} />
     
                 <Route exact path="/tags/List" component={TagsList} />

@@ -39,7 +39,8 @@ const RoundPaginations = props => {
 
     return (
         <div>
-            <div className={classes.root}>
+            <div className={classes.root} style={{color:'white'}}>
+                <h1 style={{color:'white'}}>Pageination</h1>
                 <Pagination count={cnt} page={page}  onChange={handleChange} />
             </div>
         </div>

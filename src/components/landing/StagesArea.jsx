@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
             width:'50%',
         },
-        border:'1px solid red',
+        // border:'1px solid red',
     },
     textWraper:{
         width:'100%',
@@ -59,25 +59,12 @@ const useStyles = makeStyles((theme) => ({
         justifyContent:'center',
         alignItems:'center',
         flexDirection:'column',
-        // margin:'0 20px',
-        // [theme.breakpoints.up('md')]: {
-        //     margin:'0 0'
-        // },
-        border:'3px solid green',
+        padding:0,
+        [theme.breakpoints.up('sm')]: {
+            paddingLeft:'.4rem'
+        },
+        
     },
-    // gbWraper:{
-    //     position:'relative',
-    //     width:'500px',
-    //     height:'500px',
-    //     maxWidth:'500px',
-    //     backgroundColor:'red',
-    //     opacity:'0.7',
-    // },
-    // bg:{
-    //     width:'300px',
-    //     height:'300px',
-    //     backgroundColor:'red',
-    // }
 })) 
 
 const StagesArea = (props) => {
