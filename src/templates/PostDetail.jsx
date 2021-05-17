@@ -15,11 +15,21 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 
-const useStyles = makeStyles((theme) => ({ 
+const useStyles = makeStyles((theme) => ({  
     
+    TopImageArea:{
+        height:'100vh',
+        margin:'0 0 20px 0',
+        border:'1px solid white', 
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        flexDirection:'column',
+    },
     section:{
-        minHeight:'100vh',
-        margin:'0 0 20px 0'
+        height:'100vh',
+        margin:'0 0 20px 0',
+        border:'1px solid white',
     },
     //loading screen 
     backdrop: {
@@ -162,33 +172,49 @@ const Postdetail = () => {
 
     return (     
         <main > 
-            {/* TopImageArea--------------------------------------------------------- */}
-            <section className={classes.section}>
-                <TopImageArea title={title} stage={stage} stageNo={stageNo} stageYear={stageYear} images={topImages}/> 
+            {/* TopImageArea------------------------------------------ */}
+            <section className={classes.TopImageArea}>
+                <TopImageArea 
+                    title={title} 
+                    stage={stage} 
+                    stageNo={stageNo} 
+                    stageYear={stageYear} 
+                    images={topImages}/> 
             </section>
-            {/* PostArea--------------------------------------------------------- */}
+            {/* PostArea---------------------------------------------- */}
             <section ref={postRef} className={classes.section}>   
-                <PostArea stage={stage} stageNo={stageNo} stageYear={stageYear} stageImages={stageImages}
-                            article={article} type={type} postDate={postDate} postImages={postImages}
-                            tags={tags} 
-                            locationName={locationName} locationAddress={locationAddress}
-                           
+                <PostArea 
+                    stage={stage} 
+                    stageNo={stageNo} 
+                    stageYear={stageYear} 
+                    stageImages={stageImages}
+                    article={article} 
+                    type={type} 
+                    postDate={postDate} 
+                    postImages={postImages}
+                    tags={tags} 
+                    locationName={locationName} 
+                    locationAddress={locationAddress}
                     />
             </section> 
-            {/* Pagination--------------------------------------------------------- */}
+            {/* Pagination----------------------------------------- */}
 {/* setLabel error map xxxxxxx*/}
                 {/* <Pagination posts={posts} id={id}/> */}
-            {/* LocationArea--------------------------------------------------------- */}
+            {/* LocationArea----------------------------------------- */}
             <section ref={locationRef} className={classes.section} >  
-                <LocationArea locationName={locationName} locationAddress={locationAddress}
+                <LocationArea 
+                    locationName={locationName} 
+                    locationAddress={locationAddress}
                     locationLat={locationLat}
                     locationLng={locationLng}
                     locationImages={locationImages}  
                         />
             </section> 
-            {/* SNSrea--------------------------------------------------------- */}
+            {/* SNSrea------------------------------------------------ */}
             <section ref={snsRef} className={classes.section}>  
-                <SNSArea images={topImages} postImages={postImages}/>  
+                <SNSArea 
+                    images={topImages} 
+                    postImages={postImages}/>  
             </section>
             <Backdrop 
                 className={classes.backdrop} 

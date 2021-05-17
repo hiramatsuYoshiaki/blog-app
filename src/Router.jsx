@@ -10,6 +10,7 @@ import {
   PostEdit,
   PostList,
   PostDetail,
+  PostPage,
   StageEdit,
   StageList,
   TagsEdit,
@@ -67,7 +68,7 @@ const Router = () => {
                 <Route exact path="/signout" component={SignOut} />
 
 
-                <Route exact path="(/)?" component={LandingHorizontalScroll} />
+                <Route exact path="(/)?" component={Landing} />
                 {/* <Route exact path="(/)?" component={GsapDynamicBackgroundColorHorizontal} /> */}
                 {/* <Route exact path="(/)?" component={HomeBlog} /> */}
                 <Route exact path="/home" component={Home} />
@@ -89,6 +90,7 @@ const Router = () => {
                 <Route exact path="/tags/List" component={TagsList} />
                 <Route exact path="/about" component={About} />
                 <Route path="/post/detail(:id)?" component={PostDetail} /> 
+                <Route path="/post/page(:id)?" component={PostPage} /> 
                 <Route path="/location/detail(:id)?" component={LocationDetail} /> 
                 
                 {/* syuuseicyuu  landingRoot --> stagelistGrid*/}

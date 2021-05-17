@@ -145,8 +145,11 @@
     padding:32px 0;
     overflow: hidden;
     background: $black;
+    // border:1px solid white;
+    min-height:1vh;
+    height:auto;
 }
-.c-topimgarea-header{ 
+.c-topimgarea-header{  
     width:100%;
     padding: 8px 0;
     display: flex;
@@ -156,6 +159,7 @@
     @media (min-width: 960px) {
     padding: 16px 0;
     }
+
 }
 .topimagearea-header__title{
     color:$white;
@@ -194,28 +198,33 @@
     width:100%;
     height: auto;
     max-width:1260px;
+    object-fit: cover;
 } 
 .c-topimagearea-scroll {
     display:flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: center; 
     flex-direction: column;
     height:100px;
     color:lightblue;
     width:100%;
+    // margin-top:-30px;
 }
 //topImageArea-------------------------------------
 .c-postarea{
     background-color:$white-ter; 
     box-shadow:none;
     margin-bottom: 16px;
+    width:100%;
     @media (min-width: 960px) {
-        // box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
         margin-bottom: 32px;
     }
 }
 .c-postarea-header{
     padding:1.6rem;
+}
+.c-postarea-images{
+    // padding:1.6rem;
 }
 .c-postarea-header-stage{
 
@@ -353,17 +362,14 @@
     padding: 0 8px;
     margin-bottom:16px;
     overflow:hidden;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
     @media (min-width: 960px) {
-        padding:0;
-        width:50%;
+        padding:0; 
+        width:50%; 
         height:100%;
         padding:50px;
-    }
+    } 
     @media (min-width: 1280px) {
-        width:50%;
+        width:50%; 
         padding:100px;
     }
     border:1px solid rgba(200,200,200,.3);
@@ -471,7 +477,19 @@
     width:100%;
     height:auto;
 }
-
+//postPage-----------------------------
+.c-post-page-haeder{
+    height:100vh;
+}
+.c-post-page-main{
+    height:100vh;
+}
+.c-post-page-location{
+    height:100vh;
+}
+.c-post-page-sns{
+    height:100vh;
+}
 //PostListGrid --------------------------------------
 .c-post-list-grid{
     background-color:$black;
@@ -577,13 +595,22 @@
 }
 .c-about-header-wraper{
     text-align: center;
+    // height:76vh;
+    // display:flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
+    // border:1px solid red;
 }
-
+.c-about-header-click{
+    // margin-bottom:1rem;
+}
 .c-about-header-sub{
-    color: rgb(252, 86, 86);
+    color: rgb(113, 171, 247);
     letter-spacing: .4em;
-    font-weight: 100;
-    margin-bottom:1rem;
+    font-weight: 300;
+    margin-bottom:4rem;
+    margin-top:-4rem;
 }
 .c-about-header-text-wraper{
     margin: 0 auto;
@@ -612,6 +639,7 @@
 	letter-spacing: .4em;
     margin-bottom:5rem;    
 }
+ 
 
 /* Our mixin positions a copy of our text
 directly on our existing text, while

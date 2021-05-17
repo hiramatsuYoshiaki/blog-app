@@ -8,6 +8,7 @@ import {push} from 'connected-react-router'
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
+
 const useStyles = makeStyles((theme) => ({ 
     //loading screen 
     root: {
@@ -21,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     HorizontalScrollArea:{
         width:'100%',
         minHeight:'100vh',
-
     },
     FadeinScrollArea:{
         width:'100%',
@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
         flexDirection:'column',
         height:'50vh',
         willChange: 'transform',
-        border:'1px solid blue',
     },
     horezontalArea:{
         background: ' hsl(0, 0%, 96%)',  //$white-ter 
@@ -47,46 +46,51 @@ const useStyles = makeStyles((theme) => ({
     },
     postArea:{
         color:'white',
-        height:'80vw',
+        minHeight:'80vw',
         width:'100%',
         display:'flex',
         flexDirection:'column',
         justifyContent:'cneter',
         alignItems:'center',
         [theme.breakpoints.up('md')]: {
-            height:'40vw',
+            minHeight:'40vw',
             flexDirection:'row',
             justifyContent:'space-between',
             alignItems:'center',
         },
-        border:'1px solid white'
+        border:'1px solid red',
     },
     postImageArea:{
-        border:'1px solid yellow',
         width:'100%',
-        height:'70%',
+        
+        // height:'60%',
         [theme.breakpoints.up('md')]: {
             height:'40vw',
+           width:'50vw',
         },
+        border:'1px solid white',
     },
     postSbscrive:{
-        border:'1px solid blue',
         width:'100%',
-        height:'30%',
+        // height:'40%',
+        padding:'1rem 1rem',
         display:'flex',
         flexDirection:'column',
         justifyContent:'center',
         alignItems:'center',
         [theme.breakpoints.up('md')]: {
             height:'40vw',
+            width:'50vw',
+            padding:'1rem 3rem',
         },
         
     },
     postImg:{
         width:'100%',
         height:'100%',
-        objectFit: 'contain'
-    },
+        objectFit: 'contain',
+        border:'1px solid yellow',
+    }, 
     postTitle:{
         '& h3':{
         margin:'0 0 10px 0 ',
@@ -95,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
             [theme.breakpoints.up('md')]: {
                 fontSize:'3rem',
             },
-            [theme.breakpoints.up('lg')]: {
+            [theme.breakpoints.up('lg')]: { 
                 fontSize:'4rem',
             },
             cursor:'pointer',
@@ -129,13 +133,17 @@ const useStyles = makeStyles((theme) => ({
 const LandingComponent = (props) => {
     const classes = useStyles()
     const dispatch = useDispatch()
+    
     const posts = props.posts
     const stages = props.stages
-    // console.log(posts);
-    // console.log(stages);
+    const postsCover = props.postsCover
+    const covers = props.covers
+    console.log('landingComponent');
+    console.log(covers);
     const slideShowAreaRef = useRef()
     const horizontalScrollAreaRef = useRef()
     const fadeinScrollAreaRef = useRef()
+    const postTitleRef = useRef()
 
     const revealRefs = useRef([])
     revealRefs.current = []
@@ -192,34 +200,57 @@ const LandingComponent = (props) => {
                         trigger:el,
                         start:`top center+=100`,
                         toggleActions:`play none none reverse`,
-                        markers: true,
+                        // markers: true,
                     }
                 }
             )
         }) 
 
     },[horizontalScrollAreaRef.current,fadeinScrollAreaRef.current,revealRefs.current])
+    useEffect(()=>{
+        
+        gsap.fromTo(postTitleRef.current,
+            {
+                autoAlpha:0,
+                x:'100px'
+            },{
+                autoAlpha:1,
+                x:0,
+                ease:Power2.in,
+                scrollTrigger:{
+                    // scrub: 1,
+                    trigger:postTitleRef.current,
+                    start:`top center+=100`,
+                    toggleActions:`play none none reverse`,
+                    // markers:true, 
+                }
+            }
+    )
+    },[postTitleRef.current])
     return (
         <div className={classes.root}>
             <div className={classes.slideShowArea}
                  ref={slideShowAreaRef}
             >
-                <SlideshowArea posts={posts}/>
+                {/* <SlideshowArea posts={posts}/> */}
+                <SlideshowArea posts={covers}/>
             </div>
-            <div className={classes.HorizontalScrollArea}
+            {/* <div className={classes.HorizontalScrollArea}
                  ref={horizontalScrollAreaRef}
             >
-                <HorizontalScrollArea stages={stages} />
-            </div>
+                <HorizontalScrollArea stages={stages} posts={posts} />
+            </div> */}
+            
+            {/* 
             <div className={classes.FadeinScrollArea}
                  ref={fadeinScrollAreaRef}
             >
-                <div >
+                <div ref={postTitleRef}>
                     <h3>POSTS</h3>
                     <p>最新の投稿</p>
                 </div>
                 <div>
-                    {posts.map((post) => (
+                    {postsCover.map((post) => (
                         <div className={classes.postArea}
                              key={post.id} 
                              ref={addToRefs}
@@ -241,7 +272,8 @@ const LandingComponent = (props) => {
                                     </h3>
                                 </div>
                                 
-                                    <p className={classes.postText}>{post.article}</p>
+                                <p className={classes.postText}>{post.postDate.split('T')[0] }</p>
+                                <p className={classes.postText}>{post.article}</p>
                                 
                                 <Button 
                                     onClick={() => dispatch(push('/post/detail/' + post.id))} 
@@ -253,13 +285,11 @@ const LandingComponent = (props) => {
                                     <ArrowForwardIosIcon />
                                 </Button>
                             </div>
-                            {/* <PostsArea post={post} />   */}
-                           
-                            
                         </div>
                     ))}
             </div>
             </div>
+        */}
         </div>
     )
 }

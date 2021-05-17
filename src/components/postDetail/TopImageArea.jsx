@@ -1,5 +1,6 @@
 import React,{useRef,useEffect} from 'react'
 import {gsap} from 'gsap'
+
 import MouseIcon from '@material-ui/icons/Mouse';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
  
@@ -9,11 +10,10 @@ const TopImageArea = props => {
     const iconRef = useRef() 
     useEffect(()=>{
         const tl = gsap.timeline();
-        tl.fromTo(headerRef.current,{opacity:0, y:-100},{ opacity:1, y:0}, .5) 
-        tl.fromTo(imageRef.current,{opacity:0, y:-100},{ opacity:1, y:0}, 1) 
-        // tl.fromTo(iconRef.current,{opacity:1, y:-300},{ opacity:1, y:0}, 1.5) 
-        tl.fromTo(iconRef.current,{opacity:0, y:-50,repeat: -1,repeatDelay:5},{ opacity:1, y:0,repeat: -1 ,repeatDelay:5,duration:3}, 4) 
-    },[])
+        tl.fromTo(headerRef.current,{opacity:0, y:-100},{ opacity:1, y:0}) 
+        tl.fromTo(imageRef.current,{opacity:0, y:-500},{ opacity:1, y:0}) 
+        tl.fromTo(iconRef.current,{opacity:0, y:-40,repeatDelay:5,duration:5},{ opacity:1, y:0,repeat: -1,repeatDelay:5,duration:5 }) 
+    },[props.id])
     return (
         <div className="l-container-fluid c-imagearea" >
             <div className="l-section">
@@ -27,11 +27,11 @@ const TopImageArea = props => {
                         <span className="u-margin-right-8">{props.stageYear}</span>
                         <span className="u-margin-right-8">{props.stage}</span>
                     </h2>
-                </div>
+                </div> 
                 <div className="c-topimagearea-scroll" ref={iconRef}>
                     <h5>SCROLL</h5>
                      <MouseIcon />
-                     <ExpandMoreIcon />
+                     <ExpandMoreIcon /> 
                 </div>
                 <div ref={imageRef} className="c-imagearea-wraper"  >
                     {props.images.length > 0 && (
@@ -40,8 +40,6 @@ const TopImageArea = props => {
                         ))
                     )}
                 </div>
-                
-
             </div>  
         </div>
     )

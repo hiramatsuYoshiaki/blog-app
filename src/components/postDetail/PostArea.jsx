@@ -13,11 +13,12 @@ const useStyles = makeStyles((theme) => ({
         height: 16,
         width: 16
     }
-  })); 
+  }));  
 
 const PostArea = props => {
     const classes = useStyles();
 
+    const postRef = useRef()
     const headerRef = useRef()
     const imageRef = useRef()
     const bodyArticleRef = useRef()
@@ -26,28 +27,72 @@ const PostArea = props => {
    
     useEffect(()=>{
         gsap.registerPlugin(ScrollTrigger);
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger:headerRef.current,
-                start:`top center+=100`,
-                // end: "center top",
-                toggleActions:`play none none reverse`,
-                // markers: true,
-              }
-        });
-        tl.fromTo(headerRef.current,{opacity:0, y:-100},{ opacity:1, y:0}, .2) 
-        tl.fromTo(imageRef.current,{opacity:0, y:-100},{ opacity:1, y:0}, .5) 
+        // const tl = gsap.timeline({
+        //     scrollTrigger: {
+        //         trigger:headerRef.current,
+        //         start:`top center+=100`,
+        //         // end: "center top",
+        //         toggleActions:`play none none reverse`,
+        //         markers: true,
+        //       }
+        // });
+        // tl.fromTo(postRef.current,{opacity:0, y:0},{ opacity:1, y:0}) 
+        // tl.fromTo(headerRef.current,{opacity:0, y:-100},{ opacity:1, y:0}) 
+        // tl.fromTo(imageRef.current,{opacity:0, y:-100},{ opacity:1, y:0}) 
 
+        gsap.fromTo(postRef.current,
+            {opacity:0, x:-100},
+            { opacity:1, 
+                x:0,
+                scrollTrigger: {
+                    id:'postRef',
+                    trigger:postRef.current,
+                    start:`top center+=100`,
+                    // end: "center top",
+                    toggleActions:`play none none reverse`,
+                    markers: true,
+                  }
+            }
+        ) 
+        gsap.fromTo(headerRef.current,
+            {opacity:0, x:-100},
+            { opacity:1, 
+                x:0,
+                scrollTrigger: {
+                    id:'headerRef',
+                    trigger:headerRef.current,
+                    start:`top center+=100`,
+                    // end: "center top",
+                    toggleActions:`play none none reverse`,
+                    markers: true,
+                  }
+            }
+        ) 
+        gsap.fromTo(imageRef.current,
+            {opacity:0, x:0},
+            { opacity:1, 
+                x:0,
+                scrollTrigger: {
+                    id:'imageRef',
+                    trigger:imageRef.current,
+                    start:`top center+=100`,
+                    // end: "center top",
+                    toggleActions:`play none none reverse`,
+                    // markers: true,
+                  }
+            }
+        ) 
         gsap.fromTo(bodyArticleRef.current,
             {opacity:0, x:-100},
             { opacity:1, 
                 x:0,
                 scrollTrigger: {
+                    id:'bodyArticleRef',
                     trigger:bodyArticleRef.current,
                     start:`top center+=100`,
                     // end: "center top",
                     toggleActions:`play none none reverse`,
-                    // markers: true,
+                    markers: true,
                   }
             }
         ) 
@@ -82,7 +127,7 @@ const PostArea = props => {
     },[])
     
     return (
-        <div className="l-container" >
+        <div className="l-container" ref={ postRef }> 
             <div className="l-section" >
                 <div className="c-postarea" >
 
@@ -153,10 +198,12 @@ const PostArea = props => {
                                         </span>
                                     ))
                                 )} 
-                            </div>
+                            </div> 
                             
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>

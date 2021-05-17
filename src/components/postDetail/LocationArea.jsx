@@ -252,7 +252,7 @@ const LocationArea = props => {
         
     },[])
     useEffect(()=>{
-        setLat(Number(props.locationLat))
+        setLat(Number(props.locationLat)) 
         setLng(Number(props.locationLng))
         setName(props.locationName)
         setAddress(props.locationAddress)

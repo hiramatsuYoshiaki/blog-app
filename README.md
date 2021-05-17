@@ -182,6 +182,7 @@ npm install google-map-react
 npm install @material-ui/lab
 npm install @material-ui/data-grid
 npm install -s swiper@5.4.2 react-id swiper@3.0.0
+npm install react-transition-group --save
 ```
 
 ### push error
@@ -318,3 +319,7 @@ service cloud.firestore {
 https://qiita.com/impl_s/items/0c9f326c90052ebd77da
 
 React.useRef()を使うことで、常に最新の状態を参照することができます。
+
+# 【React】ReactでCSSアニメーション（react-transition-group の利用）
+https://serip39.hatenablog.com/entry/2020/10/02/180000
+npm install react-transition-group --save

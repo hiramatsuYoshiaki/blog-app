@@ -104,9 +104,9 @@ const GsapChengeBackgroundColor = () => {
         
         if(el && !sectionRefs.current.includes(el)){
             sectionRefs.current.push(el)
-            console.log('addToRefs el',el);
-            console.log(el.dataset.bgcolor);
-            console.log('sectionRefs.current',sectionRefs.current);
+            // console.log('addToRefs el',el);
+            // console.log(el.dataset.bgcolor);
+            // console.log('sectionRefs.current',sectionRefs.current);
         }
     }
     
@@ -145,16 +145,16 @@ const GsapChengeBackgroundColor = () => {
     
     /* COLOR CHANGER */
     sectionRefs.current.forEach((el,i)=> {
-        console.log('useEffect');
-        console.log('sectionRefs.current',sectionRefs.current);
-        console.log('el',el);
+        // console.log('useEffect');
+        // console.log('sectionRefs.current',sectionRefs.current);
+        // console.log('el',el);
         const scrollColorElems = el.dataset.bgcolor
-        console.log('scrollColorElems', scrollColorElems)
+        // console.log('scrollColorElems', scrollColorElems)
         //前のセクションの背景色を保持
         const prevBg = i === 0 ? "" : sectionRefs.current[i - 1].dataset.bgcolor;
         const prevText = i === 0 ? "" :sectionRefs.current[i - 1].dataset.textcolor;
-        console.log('bodyRef',bodyRef);
-        console.log('containerRef',containerRef);
+        // console.log('bodyRef',bodyRef);
+        // console.log('containerRef',containerRef);
 
         // ScrollTrigger.create({
         //     trigger: el,
