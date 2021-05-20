@@ -2,13 +2,13 @@ import React,{useRef,useState,useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import {push} from 'connected-react-router' 
 import {Plane,useCurtains} from 'react-curtains'
-import {gsap,Power3} from 'gsap'
-import indigo from '@material-ui/core/colors/indigo';
+import {gsap} from 'gsap'
+// import indigo from '@material-ui/core/colors/indigo';
 import {makeStyles} from '@material-ui/core/styles'
 // import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MouseIcon from '@material-ui/icons/Mouse';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import MouseIcon from '@material-ui/icons/Mouse';
+// import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 // import SwapVertIcon from '@material-ui/icons/SwapVert';
 // import TouchAppIcon from '@material-ui/icons/TouchApp';
@@ -85,10 +85,20 @@ const useStyles = makeStyles((theme) => ({
         padding:'0 1.8rem',
       }
     },
+    stageNo:{
+      dispaly:'inline-block',
+        marginRight:'1.4rem',
+        textShadow: '2px 2px 4px rgba(0,0,0,1)',
+    },
+    stageTitle:{
+        marginRight:'.4rem',
+        textShadow: '2px 2px 4px rgba(0,0,0,1)',
+    },
     sliderArticle:{
       width:'100%',
       overflow: 'hidden',
       padding:'.8rem',
+      textShadow: '2px 2px 4px rgba(0,0,0,1)',
       
       // border:'1px solid orange',
       
@@ -240,23 +250,25 @@ const Slideshow = props => {
         // console.log(sliderBottomRef.current);
     }
     useEffect(()=>{
-      sliderBottomRef.current.forEach((el,index)=> {
+      // console.log('sliderBottomRef',sliderBottomRef.current);
+      if (sliderBottomRef.current.length > 0 && sliderBottomRef.current && activeTex.current){
         let tl = gsap.timeline();
-        tl.fromTo(el.querySelector('h3'),1.2,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
-        .fromTo(el.querySelector('h5'),1.2,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
-        .fromTo(el.querySelector('.sliderLink'),.6,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
-      }) 
-    },[sliderBottomRef.current])
+        sliderBottomRef.current.forEach((el,index)=> {
+          tl.fromTo(el.querySelector('.stageNo'),1,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
+          .fromTo(el.querySelector('.stageTitle'),.5,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
+          .fromTo(el.querySelector('.article'),1,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
+          .fromTo(el.querySelector('.sliderLink'),.5,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
+        }) 
+      }
+    },[sliderBottomRef.current]) 
 
-    const iconRef = useRef() 
-    useEffect(()=>{
-        const tl = gsap.timeline();
-        // tl.fromTo(headerRef.current,{opacity:0, y:-100},{ opacity:1, y:0}) 
-        // tl.fromTo(imageRef.current,{opacity:0, y:-500},{ opacity:1, y:0}) 
-        tl.fromTo(iconRef.current,
-          { opacity:0, y:-60,repeatDelay:5,duration:5},
-          { opacity:1, y:0,repeat: -1,repeatDelay:5,duration:5,ease:Power3.easeIn }) 
-    },[iconRef.current,props.id])
+    // const iconRef = useRef() 
+    // useEffect(()=>{
+    //     const tl = gsap.timeline();
+    //     tl.fromTo(iconRef.current,
+    //       { opacity:0, y:-60,repeatDelay:5,duration:5},
+    //       { opacity:1, y:0,repeat: -1,repeatDelay:5,duration:5,ease:Power3.easeIn }) 
+    // },[iconRef.current,props.id])
 
     
 
@@ -275,6 +287,7 @@ const Slideshow = props => {
           value: 0
         }
       };
+    
     const onLoading = (plane, texture) => {
         // improve texture rendering on small screens with LINEAR_MIPMAP_NEAREST minFilter
         texture.setMinFilter(texture.gl.LINEAR_MIPMAP_NEAREST);
@@ -368,6 +381,7 @@ const Slideshow = props => {
                     <h1 className="c-glitch c-about-glich" 
                         data-text="TOURdeHDR" >TOURdeHDR
                     </h1>
+
                     <p className="c-about-header-sub" >
                       <span>NEXT POSTS CLICK</span>
                       {/* <span><NavigateNextIcon style={{ fontSize:38, color: indigo[300] }}/></span> */}
@@ -388,21 +402,30 @@ const Slideshow = props => {
                                >
                             <div className={classes.sliderTitle} 
                                 //  onClick={() => dispatch(push('/post/detail/' + post.id))} 
-                                 onClick={() => dispatch(push('/post/page/' + post.id))} 
+                                //  onClick={() => dispatch(push('/stage/detail/' + post.stage.id))} 
                             > 
-                              <h3>
-                                {post.title}
+                              
+
+                              <h1 className="stageNo">
+                                {/* <span className={classes.span}>{post.stage.stageYear}</span> */}
+                                <span  className={classes.stageNo}>STAGE</span>
+                                <span  className={classes.stageNo}>{post.stage.stageNo}</span>
+                              </h1>
+                              <h3 className="stageTitle">
+                                <span className={classes.stageTitle}>{post.stage.stage}</span>
                               </h3>
                             </div>
+
+                            
                             <div className={classes.sliderArticle} >
-                              <h5>
+                              <h5 className="article">
                                 {post.article}
                               </h5>
                               <div className='sliderLink'>
                                   <div className={classes.sliderLinkArrow}>
                                     
                                       <div className={classes.discoverBorder}
-                                            onClick={()=>dispatch(push('/post/page/' + post.id))}
+                                            onClick={()=>dispatch(push('/stage/detail/' + post.stage.id))}
                                       >
                                         DISCOVER
                                       </div>

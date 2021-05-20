@@ -52,7 +52,8 @@ import {
   LocomotiveScrollSimpleTest,
   GsapDynamicBackgroundColorHorizontal,
   GsapHorizontal,
-  GsapScrollingTrigerTest
+  GsapScrollingTrigerTest,
+  ReactTransitionTest
 
 } from './templates/index'
 import Auth from './Auth'
@@ -91,6 +92,7 @@ const Router = () => {
                 <Route exact path="/about" component={About} />
                 <Route path="/post/detail(:id)?" component={PostDetail} /> 
                 <Route path="/post/page(:id)?" component={PostPage} /> 
+                {/* <Route path="/post/selected(:id)?" component={PostSelected} />  */}
                 <Route path="/location/detail(:id)?" component={LocationDetail} /> 
                 
                 {/* syuuseicyuu  landingRoot --> stagelistGrid*/}
@@ -98,7 +100,7 @@ const Router = () => {
 
                 {/* test--------------------------------------------------------------------- */}
                 {/*LoadingDispalyFetchDataTest */}
-                <Route exact path="/LoadingDispalyFetchDataTest" component={LoadingDispalyFetchDataTest} />
+                <Route exact path="/LoadingDispalyFetchDataTest" component={LoadingDispalyFetchDataTest} /> 
 
 
                 {/* test remove XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */}
@@ -156,6 +158,10 @@ const Router = () => {
                 <Route exact path="/GsapHorizontal" component={GsapHorizontal} />
                 {/*GsapScrollingTrigerTest remove*/}
                 <Route exact path="/GsapScrollingTrigerTest" component={GsapScrollingTrigerTest} />
+
+                {/* ReactTransitionTest */}
+                <Route exact path="/ReactTransitionTest" component={ReactTransitionTest} />
+
               
 
               <Auth>

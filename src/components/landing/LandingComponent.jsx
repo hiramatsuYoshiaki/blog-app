@@ -2,11 +2,13 @@ import React,{useRef,useEffect} from 'react'
 import {gsap,Power2} from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import {makeStyles} from '@material-ui/core/styles'
-import {SlideshowArea,HorizontalScrollArea} from './index'
+import {SlideshowArea} from './index'
+// import {SlideshowArea,HorizontalScrollArea} from './index'
 import {useDispatch} from 'react-redux'
 import {push} from 'connected-react-router' 
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+gsap.registerPlugin(ScrollTrigger)
 
 
 const useStyles = makeStyles((theme) => ({ 
@@ -58,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
             justifyContent:'space-between',
             alignItems:'center',
         },
-        border:'1px solid red',
     },
     postImageArea:{
         width:'100%',
@@ -68,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
             height:'40vw',
            width:'50vw',
         },
-        border:'1px solid white',
+        // border:'1px solid white',
     },
     postSbscrive:{
         width:'100%',
@@ -89,15 +90,16 @@ const useStyles = makeStyles((theme) => ({
         width:'100%',
         height:'100%',
         objectFit: 'contain',
-        border:'1px solid yellow',
+        // border:'1px solid yellow',
     }, 
     postTitle:{
         '& h3':{
-        margin:'0 0 10px 0 ',
+            margin:'0 1.6rem 1rem 1.6rem ',
             fontWeight: '300',
             fontSize:'1.8rem',
             [theme.breakpoints.up('md')]: {
                 fontSize:'3rem',
+                margin:'0 3.2rem 3.2rem 3.2rem ',
             },
             [theme.breakpoints.up('lg')]: { 
                 fontSize:'4rem',
@@ -128,22 +130,33 @@ const useStyles = makeStyles((theme) => ({
         '& span':{
             marginRight:'.4rem',
         }
-    }
+    },
+    postHeader:{
+        display:'flex',
+        flexDirection:'column',
+        justifyContent:'center',
+        alignItems:'center',
+        margin:'0  0 .8rem 0',
+        [theme.breakpoints.up('md')]: {
+            margin:'4rem 0 0 0',
+        },
+        // border:'1px solid white',
+    },
 })) 
 const LandingComponent = (props) => {
     const classes = useStyles()
     const dispatch = useDispatch()
     
-    const posts = props.posts
-    const stages = props.stages
+    // const posts = props.posts
+    // const stages = props.stages
     const postsCover = props.postsCover
     const covers = props.covers
-    console.log('landingComponent');
-    console.log(covers);
+    // console.log('landingComponent');
+    // console.log(covers);
     const slideShowAreaRef = useRef()
-    const horizontalScrollAreaRef = useRef()
+    // const horizontalScrollAreaRef = useRef()
     const fadeinScrollAreaRef = useRef()
-    const postTitleRef = useRef()
+    const postHeaderRef = useRef()
 
     const revealRefs = useRef([])
     revealRefs.current = []
@@ -154,24 +167,23 @@ const LandingComponent = (props) => {
         }
     }
 
-    useEffect(()=>{
-        gsap.registerPlugin(ScrollTrigger)
-        //stages area
-        gsap.fromTo(horizontalScrollAreaRef.current,
-                {
-                    autoAlpha:0
-                },{
-                    autoAlpha:1,
-                    ease:Power2.in,
-                    scrollTrigger:{
-                        // scrub: 1,
-                        trigger:horizontalScrollAreaRef.current,
-                        start:`top center+=100`,
-                        toggleActions:`play none none reverse`,
-                        // markers:true, 
-                    }
-                }
-        )
+    useEffect(()=>{ 
+        // gsap.registerPlugin(ScrollTrigger)
+        // gsap.fromTo(horizontalScrollAreaRef.current,
+        //         {
+        //             autoAlpha:0
+        //         },{ 
+        //             autoAlpha:1,
+        //             ease:Power2.in,
+        //             scrollTrigger:{
+        //                 // scrub: 1,
+        //                 trigger:horizontalScrollAreaRef.current,
+        //                 start:`top center+=100`,
+        //                 toggleActions:`play none none reverse`,
+        //                 // markers:true, 
+        //             }
+        //         }
+        // )
 
         //posts area
         gsap.fromTo(fadeinScrollAreaRef.current,
@@ -204,12 +216,46 @@ const LandingComponent = (props) => {
                     }
                 }
             )
+            gsap.fromTo(el.querySelector('img'),1,
+                { opacity: 0, x: '100px', duration: 0},
+                { duration:.4,
+                    opacity: 1, 
+                    x: 0,
+                    ease:Power2.in,
+                    scrollTrigger:{
+                        id:`section-${index+1}`,
+                        trigger:el.querySelector('img'),
+                        start:`top center+=100`,
+                        toggleActions:`play none none reverse`,
+                        // markers: true,
+                    }
+                }
+            )
+            gsap.fromTo(el.querySelector('section'),1,
+                { opacity: 0, x: '100px', duration: 0,},
+                { duration:.4,
+                    opacity: 1,
+                    delay:.5, 
+                    x: 0,
+                    ease:Power2.in,
+                    scrollTrigger:{
+                        id:`section-${index+1}`,
+                        trigger:el.querySelector('section'),
+                        start:`top center+=100`,
+                        toggleActions:`play none none reverse`,
+                        // markers: true,
+                    }
+                }
+            )
+        //   tl.fromTo(el.querySelector('.stageNo'),1,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
+
         }) 
 
-    },[horizontalScrollAreaRef.current,fadeinScrollAreaRef.current,revealRefs.current])
+    // },[horizontalScrollAreaRef.current,fadeinScrollAreaRef.current,revealRefs.current])
+    },[fadeinScrollAreaRef.current,revealRefs.current])
     useEffect(()=>{
         
-        gsap.fromTo(postTitleRef.current,
+        gsap.fromTo(postHeaderRef.current,
             {
                 autoAlpha:0,
                 x:'100px'
@@ -219,14 +265,14 @@ const LandingComponent = (props) => {
                 ease:Power2.in,
                 scrollTrigger:{
                     // scrub: 1,
-                    trigger:postTitleRef.current,
+                    trigger:postHeaderRef.current,
                     start:`top center+=100`,
                     toggleActions:`play none none reverse`,
                     // markers:true, 
                 }
             }
     )
-    },[postTitleRef.current])
+    },[postHeaderRef.current])
     return (
         <div className={classes.root}>
             <div className={classes.slideShowArea}
@@ -241,13 +287,13 @@ const LandingComponent = (props) => {
                 <HorizontalScrollArea stages={stages} posts={posts} />
             </div> */}
             
-            {/* 
+            
             <div className={classes.FadeinScrollArea}
                  ref={fadeinScrollAreaRef}
             >
-                <div ref={postTitleRef}>
-                    <h3>POSTS</h3>
-                    <p>最新の投稿</p>
+                <div ref={postHeaderRef} className={classes.postHeader}>
+                        <h3>POSTS</h3>
+                        <p>最新の投稿</p>
                 </div>
                 <div>
                     {postsCover.map((post) => (
@@ -255,14 +301,16 @@ const LandingComponent = (props) => {
                              key={post.id} 
                              ref={addToRefs}
                         > 
-                            <div className={classes.postImageArea}>
+                           
+                            <div className={classes.postImageArea + " img" }> 
                                 <img src={post.topImages[0].path} 
                                     alt={post.title} 
                                     key={post.topImages[0].id}
                                     className={classes.postImg}
                                 />
                             </div>
-                            <div className={classes.postSbscrive}>
+
+                            <section className={classes.postSbscrive + " subscrive"}>
                                 <div className={classes.postTitle}>
                                     <h3 className="c-glitch c-about-glich" 
                                         data-text={post.title} 
@@ -284,12 +332,12 @@ const LandingComponent = (props) => {
                                     <span>この投稿を見る</span>
                                     <ArrowForwardIosIcon />
                                 </Button>
-                            </div>
+                            </section>
                         </div>
                     ))}
             </div>
             </div>
-        */}
+       
         </div>
     )
 }

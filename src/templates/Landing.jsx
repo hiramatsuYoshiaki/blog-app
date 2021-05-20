@@ -79,8 +79,6 @@ const Landing = () => {
         //カバーページを選択------
         let coversSort = []
         coversSort = postsAll.filter(posts => posts.type === 'cover')
-        console.log('cover');
-        console.log(coversSort);
         // ソート降順
         coversSort.sort(function(a,b){
             if(a.postDate > b.postDate) return -1;

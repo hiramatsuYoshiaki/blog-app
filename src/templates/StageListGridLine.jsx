@@ -55,8 +55,8 @@ const StageListGridLine = () => {
     const stages = getStages(selector)
 
     useEffect(()=> {
-        dispatch(fetchStages())    
-    },[])  
+        dispatch(fetchStages())     
+    },[])   
 
     return ( 
         <div className="l-container ">

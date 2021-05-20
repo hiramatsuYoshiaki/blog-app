@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     title:{ 
-        // dispaly:'fixed',
+        // dispaly:'fixed', 
         width:'100%',
         height:'100%',
         overflow:'hidden',

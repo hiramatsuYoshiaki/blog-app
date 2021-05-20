@@ -53,3 +53,4 @@ export { default as LocomotiveScrollSimpleTest } from './LocomotiveScrollSimpleT
 export { default as GsapDynamicBackgroundColorHorizontal } from './GsapDynamicBackgroundColorHorizontal'
 export { default as GsapHorizontal } from './GsapHorizontal'
 export { default as GsapScrollingTrigerTest } from './GsapScrollingTrigerTest'
+export { default as ReactTransitionTest } from './ReactTransitionTest'

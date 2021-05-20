@@ -7,7 +7,7 @@ import { getPosts } from '../reducks/posts/selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPosts } from '../reducks/posts/operators'
 import Backdrop from '@material-ui/core/Backdrop'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import CircularProgress from '@material-ui/core/CircularProgress' 
 import {makeStyles} from '@material-ui/core/styles'
 
 import { gsap,Power2} from "gsap";
