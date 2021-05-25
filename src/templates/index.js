@@ -13,6 +13,7 @@ export {default as PostListGridImage} from './PostListGridImage'
 export {default as StageListGridLine} from './StageListGridLine'
 export {default as StageEdit} from './StageEdit'
 export {default as StageList} from './StageList'
+export {default as StagePage} from './StagePage'
 export {default as TagsEdit} from './TagsEdit'
 export {default as TagsList} from './TagsList'
 export {default as Landing} from './Landing'//test

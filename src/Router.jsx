@@ -13,6 +13,7 @@ import {
   PostPage,
   StageEdit,
   StageList,
+  StagePage,
   TagsEdit,
   TagsList,
   LocationEdit,
@@ -97,6 +98,7 @@ const Router = () => {
                 
                 {/* syuuseicyuu  landingRoot --> stagelistGrid*/}
                 <Route path="/stage/detail(:id)?" component={StageListGridLine} />  
+                <Route path="/stage/page(:id)?" component={StagePage} />  
 
                 {/* test--------------------------------------------------------------------- */}
                 {/*LoadingDispalyFetchDataTest */}

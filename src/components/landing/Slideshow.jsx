@@ -15,6 +15,11 @@ import {makeStyles} from '@material-ui/core/styles'
 // import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 // import { TabList } from '@material-ui/lab';
 // import noImage from '../../assets/img/img4121_flat.jpg'
+
+import { Transition,CSSTransition,TransitionGroup, } from "react-transition-group";
+
+
+
 const useStyles = makeStyles((theme) => ({
     Slideshow: {
         position: 'absolute',
@@ -256,8 +261,12 @@ const Slideshow = props => {
         sliderBottomRef.current.forEach((el,index)=> {
           tl.fromTo(el.querySelector('.stageNo'),1,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
           .fromTo(el.querySelector('.stageTitle'),.5,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
+          .fromTo(el.querySelector('.sliderLinkStages'),.5,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
+
+          .fromTo(el.querySelector('.postTitle'),1,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
           .fromTo(el.querySelector('.article'),1,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
           .fromTo(el.querySelector('.sliderLink'),.5,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
+          .fromTo(el.querySelector('.sliderLinkPosts'),.5,{opacity: 0, x: '100px', duration: 0},{opacity: 1, x: 0,})
         }) 
       }
     },[sliderBottomRef.current]) 
@@ -392,22 +401,84 @@ const Slideshow = props => {
                      {/* <ExpandMoreIcon style={{ fontSize: 100, color: indigo[100] }}/> */}
                     {/* </div> */}
                   </div>
-                  <div >
+
+                  {/* test transition group start-------------------------------------------*/}
+                  <TransitionGroup>
+                    {
+                      posts.map((post,index) => (
+                        
+                        activeTexture === (index + 1) && (
+                          <CSSTransition
+                                // in={activeTexture === (index + 1)}
+                                key={post.id}
+                                timeout={500}
+                                classNames="item"
+                                >
+                            <div key={post.topImages[0].id} 
+                                className={classes.sliderBottom} 
+                                ref={addToSliderBottomRef}
+                                >
+                                  
+                              <div className={classes.sliderTitle}> 
+                                <h1 className="stageNo">
+                                  <span  className={classes.stageNo}>STAGE</span>
+                                  <span  className={classes.stageNo}>{post.stage.stageNo}</span>
+                                </h1>
+                                <h3 className="stageTitle">
+                                  <span className={classes.stageTitle}>{post.stage.stage}</span>
+                                </h3>
+                                
+                                <div className='sliderLinkStages'>
+                                  <div className={classes.sliderLinkArrow}>
+                                      <div className={classes.discoverBorder}
+                                            onClick={()=>dispatch(push('/stage/page/' + post.stage.id))}
+                                      >
+                                        DISCOVER STAGE
+                                      </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className={classes.sliderArticle} >
+                              <h3 className="postTitle">
+                                {post.title}
+                              </h3>
+                              <h5 className="article">
+                                {post.title}
+                                {post.article}
+                              </h5>
+                              <div className='sliderLinkPosts'>
+                                  <div className={classes.sliderLinkArrow}>
+                                      <div className={classes.discoverBorder}
+                                            onClick={()=>dispatch(push('/post/page/' + post.stage.id))}
+                                      >
+                                        DISCOVER POST
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                              
+                            </div>
+                          </CSSTransition>
+                        )
+
+
+                      ))
+                    }
+                  </TransitionGroup>
+                  {/* test transition group end ----------------------------------------------*/}
+                  {/* <TransitionGroup>
                     {
                       posts.map((post,index) => (
                         activeTexture === (index + 1) && (
+
                           <div key={post.topImages[0].id} 
                                className={classes.sliderBottom} 
                                ref={addToSliderBottomRef}
                                >
                             <div className={classes.sliderTitle} 
-                                //  onClick={() => dispatch(push('/post/detail/' + post.id))} 
-                                //  onClick={() => dispatch(push('/stage/detail/' + post.stage.id))} 
+                                 onClick={() => dispatch(push('/stage/detail/' + post.stage.id))} 
                             > 
-                              
-
                               <h1 className="stageNo">
-                                {/* <span className={classes.span}>{post.stage.stageYear}</span> */}
                                 <span  className={classes.stageNo}>STAGE</span>
                                 <span  className={classes.stageNo}>{post.stage.stageNo}</span>
                               </h1>
@@ -415,15 +486,12 @@ const Slideshow = props => {
                                 <span className={classes.stageTitle}>{post.stage.stage}</span>
                               </h3>
                             </div>
-
-                            
                             <div className={classes.sliderArticle} >
                               <h5 className="article">
                                 {post.article}
                               </h5>
                               <div className='sliderLink'>
                                   <div className={classes.sliderLinkArrow}>
-                                    
                                       <div className={classes.discoverBorder}
                                             onClick={()=>dispatch(push('/stage/detail/' + post.stage.id))}
                                       >
@@ -432,28 +500,15 @@ const Slideshow = props => {
                                   </div>
                               </div>
                             </div>
-                            
                           </div>
                         )
                       ))
                     }
-                  </div>
-                  
-                 
+                  </TransitionGroup> */}
+                
+                
+                
                 </div>
-                {/* <div className="c-about-header-wraper">
-                  
-                  <h1 className="c-glitch c-about-glich" 
-                      data-text="TOURdeHDR" >TOURdeHDR
-                  </h1>
-                  <h5 className="c-about-header-sub" >h-works</h5> 
-                  <div className="c-about-header-mouse">
-                    <MouseIcon style={{ fontSize: 30 }}/>
-                    <div className="c-about-header-click">Click Next Photo!</div>
-                    <div className="c-about-header-click">Scroll New Stages & Posts</div>
-                   
-                  </div>
-                </div> */}
                 <img
                     src="https://www.curtainsjs.com/examples/medias/displacement.jpg"
                     data-sampler="displacement"
@@ -462,10 +517,6 @@ const Slideshow = props => {
                 />
                 {
                   posts.map((post) => (
-                    // <img src={post.topImages[0].path} 
-                    //   alt={post.title} 
-                    //   key={post.topImages[0].id}
-                    // />
                     <img src={post.postImages[0].path} 
                       alt={post.postImages[0].description} 
                       key={post.postImages[0].id}
